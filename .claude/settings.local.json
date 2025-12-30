@@ -19,7 +19,8 @@
       "Bash(node fix-imports.js:*)",
       "Bash(node -e:*)",
       "Bash(NODE_OPTIONS='--trace-warnings' npm run build:*)",
-      "Bash(npm view:*)"
+      "Bash(npm view:*)",
+      "Bash(taskkill:*)"
     ]
   }
 }
