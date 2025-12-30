@@ -1,0 +1,11 @@
+{
+    "title": "Account Management",
+    "icon": "Settings",
+    "pages": [
+        "creating-account",
+        "settings",
+        "company-profile",
+        "team-permissions",
+        "subscription-billing"
+    ]
+}

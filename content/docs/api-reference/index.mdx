@@ -1,0 +1,60 @@
+---
+title: API Reference
+description: Introduction to the Flowxtra REST API
+icon: Terminal
+---
+
+# API Reference
+
+Welcome to the Flowxtra API documentation. Our REST API allows you to build custom integrations, automate workflows, and sync data with your HRIS or internal tools.
+
+## Base URL
+
+All API requests should be made to:
+
+```bash
+https://api.flowxtra.com/v1
+```
+
+## Authentication
+
+The Flowxtra API uses **Bearer Token** authentication. You can generate API keys in your **Settings** > **Integrations** dashboard.
+
+Pass the key in the Authorization header:
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+[Learn more about Authentication](/docs/api-reference/authentication)
+
+## Response Format
+
+All responses are returned in **JSON** format.
+
+### Success Response
+```json
+{
+  "data": {
+    "id": "job_123",
+    "title": "Software Engineer"
+  },
+  "meta": {
+    "status": "success"
+  }
+}
+```
+
+### Error Response
+```json
+{
+  "error": {
+    "code": "unauthorized",
+    "message": "Invalid API Key provided"
+  }
+}
+```
+
+## Rate Limits
+The API is rate-limited to **60 requests per minute** per API key.
+[See Rate Limits](/docs/api-reference/rate-limits)

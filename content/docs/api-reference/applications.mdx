@@ -1,0 +1,45 @@
+---
+title: Applications API
+description: Endpoints for managing candidates
+icon: Users
+---
+
+# Applications API
+
+Access candidate data and manage the review process.
+
+## List Applications
+
+`GET /applications`
+
+**Parameters**:
+- `job_id` (optional): Filter by job
+- `status` (optional): `new`, `hired`, `rejected`
+
+## Get Application
+
+`GET /applications/:id`
+
+Returns full candidate profile, answers, and resume URL.
+
+## Update Status
+
+Move a candidate to a different pipeline stage.
+
+`PATCH /applications/:id`
+
+```json
+{
+  "stage": "interview"
+}
+```
+
+## Add Note
+
+`POST /applications/:id/notes`
+
+```json
+{
+  "content": "Strong technical skills, recommended for interview."
+}
+```

@@ -1,0 +1,39 @@
+---
+title: MCP Setup
+description: Installing and configuring the Flowxtra MCP Server
+icon: HardDrive
+---
+
+# MCP Setup
+
+## Prerequisites
+- Node.js 18+ installed
+- Flowxtra API Key (Settings > Integrations)
+
+## Claude Desktop Configuration
+
+Update your Claude Desktop config file:
+
+**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+Add Flowxtra to the `mcpServers` object:
+
+```json
+{
+  "mcpServers": {
+    "flowxtra": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@flowxtra/mcp-server"
+      ],
+      "env": {
+        "FLOWXTRA_API_KEY": "fk_live_..."
+      }
+    }
+  }
+}
+```
+
+Restart Claude Desktop. You should now see the Flowxtra tools icon 🔌.

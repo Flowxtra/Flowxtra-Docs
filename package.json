@@ -1,6 +1,7 @@
 {
   "name": "flowxtra-docs",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Comprehensive documentation for Flowxtra - The modern job posting and recruitment platform",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -11,6 +12,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "fumadocs-core": "16.4.1",
     "fumadocs-mdx": "14.2.3",
     "fumadocs-ui": "16.4.1",
@@ -25,10 +27,10 @@
     "@types/node": "^24.10.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "16.0.10",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3",
-    "eslint-config-next": "16.0.10",
-    "eslint": "^9.39.2"
+    "typescript": "^5.9.3"
   }
 }

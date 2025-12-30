@@ -1,0 +1,28 @@
+---
+title: Rate Limits & Errors
+description: Handling API limits and error codes
+icon: AlertTriangle
+---
+
+# Rate Limits
+
+- **Standard**: 60 requests / minute
+- **Enterprise**: 600 requests / minute
+
+Headers returned with every request:
+- `X-RateLimit-Limit`
+- `X-RateLimit-Remaining`
+- `X-RateLimit-Reset`
+
+# Errors
+
+Standard HTTP status codes are used.
+
+- `200` OK
+- `201` Created
+- `400` Bad Request (Validation error)
+- `401` Unauthorized (Invalid API Key)
+- `403` Forbidden (Insufficient permissions)
+- `404` Not Found
+- `429` Too Many Requests (Rate limit exceeded)
+- `500` Internal Server Error

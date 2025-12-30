@@ -1,0 +1,51 @@
+---
+title: Custom Domains
+description: Host your career page on your own domain
+icon: Globe
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+# Custom Domains
+
+By default, your public career page lives at `flowxtra.com/companies/your-company`. With Custom Domains, you can host it at `careers.yourcompany.com` or `jobs.yourcompany.com`.
+
+## Benefits
+- **Branding**: Looks more professional and trustworthy.
+- **SEO**: Traffic builds authority for *your* domain, not ours.
+- **Tracking**: Easier to verify tracking pixels.
+
+## Requirements
+- Access to your domain's DNS settings (GoDaddy, Namecheap, Cloudflare, etc.)
+- A **Business** or **Enterprise** subscription plan.
+
+## Setup Instructions
+
+<Callout type="warn">
+DNS changes can take up to 24-48 hours to propagate globally.
+</Callout>
+
+1. **In Flowxtra Dashboard**:
+   - Go to **Settings** > **Custom Domain**
+   - Enter your desired subdomain (e.g., `careers.yourcompany.com`)
+   - Click **Connect**
+
+2. **In Your Domain Provider**:
+   - Create a new **CNAME Record**
+   - **Host/Name**: `careers` (or whatever subdomain you chose)
+   - **Value/Target**: `custom.flowxtra.com`
+   - **TTL**: Auto or 3600
+
+3. **Verify**:
+   - Go back to Flowxtra Settings
+   - Click **Verify Connection**
+   - Once verified, Flowxtra will automatically provision an SSL certificate (HTTPS) for your new domain.
+
+## SSL / HTTPS
+We automatically generate and renew Let's Encrypt SSL certificates for all custom domains. Your career page will always be secure.
+
+## Troubleshooting
+
+- **"Not Secure" Warning**: The SSL certificate is generating. Wait 15 minutes and refresh.
+- **404 Error**: DNS hasn't propagated yet. Wait a few hours.
+- **Invalid Record**: Check for typos in the CNAME value. It must be `custom.flowxtra.com`, not your own URL.

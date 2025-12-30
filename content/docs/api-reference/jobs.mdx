@@ -1,0 +1,56 @@
+---
+title: Jobs API
+description: Endpoints for managing listings
+icon: Briefcase
+---
+
+# Jobs API
+
+Manage your job postings programmatically.
+
+## List Jobs
+
+Returns a paginated list of jobs.
+
+`GET /jobs`
+
+**Parameters**:
+- `status` (optional): `active`, `draft`, `closed`
+- `limit` (optional): default 20
+
+```bash
+curl https://api.flowxtra.com/v1/jobs \
+  -H "Authorization: Bearer YOUR_KEY"
+```
+
+## Get Job
+
+Retrieve details for a single job.
+
+`GET /jobs/:id`
+
+## Create Job
+
+Create a new job posting.
+
+`POST /jobs`
+
+**Body**:
+```json
+{
+  "title": "Senior Engineer",
+  "description": "<p>We are hiring...</p>",
+  "location": "Remote",
+  "employment_type": "full_time"
+}
+```
+
+## Update Job
+
+Update an existing job.
+
+`PATCH /jobs/:id`
+
+## Close Job
+
+`POST /jobs/:id/close`

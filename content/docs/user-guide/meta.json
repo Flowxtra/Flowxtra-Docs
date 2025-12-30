@@ -1,0 +1,11 @@
+{
+    "title": "User Guide",
+    "icon": "Book",
+    "pages": [
+        "getting-started",
+        "account",
+        "job-posting",
+        "applications",
+        "advanced"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "title": "Job Posting",
+    "icon": "Briefcase",
+    "pages": [
+        "create-job",
+        "job-details",
+        "salary-benefits",
+        "application-settings",
+        "publishing",
+        "managing-jobs"
+    ]
+}

@@ -1,0 +1,41 @@
+---
+title: Webhooks
+description: Real-time event notifications
+icon: Radio
+---
+
+# Webhooks
+
+Webhooks allow Flowxtra to notify your external systems when events happen.
+
+## Supported Events
+
+- `job.created`
+- `job.published`
+- `application.created` (New candidate applied)
+- `application.status_updated`
+- `candidate.hired`
+
+## Payload Example
+
+When an `application.created` event triggers, your endpoint receives:
+
+```json
+{
+  "id": "evt_123",
+  "type": "application.created",
+  "created_at": "2023-10-01T12:00:00Z",
+  "data": {
+    "application_id": "app_987",
+    "job_id": "job_123",
+    "candidate": {
+      "name": "Jane Doe",
+      "email": "jane@example.com"
+    }
+  }
+}
+```
+
+## Security
+
+Verify webhook signatures using the `X-Flowxtra-Signature` header to ensure requests are genuinely from Flowxtra.
