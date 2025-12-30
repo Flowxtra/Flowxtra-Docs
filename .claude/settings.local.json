@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(timeout:*)",
+      "Bash(exit 0)",
+      "Bash(npm run build:*)",
+      "Bash(if exist .source rmdir /s /q .source)",
+      "Bash(if exist .next rmdir /s /q .next)",
+      "Bash(cat:*)",
+      "Bash(npm run postinstall:*)",
+      "Bash(npm install:*)",
+      "Bash(npm update:*)",
+      "Bash(find:*)",
+      "Bash(while read file)",
+      "Bash(do sed -i \"/^import.*Callout.*from/d\" \"$file\")",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(node fix-imports.js:*)",
+      "Bash(node -e:*)",
+      "Bash(NODE_OPTIONS='--trace-warnings' npm run build:*)",
+      "Bash(npm view:*)"
+    ]
+  }
+}
