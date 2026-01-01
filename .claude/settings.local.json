@@ -20,7 +20,12 @@
       "Bash(node -e:*)",
       "Bash(NODE_OPTIONS='--trace-warnings' npm run build:*)",
       "Bash(npm view:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(tree:*)",
+      "Bash(if not exist \"src\\\\app\\\\[lang]\" mkdir \"src\\\\app\\\\[lang]\")",
+      "Bash(dir /s /b \"c:\\\\MAMP\\\\htdocs\\\\flowxtra\\\\hr_blogs\\\\flowxtra-docs\\\\content\\\\docs\")",
+      "Bash(findstr:*)",
+      "Bash(npx @fumadocs/cli:*)"
     ]
   }
 }

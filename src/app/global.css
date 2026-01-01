@@ -1,3 +1,14 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+
+/* Hide the default theme toggle from fumadocs */
+[data-theme-toggle] {
+  display: none !important;
+}
+
+/* Hide the default GitHub link from fumadocs navbar and sidebar */
+nav a[href*="github.com"],
+aside a[href*="github.com"] {
+  display: none !important;
+}
