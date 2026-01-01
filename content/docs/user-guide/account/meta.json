@@ -6,6 +6,7 @@
         "settings",
         "company-profile",
         "team-permissions",
-        "subscription-billing"
+        "subscription-billing",
+        "workspaces"
     ]
 }
