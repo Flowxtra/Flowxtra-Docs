@@ -33,6 +33,12 @@ export async function generateMetadata({
       keywords: ['Flowxtra', 'documentation', 'job posting', 'recruitment', 'API', 'hiring', 'ATS'],
       authors: [{ name: 'Dpro GmbH' }],
       metadataBase: new URL('https://docs.flowxtra.com'),
+      icons: {
+        icon: '/icon.png',
+        apple: '/apple-touch-icon.png',
+        shortcut: '/favicon.ico',
+      },
+      manifest: '/manifest.json',
       openGraph: {
         title: 'Flowxtra Documentation',
         description: 'Comprehensive documentation for Flowxtra - The modern job posting and recruitment platform',
@@ -40,11 +46,20 @@ export async function generateMetadata({
         siteName: 'Flowxtra Documentation',
         locale: 'en_US',
         type: 'website',
+        images: [
+          {
+            url: '/images/logos/MainLogoIconcolored.png',
+            width: 1200,
+            height: 630,
+            alt: 'Flowxtra Documentation',
+          },
+        ],
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Flowxtra Documentation',
         description: 'Comprehensive documentation for Flowxtra - The modern job posting and recruitment platform',
+        images: ['/images/logos/MainLogoIconcolored.png'],
       },
     },
     de: {
@@ -56,6 +71,12 @@ export async function generateMetadata({
       keywords: ['Flowxtra', 'Dokumentation', 'Stellenausschreibung', 'Recruiting', 'API', 'Einstellung', 'ATS'],
       authors: [{ name: 'Dpro GmbH' }],
       metadataBase: new URL('https://docs.flowxtra.com'),
+      icons: {
+        icon: '/icon.png',
+        apple: '/apple-touch-icon.png',
+        shortcut: '/favicon.ico',
+      },
+      manifest: '/manifest.json',
       openGraph: {
         title: 'Flowxtra Dokumentation',
         description: 'Umfassende Dokumentation für Flowxtra - Die moderne Stellenausschreibungs- und Recruiting-Plattform',
@@ -63,11 +84,20 @@ export async function generateMetadata({
         siteName: 'Flowxtra Dokumentation',
         locale: 'de_DE',
         type: 'website',
+        images: [
+          {
+            url: '/images/logos/MainLogoIconcolored.png',
+            width: 1200,
+            height: 630,
+            alt: 'Flowxtra Dokumentation',
+          },
+        ],
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Flowxtra Dokumentation',
         description: 'Umfassende Dokumentation für Flowxtra - Die moderne Stellenausschreibungs- und Recruiting-Plattform',
+        images: ['/images/logos/MainLogoIconcolored.png'],
       },
     },
   };
