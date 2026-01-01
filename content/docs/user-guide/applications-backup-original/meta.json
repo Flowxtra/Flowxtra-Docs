@@ -1,0 +1,11 @@
+{
+    "title": "Applications",
+    "icon": "FileText",
+    "pages": [
+        "viewing",
+        "screening",
+        "communication",
+        "status-tracking",
+        "hiring"
+    ]
+}

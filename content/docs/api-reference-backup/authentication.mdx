@@ -1,0 +1,39 @@
+---
+title: Authentication
+description: How to authenticate with the Flowxtra API
+icon: Key
+---
+
+# Authentication
+
+Secure your API requests using API Keys.
+
+## Generating an API Key
+
+1. Log in to Flowxtra as an **Owner** or **Admin**.
+2. Go to **Settings** > **Integrations** > **API Keys**.
+3. Click **Create New Key**.
+4. Give it a descriptive name (e.g., "Zapier Integration", "Internal Dashboard").
+5. Copy the key immediately. **You will not be shown this key again.**
+
+<Callout type="warn">
+Never expose your API key in client-side code (browsers, mobile apps). Always make requests from your secure backend server.
+</Callout>
+
+## Using the Key
+
+Include the key in the `Authorization` header of every request:
+
+```http
+GET /v1/jobs HTTP/1.1
+Host: api.flowxtra.com
+Authorization: Bearer fk_live_1234567890abcdef
+Content-Type: application/json
+```
+
+## Revoking Keys
+
+If a key is compromised:
+1. Go to the API Keys dashboard.
+2. Click **Revoke** next to the specific key.
+3. Access will be immediately blocked for that key.
