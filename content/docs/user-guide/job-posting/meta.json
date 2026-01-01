@@ -2,6 +2,7 @@
     "title": "Job Posting",
     "icon": "Briefcase",
     "pages": [
-        "create-job"
+        "create-job",
+        "managing-jobs"
     ]
 }
