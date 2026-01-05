@@ -90,11 +90,18 @@ export async function generateMetadata(props: {
 
   const pageData = page.data as any;
 
+  // Build the canonical URL
+  const canonicalUrl = `https://docs.flowxtra.com${page.url}`;
+
   return {
     title: pageData.title,
     description: pageData.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       images: getPageImage(page).url,
+      url: canonicalUrl,
     },
   };
 }

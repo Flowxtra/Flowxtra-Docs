@@ -18,13 +18,22 @@ export async function generateMetadata({
   const { lang } = await params;
   const t = getTranslation(lang as Locale);
 
+  // Build canonical URL - use /en for default language
+  const canonicalUrl = lang === 'en'
+    ? 'https://docs.flowxtra.com/en'
+    : `https://docs.flowxtra.com/${lang}`;
+
   return {
     title: `${t.home.hero.title} - Complete Guide & API Reference`,
     description: t.home.hero.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: t.home.hero.title,
       description: t.home.features.description,
       type: 'website',
+      url: canonicalUrl,
     },
   };
 }
