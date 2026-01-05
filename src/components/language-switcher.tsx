@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { Globe } from 'lucide-react';
 import { i18n, languageLabels, languageFlags, type Locale } from '@/i18n/config';
 
+// Only show languages that have actual translations available
+const availableLanguages: Locale[] = ['en', 'de'];
+
 export function LanguageSwitcher() {
   const pathname = usePathname();
   const params = useParams();
@@ -30,7 +33,7 @@ export function LanguageSwitcher() {
       </button>
 
       <div className="absolute right-0 mt-2 w-40 py-1 bg-fd-popover border border-fd-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-        {i18n.languages.map((lang) => (
+        {availableLanguages.map((lang) => (
           <Link
             key={lang}
             href={getLocalizedPath(lang)}
