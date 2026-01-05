@@ -25,7 +25,13 @@
       "Bash(if not exist \"src\\\\app\\\\[lang]\" mkdir \"src\\\\app\\\\[lang]\")",
       "Bash(dir /s /b \"c:\\\\MAMP\\\\htdocs\\\\flowxtra\\\\hr_blogs\\\\flowxtra-docs\\\\content\\\\docs\")",
       "Bash(findstr:*)",
-      "Bash(npx @fumadocs/cli:*)"
+      "Bash(npx @fumadocs/cli:*)",
+      "Bash(npx fumadocs-mdx)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(curl:*)"
     ]
   }
 }

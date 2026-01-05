@@ -29,7 +29,15 @@ export default async function Page(props: {
   if (!page) notFound();
 
   const pageData = page.data as any;
-  const MDX = pageData.exports.default;
+
+  // The MDX component is in _exports.default in fumadocs-mdx v14
+  const MDX = pageData._exports?.default;
+
+  if (!MDX) {
+    console.error('MDX component not found. pageData keys:', Object.keys(pageData));
+    console.error('pageData._exports:', pageData._exports);
+    throw new Error('MDX component not found');
+  }
 
   const markdownUrl = `${page.url}.mdx`;
   const githubUrl = `https://github.com/flowxtra/flowxtra-docs/blob/main/content/docs/${slug?.join('/') || 'index'}.mdx`;
