@@ -1,0 +1,9 @@
+{
+    "title": "Dokumentation",
+    "pages": [
+        "user-guide",
+        "api-reference",
+        "mcp",
+        "best-practices"
+    ]
+}

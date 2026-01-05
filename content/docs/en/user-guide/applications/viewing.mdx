@@ -1,0 +1,426 @@
+---
+title: Viewing Applications
+description: Complete guide to viewing and managing candidates using Card, Flow, and Table views
+icon: Eye
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
+
+# Managing Candidates: View Options Guide
+
+When viewing a published job, you can see all applicants in **3 different views**. Each view is designed for different work styles and use cases.
+
+## Accessing Candidate Views
+
+1. Go to **Recruitment** > **Manage Jobs**
+2. Click on any **Live** or **Closed** job
+3. You'll see the candidate count and three view options:
+   - **Card** (Kanban Board)
+   - **Flow** (Visual Diagram)
+   - **Table** (List View)
+
+---
+
+## View 1: Card View (Kanban Board)
+
+**Best For:** Managing candidates through your hiring pipeline stages
+
+### What is it?
+
+A Kanban board that displays candidates as cards organized in columns. Each column represents a stage in your hiring process (e.g., Screening, Interview, Offer, Hired).
+
+### Key Features
+
+#### 1. Pipeline Stages (Columns)
+
+- Each column represents a hiring stage
+- Stages are customizable in **Settings** > **Recruitment Process** > **Pipeline Editor**
+
+**Common stages:**
+- **Screening**: Initial review
+- **First Interview**: Phone or video screening
+- **Technical Assessment**: Skills test
+- **Second Interview**: In-depth interview
+- **Offer**: Job offer extended
+- **Hired**: Candidate accepted
+- **Rejected**: Candidates who didn't make it
+
+#### 2. Stage Assignee
+
+- Each stage shows the assigned team member responsible for that phase
+- Helps distribute workload across your team
+- Shows "Unassigned" if no one is assigned
+
+#### 3. Candidate Cards
+
+Each card displays:
+- Candidate Photo (if provided)
+- Full Name
+- Email Address
+- Phone Number
+- Tags (if added)
+- Quick Actions Menu
+
+#### 4. Drag & Drop Functionality
+
+This is the most powerful feature!
+
+**How to Move Candidates:**
+1. Click and hold on any candidate card
+2. Drag it to a different column (stage)
+3. Release to drop
+
+**What Happens When You Drop:**
+- **Automatic Email Check**: System checks if this stage has an email template configured
+- **Email Dialog Appears** (if template exists):
+  - Shows pre-written email template
+  - You can edit the message
+  - Choose to send or skip
+  - Or write a custom message
+- **Stage Updated**: Candidate moves to the new stage
+- **History Tracked**: Movement is logged in candidate's timeline
+
+**Special: Rejected Column**
+
+**Dragging TO Rejected:**
+- Opens rejection email dialog
+- Allows you to send rejection email
+- Candidate is marked as rejected
+
+**Dragging FROM Rejected:**
+- Undoes the rejection
+- Moves candidate back into active pipeline
+- Updates their stage
+
+#### 5. Quick Actions (Card Menu)
+
+Click the menu icon (⋮) on any card to:
+- **View Profile**: See full candidate details and CV
+- **Add Note**: Write internal notes about the candidate
+- **Add Tag**: Label candidates (e.g., "Top Candidate", "Needs Follow-up")
+- **Reject**: Move to rejected column with email option
+- **Attach CV**: Upload candidate's CV if not provided
+
+### How to Use Card View
+
+1. **Review New Applicants**: Check cards in the first column (usually "Screening")
+2. **Move Through Stages**: Drag candidates to the next stage as they progress
+3. **Send Automated Emails**: Let the system send stage-specific emails automatically
+4. **Add Notes**: Click on a card to add interview notes or feedback
+5. **Tag Important Candidates**: Use tags to mark top candidates
+6. **Reject When Needed**: Drag to "Rejected" column or use the reject action
+
+### Best Practices
+
+- ✅ **Use Email Templates**: Set up templates for each stage to save time
+- ✅ **Add Notes After Interviews**: Document feedback immediately
+- ✅ **Tag Top Candidates**: Makes it easy to identify best applicants
+- ✅ **Review Rejected Column**: Occasionally check if anyone should be reconsidered
+
+---
+
+## View 2: Flow View (Visual Diagram)
+
+**Best For:** Visualizing relationships between candidates and creating custom workflows
+
+### What is it?
+
+A visual canvas (diagram board) where you can create custom visual representations of your candidates and their relationships.
+
+### Key Features
+
+#### 1. Canvas Workspace
+
+- Infinite canvas for visual organization
+- Zoom in/out capability
+- Pan around the workspace
+- Free-form layout
+
+#### 2. Candidate Nodes
+
+- Each candidate appears as a node (circle or box)
+- Contains candidate photo and name
+- Can be positioned anywhere on canvas
+
+#### 3. Visual Connections
+
+- Draw lines between candidates
+- Show relationships or groupings
+- Create custom workflows
+
+#### 4. Notes and Annotations
+
+- Add text boxes anywhere on canvas
+- Write notes directly on the diagram
+- Create labels and categories
+
+#### 5. Custom Organization
+
+- Group candidates visually
+- Create your own stages or categories
+- Map out complex hiring scenarios
+
+### How to Use Flow View
+
+1. **Add Candidates**: Candidates appear as nodes on the canvas
+2. **Drag to Position**: Move nodes to organize visually
+3. **Draw Connections**: Link related candidates or create flow paths
+4. **Add Notes**: Place text boxes to explain your organization
+5. **Zoom and Pan**: Navigate large candidate pools easily
+
+### When to Use Flow View
+
+- **Complex Hiring Scenarios**: Multiple positions or team compositions
+- **Team Building**: Visualizing how candidates fit together
+- **Comparison**: Placing similar candidates side-by-side
+- **Brainstorming**: Planning ideal team structures
+- **Presentation**: Showing hiring strategy to stakeholders
+
+---
+
+## View 3: Table View (List)
+
+**Best For:** Detailed data analysis and comparison
+
+### What is it?
+
+A traditional spreadsheet-style list showing all candidates with their details in columns.
+
+### Key Features
+
+#### 1. Detailed Columns
+
+View multiple data points at once:
+- Candidate Name
+- Email
+- Phone
+- Current Stage
+- Application Date
+- Status
+- Tags
+- Notes Count
+- Rating/Score (if used)
+- Source (how they applied)
+
+#### 2. Sorting
+
+- Click any column header to sort
+- Sort by date (newest/oldest)
+- Sort alphabetically
+- Sort by stage
+
+#### 3. Filtering
+
+- Filter by stage
+- Filter by tags
+- Filter by date range
+- Filter by status (Active/Rejected)
+- Combine multiple filters
+
+#### 4. Search
+
+- Quick search by name
+- Search by email
+- Search by phone number
+
+#### 5. Bulk Actions
+
+Select multiple candidates and perform actions on multiple at once:
+- Move to same stage
+- Add same tag
+- Export selected
+
+#### 6. Export
+
+- Export to Excel/CSV
+- Download candidate list
+- Include selected columns only
+
+### How to Use Table View
+
+1. **Review All Data**: See comprehensive candidate information at a glance
+2. **Sort and Filter**: Find specific candidates quickly
+3. **Compare**: Look at multiple candidates side-by-side
+4. **Search**: Find candidates by name, email, or phone
+5. **Export**: Download data for external analysis or reporting
+6. **Bulk Operations**: Update multiple candidates at once
+
+### When to Use Table View
+
+- **Data Analysis**: Need to see all details at once
+- **Reporting**: Preparing reports for management
+- **Comparison**: Comparing qualifications across many candidates
+- **Searching**: Looking for a specific candidate
+- **Exporting**: Need data in Excel for further analysis
+
+---
+
+## Switching Between Views
+
+You can switch between views at any time without losing data:
+
+1. Click the view toggle buttons at the top:
+   - **Card Icon**: Switch to Kanban board
+   - **Flow Icon**: Switch to visual diagram
+   - **Table Icon**: Switch to list view
+
+2. All views show the same candidates, just displayed differently
+
+3. Changes made in one view (like moving stages) are reflected in all views
+
+---
+
+## Which View Should I Use?
+
+### Use Card View when:
+
+✅ You want to move candidates through stages quickly  
+✅ You need to send stage-specific emails  
+✅ You prefer visual, drag-and-drop workflow  
+✅ You're actively managing the hiring process
+
+### Use Flow View when:
+
+✅ You need to visualize complex relationships  
+✅ You're planning team compositions  
+✅ You want to create custom visual workflows  
+✅ You're presenting hiring strategy to others
+
+### Use Table View when:
+
+✅ You need to see all candidate details at once  
+✅ You're searching for specific candidates  
+✅ You want to sort and filter data  
+✅ You need to export data for reports  
+✅ You're comparing many candidates
+
+---
+
+## Common Workflows
+
+### Workflow 1: Daily Candidate Review (Card View)
+
+1. Open Card View
+2. Check "Screening" column for new applicants
+3. Drag promising candidates to "First Interview"
+4. System sends interview invitation email automatically
+5. Add notes to each card after reviewing
+
+### Workflow 2: Team Planning (Flow View)
+
+1. Open Flow View
+2. Position candidates for different roles
+3. Draw connections showing team fit
+4. Add notes about team dynamics
+5. Share visual with hiring team
+
+### Workflow 3: Weekly Report (Table View)
+
+1. Open Table View
+2. Filter by date range (last 7 days)
+3. Sort by stage to see progress
+4. Export to Excel
+5. Share with management
+
+---
+
+## Tips for Success
+
+### Card View Tips
+
+- **Set Up Email Templates First**: Configure templates for each stage before moving candidates
+- **Use Tags Liberally**: Makes it easy to find top candidates later
+- **Add Notes Immediately**: Document feedback right after interviews
+- **Don't Fear Rejected Column**: You can always undo rejection by dragging back
+
+### Flow View Tips
+
+- **Start with a Plan**: Decide your visual organization before adding candidates
+- **Use Colors**: If available, color-code nodes for easy identification
+- **Add Labels**: Use text boxes to explain your organization
+- **Save Layouts**: Take screenshots of important configurations
+
+### Table View Tips
+
+- **Use Filters**: Narrow down to relevant candidates before analyzing
+- **Export Regularly**: Keep backups of candidate data
+- **Sort Smart**: Combine sorting with filtering for best results
+- **Customize Columns**: Show only the columns you need
+
+---
+
+## Email Automation in Card View
+
+### How It Works
+
+1. **Configure Templates**: In **Settings** > **Recruitment Process** > **Email Templates**
+2. **Link to Stages**: Assign templates to specific pipeline stages
+3. **Drag Candidate**: When you move a candidate to that stage
+4. **Email Dialog Opens**: Shows the template with candidate's name auto-filled
+5. **Choose Action**:
+   - **Send**: Sends email and updates stage
+   - **Edit & Send**: Modify message before sending
+   - **Skip**: Update stage without sending email
+   - **Custom Message**: Write completely new email
+
+### Email Template Variables
+
+Templates can include:
+- `{{candidate_name}}`: Candidate's full name
+- `{{job_title}}`: Position name
+- `{{company_name}}`: Your company name
+- `{{interview_date}}`: Scheduled date (if set)
+
+---
+
+## Frequently Asked Questions
+
+### Can I use multiple views for the same job?
+
+Yes! Switch between views anytime. All views show the same data.
+
+### Do changes in one view affect others?
+
+Yes. Moving a candidate in Card View updates their stage in Table View and Flow View.
+
+### Can I customize the pipeline stages?
+
+Yes, but only in **Settings** > **Recruitment Process** > **Pipeline Editor**, not directly in the views.
+
+### What happens if I accidentally reject someone?
+
+In Card View, simply drag them from the "Rejected" column back to any active stage. This undoes the rejection.
+
+### Can I see candidate history?
+
+Yes. Click on any candidate to see their full profile, which includes a timeline of all stage changes and notes.
+
+### How do I know if an email was sent?
+
+Check the candidate's profile timeline. It will show "Email sent" entries with the template name.
+
+### Can I move multiple candidates at once?
+
+Not in Card View. Use Table View for bulk actions.
+
+### Is Flow View available on all plans?
+
+Check your plan features. Some advanced views may require specific subscription tiers.
+
+---
+
+## Need Help?
+
+- **Card View Issues**: Make sure pipeline stages are configured in Settings
+- **Flow View Not Loading**: Try refreshing the page or clearing browser cache
+- **Table View Export**: Ensure you have candidates selected before exporting
+- **Email Not Sending**: Check that templates are enabled and configured correctly
+
+**Master all three views to become a hiring efficiency expert!**
+
+## Next Steps
+
+- [Screening Candidates](/docs/user-guide/applications/screening)
+- [Managing Job Postings](/docs/user-guide/job-posting/managing-jobs)
+- [Creating a Job Posting](/docs/user-guide/job-posting/create-job)

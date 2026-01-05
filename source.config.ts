@@ -13,10 +13,9 @@ const customFrontmatterSchema = frontmatterSchema.extend({
   tags: z.array(z.string()).optional(),
 });
 
-// You can customise Zod schemas for frontmatter and `meta.json` here
-// see https://fumadocs.dev/docs/mdx/collections
-export const docs = defineDocs({
-  dir: 'content/docs',
+// Define separate collections for each language
+export const docsEn = defineDocs({
+  dir: 'content/docs/en',
   docs: {
     schema: customFrontmatterSchema,
     postprocess: {
@@ -27,6 +26,22 @@ export const docs = defineDocs({
     schema: metaSchema,
   },
 });
+
+export const docsDe = defineDocs({
+  dir: 'content/docs/de',
+  docs: {
+    schema: customFrontmatterSchema,
+    postprocess: {
+      includeProcessedMarkdown: true,
+    },
+  },
+  meta: {
+    schema: metaSchema,
+  },
+});
+
+// For backward compatibility - default to English
+export const docs = docsEn;
 
 export default defineConfig({
   mdxOptions: {

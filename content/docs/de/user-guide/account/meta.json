@@ -1,0 +1,12 @@
+{
+    "title": "Kontoverwaltung",
+    "icon": "Settings",
+    "pages": [
+        "creating-account",
+        "settings",
+        "company-profile",
+        "team-permissions",
+        "subscription-billing",
+        "workspaces"
+    ]
+}

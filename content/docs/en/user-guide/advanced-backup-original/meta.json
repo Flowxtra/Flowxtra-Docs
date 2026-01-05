@@ -1,0 +1,9 @@
+{
+    "title": "Advanced Features",
+    "icon": "Zap",
+    "pages": [
+        "job-widget",
+        "custom-domains",
+        "analytics"
+    ]
+}

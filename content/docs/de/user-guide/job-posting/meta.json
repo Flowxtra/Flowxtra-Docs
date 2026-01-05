@@ -1,0 +1,8 @@
+{
+    "title": "Stellenanzeigen",
+    "icon": "Briefcase",
+    "pages": [
+        "create-job",
+        "managing-jobs"
+    ]
+}

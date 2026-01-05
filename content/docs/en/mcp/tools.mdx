@@ -1,0 +1,32 @@
+---
+title: Available Tools
+description: MCP tools exposed by the Flowxtra server
+icon: Wrench
+---
+
+# Available MCP Tools
+
+The Flowxtra MCP server exposes the following tools to your AI agent:
+
+## `list_jobs`
+List active job postings.
+- **Args**: `status` (optional), `limit` (optional)
+
+## `get_job_details`
+Get full details like description and requirements.
+- **Args**: `job_id`
+
+## `list_applications`
+Get candidates for a job.
+- **Args**: `job_id`
+
+## `get_candidate_profile`
+Read resume text and Q&A.
+- **Args**: `application_id`
+
+## `add_internal_note`
+Let the AI write a summary or note on a candidate.
+- **Args**: `application_id`, `note_content`
+
+## Example Prompt
+> "Check my 'Marketing Manager' job. List the last 5 applicants, summarize their key experience from their resumes, and tell me which one is the strongest match."

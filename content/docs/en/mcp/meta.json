@@ -1,0 +1,10 @@
+{
+    "title": "MCP Documentation",
+    "icon": "Zap",
+    "pages": [
+        "setup",
+        "tools",
+        "integration",
+        "best-practices"
+    ]
+}

@@ -1,45 +1,19 @@
+import { defineI18n } from 'fumadocs-core/i18n';
+
 /**
- * Internationalization (i18n) Configuration
+ * Internationalization (i18n) Configuration using Fumadocs
  * 
- * This file defines the supported languages and locale settings for Flowxtra documentation.
- * Currently supports English as the primary language, with structure ready for Arabic and German.
+ * Official Fumadocs i18n setup supporting 8 languages
  */
 
-export const languages = {
-    en: {
-        code: 'en',
-        name: 'English',
-        dir: 'ltr',
-    },
-    // Future languages - uncomment when ready to add translations
-    // ar: {
-    //   code: 'ar',
-    //   name: 'العربية',
-    //   dir: 'rtl',
-    // },
-    // de: {
-    //   code: 'de',
-    //   name: 'Deutsch',
-    //   dir: 'ltr',
-    // },
-} as const;
+export const i18n = defineI18n({
+    defaultLanguage: 'en',
+    languages: ['en', 'de', 'fr', 'es', 'it', 'pt', 'ar', 'zh'],
+    hideLocale: 'default-locale', // Hide /en prefix, show /de, /fr, etc.
+    fallbackLanguage: 'en', // Fallback to English if translation missing
+});
 
-export type LanguageCode = keyof typeof languages;
-
-export const defaultLanguage: LanguageCode = 'en';
-
-export const supportedLanguages = Object.keys(languages) as LanguageCode[];
-
-/**
- * Get language configuration by code
- */
-export function getLanguage(code: string) {
-    return languages[code as LanguageCode] || languages[defaultLanguage];
-}
-
-/**
- * Check if a language code is supported
- */
-export function isLanguageSupported(code: string): code is LanguageCode {
-    return code in languages;
-}
+// Export for backward compatibility
+export const defaultLanguage = i18n.defaultLanguage;
+export const languages = i18n.languages;
+export type LanguageCode = typeof i18n.languages[number];

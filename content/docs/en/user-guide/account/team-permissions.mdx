@@ -1,0 +1,322 @@
+---
+title: Team Members & Permissions
+description: Manage team members and configure role-based access control
+icon: Users
+---
+
+# Team Members & Permissions
+
+Collaborate effectively by inviting team members and assigning appropriate roles and permissions. This guide covers team management and access control.
+
+## Team Roles
+
+Flowxtra offers five role levels:
+
+### Owner
+
+**Full administrative access**:
+- All permissions
+- Manage billing and subscription
+- Delete account
+- Transfer ownership
+- Cannot be removed (only transferred)
+
+**Limit**: 1 per account
+
+### Admin
+
+**Administrative access**:
+- Manage all jobs and applications
+- Invite and remove team members
+- Configure company settings
+- View analytics and reports
+- Cannot manage billing or delete account
+
+**Limit**: Unlimited
+
+### Recruiter
+
+**Hiring management access**:
+- Create and manage jobs
+- Review and manage applications
+- Communicate with candidates
+- View hiring analytics
+- Cannot manage team or settings
+
+**Limit**: Unlimited
+
+### Hiring Manager
+
+**Department-specific access**:
+- View assigned jobs
+- Review applications for assigned jobs
+- Comment and rate candidates
+- Cannot create jobs or manage settings
+
+**Limit**: Unlimited
+
+### Viewer
+
+**Read-only access**:
+- View jobs and applications
+- View analytics
+- Cannot make any changes
+
+**Limit**: Unlimited
+
+## Inviting Team Members
+
+### Send Invitation
+
+1. Navigate to **Settings** > **Team Members**
+2. Click **Invite Member**
+3. Enter email address
+4. Select role
+5. Choose departments (for Hiring Managers)
+6. Add personal message (optional)
+7. Click **Send Invitation**
+
+<Callout type="info">
+Invitations expire after 7 days. Resend if needed.
+</Callout>
+
+### Bulk Invitations
+
+Invite multiple members at once:
+
+1. Click **Bulk Invite**
+2. Enter email addresses (one per line)
+3. Select default role
+4. Click **Send Invitations**
+
+### Invitation Status
+
+Track invitation status:
+
+- **Pending**: Invitation sent, not yet accepted
+- **Accepted**: User joined the team
+- **Expired**: Invitation expired (7 days)
+- **Revoked**: Invitation cancelled
+
+## Managing Team Members
+
+### View Team Members
+
+See all team members in **Settings** > **Team Members**:
+
+- Name and email
+- Role
+- Department assignments
+- Last active
+- Status
+
+### Edit Member
+
+Change member details:
+
+1. Click member name
+2. Update role or departments
+3. Click **Save Changes**
+
+<Callout type="warn">
+Changing roles takes effect immediately and may affect ongoing work.
+</Callout>
+
+### Remove Member
+
+Remove a team member:
+
+1. Click **Remove** next to member name
+2. Choose what to do with their data:
+   - Reassign to another member
+   - Keep unassigned
+3. Confirm removal
+
+**What happens**:
+- Access revoked immediately
+- Assigned jobs remain
+- Comments and notes preserved
+- Can be re-invited later
+
+### Transfer Ownership
+
+Transfer account ownership:
+
+1. Go to **Settings** > **Account**
+2. Click **Transfer Ownership**
+3. Select new owner (must be Admin)
+4. Enter your password
+5. Confirm transfer
+
+<Callout type="warn">
+You will become an Admin after transfer. This action cannot be undone.
+</Callout>
+
+## Permission Details
+
+### Job Permissions
+
+| Action | Owner | Admin | Recruiter | Hiring Manager | Viewer |
+|--------|-------|-------|-----------|----------------|--------|
+| Create job | ✓ | ✓ | ✓ | - | - |
+| Edit job | ✓ | ✓ | ✓ | - | - |
+| Delete job | ✓ | ✓ | ✓ | - | - |
+| Publish job | ✓ | ✓ | ✓ | - | - |
+| View all jobs | ✓ | ✓ | ✓ | Assigned only | ✓ |
+
+### Application Permissions
+
+| Action | Owner | Admin | Recruiter | Hiring Manager | Viewer |
+|--------|-------|-------|-----------|----------------|--------|
+| View applications | ✓ | ✓ | ✓ | Assigned only | ✓ |
+| Update status | ✓ | ✓ | ✓ | Assigned only | - |
+| Add comments | ✓ | ✓ | ✓ | ✓ | - |
+| Rate candidates | ✓ | ✓ | ✓ | ✓ | - |
+| Contact candidates | ✓ | ✓ | ✓ | Assigned only | - |
+| Export data | ✓ | ✓ | ✓ | - | - |
+
+### Team Permissions
+
+| Action | Owner | Admin | Recruiter | Hiring Manager | Viewer |
+|--------|-------|-------|-----------|----------------|--------|
+| Invite members | ✓ | ✓ | - | - | - |
+| Remove members | ✓ | ✓ | - | - | - |
+| Change roles | ✓ | ✓ | - | - | - |
+| View team | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+### Settings Permissions
+
+| Action | Owner | Admin | Recruiter | Hiring Manager | Viewer |
+|--------|-------|-------|-----------|----------------|--------|
+| Company profile | ✓ | ✓ | - | - | - |
+| Billing | ✓ | - | - | - | - |
+| API keys | ✓ | ✓ | - | - | - |
+| Webhooks | ✓ | ✓ | - | - | - |
+| Integrations | ✓ | ✓ | - | - | - |
+
+## Department Assignments
+
+### Create Departments
+
+1. Go to **Settings** > **Departments**
+2. Click **Add Department**
+3. Enter department name
+4. Add description
+5. Assign department head
+6. Click **Create**
+
+### Assign Members to Departments
+
+1. Edit team member
+2. Select departments
+3. Set as department head (optional)
+4. Save changes
+
+### Department-Based Access
+
+Hiring Managers only see:
+
+- Jobs in their departments
+- Applications for their jobs
+- Analytics for their departments
+
+## Collaboration Features
+
+### Internal Notes
+
+Add private notes on applications:
+
+- Visible to team members only
+- Not visible to candidates
+- Timestamped and attributed
+- Supports mentions (@username)
+
+### Candidate Ratings
+
+Rate candidates (1-5 stars):
+
+- Individual ratings per team member
+- Average rating displayed
+- Filter by rating
+- Export ratings
+
+### Activity Feed
+
+Track team activity:
+
+- Job created/updated
+- Application status changed
+- Comments added
+- Ratings given
+- Team member actions
+
+### Mentions
+
+Notify team members:
+
+- Use @username in comments
+- Mentioned user receives notification
+- Creates activity feed entry
+
+## Best Practices
+
+### Role Assignment
+
+- **Start restrictive**: Assign minimum necessary role
+- **Review regularly**: Audit roles quarterly
+- **Use Hiring Managers**: For department heads
+- **Limit Admins**: Only trusted team members
+- **Owner security**: Enable 2FA for owner account
+
+### Team Organization
+
+- **Clear departments**: Organize by function
+- **Assign ownership**: Each job has an owner
+- **Regular communication**: Weekly team syncs
+- **Document processes**: Standard hiring workflows
+- **Training**: Onboard new team members properly
+
+### Security
+
+- **Remove promptly**: Revoke access when members leave
+- **Review access**: Audit team members monthly
+- **Strong passwords**: Enforce password policies
+- **2FA**: Encourage two-factor authentication
+- **Activity monitoring**: Review activity logs
+
+## Troubleshooting
+
+### Invitation Not Received
+
+If team member didn't receive invitation:
+
+1. Check spam/junk folder
+2. Verify email address
+3. Resend invitation
+4. Check invitation status
+5. Contact support
+
+### Cannot Remove Member
+
+If unable to remove member:
+
+- Must be Owner or Admin
+- Cannot remove yourself
+- Cannot remove Owner
+- Check for active assignments
+
+### Permission Issues
+
+If team member can't access features:
+
+1. Verify their role
+2. Check department assignments
+3. Confirm account is active
+4. Review permission table
+5. Contact support
+
+## Next Steps
+
+- [Configure Subscription & Billing](/docs/user-guide/account/subscription-billing)
+- [Create Your First Job](/docs/user-guide/getting-started/first-job)
+- [Manage Applications](/docs/user-guide/applications/viewing)
