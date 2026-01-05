@@ -23,8 +23,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
 
-  const metadata: Record<Locale, Metadata> = {
-    en: {
+  const baseMetadataEn: Metadata = {
       title: {
         default: 'Flowxtra Documentation',
         template: '%s | Flowxtra Docs',
@@ -61,8 +60,9 @@ export async function generateMetadata({
         description: 'Comprehensive documentation for Flowxtra - The modern job posting and recruitment platform',
         images: ['/images/logos/MainLogoIconcolored.png'],
       },
-    },
-    de: {
+    };
+
+  const baseMetadataDe: Metadata = {
       title: {
         default: 'Flowxtra Dokumentation',
         template: '%s | Flowxtra Docs',
@@ -99,7 +99,17 @@ export async function generateMetadata({
         description: 'Umfassende Dokumentation für Flowxtra - Die moderne Stellenausschreibungs- und Recruiting-Plattform',
         images: ['/images/logos/MainLogoIconcolored.png'],
       },
-    },
+    };
+
+  const metadata: Record<Locale, Metadata> = {
+    en: baseMetadataEn,
+    de: baseMetadataDe,
+    fr: baseMetadataEn, // Fallback to English for languages without translations
+    es: baseMetadataEn,
+    it: baseMetadataEn,
+    pt: baseMetadataEn,
+    ar: baseMetadataEn,
+    zh: baseMetadataEn,
   };
 
   return metadata[lang as Locale] || metadata.en;

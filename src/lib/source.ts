@@ -1,22 +1,44 @@
-import { docs } from 'fumadocs-mdx:collections/server';
-import { type InferPageType, loader } from 'fumadocs-core/source';
+import { loader, type InferPageType } from 'fumadocs-core/source';
 import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
 import type { Locale } from '@/i18n/config';
 
-// See https://fumadocs.dev/docs/headless/source-api for more info
-export const source = loader({
+// Import collections directly from the generated files
+import { docsEn, docsDe } from 'fumadocs-mdx:collections/server';
+
+// Create sources for each language
+export const sourceEn = loader({
   baseUrl: '/docs',
-  source: docs.toFumadocsSource(),
+  source: docsEn.toFumadocsSource(),
   plugins: [lucideIconsPlugin()],
 });
 
+export const sourceDe = loader({
+  baseUrl: '/docs',
+  source: docsDe.toFumadocsSource(),
+  plugins: [lucideIconsPlugin()],
+});
+
+// Map locales to their sources
+const sources: Record<Locale, any> = {
+  en: sourceEn,
+  de: sourceDe,
+  // Other languages will fallback to English until we create their collections
+  fr: sourceEn,
+  es: sourceEn,
+  it: sourceEn,
+  pt: sourceEn,
+  ar: sourceEn,
+  zh: sourceEn,
+};
+
 export function getSource(locale: Locale) {
-  // For now, we're returning the same source for all languages
-  // In the future, you can create separate sources per language
-  return source;
+  return sources[locale] || sourceEn;
 }
 
-export function getPageImage(page: InferPageType<typeof source>) {
+// For default export (used by some utilities)
+export const source = sourceEn;
+
+export function getPageImage(page: any) {
   const segments = [...page.slugs, 'image.png'];
 
   return {
@@ -25,7 +47,7 @@ export function getPageImage(page: InferPageType<typeof source>) {
   };
 }
 
-export async function getLLMText(page: InferPageType<typeof source>) {
+export async function getLLMText(page: any) {
   const processed = await page.data.getText('processed');
 
   return `# ${page.data.title}

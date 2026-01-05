@@ -28,15 +28,16 @@ export default async function Page(props: {
 
   if (!page) notFound();
 
-  const MDX = page.data.body;
+  const pageData = page.data as any;
+  const MDX = pageData.exports.default;
 
   const markdownUrl = `${page.url}.mdx`;
   const githubUrl = `https://github.com/flowxtra/flowxtra-docs/blob/main/content/docs/${slug?.join('/') || 'index'}.mdx`;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription>{page.data.description}</DocsDescription>
+    <DocsPage toc={pageData.toc} full={pageData.full}>
+      <DocsTitle>{pageData.title}</DocsTitle>
+      <DocsDescription>{pageData.description}</DocsDescription>
       <div className="flex flex-row gap-2 items-center border-b pt-2 pb-6">
         <LLMCopyButton markdownUrl={markdownUrl} />
         <ViewOptions markdownUrl={markdownUrl} githubUrl={githubUrl} />
@@ -59,7 +60,7 @@ export async function generateStaticParams() {
   ]);
 
   return sources.flatMap((params, index) =>
-    params.map((param) => ({
+    params.map((param: any) => ({
       lang: index === 0 ? 'en' : 'de',
       slug: param.slug,
     }))
@@ -79,9 +80,11 @@ export async function generateMetadata(props: {
 
   if (!page) notFound();
 
+  const pageData = page.data as any;
+
   return {
-    title: page.data.title,
-    description: page.data.description,
+    title: pageData.title,
+    description: pageData.description,
     openGraph: {
       images: getPageImage(page).url,
     },
