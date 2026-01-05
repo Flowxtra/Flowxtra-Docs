@@ -29,18 +29,11 @@ export default async function Page(props: {
   if (!page) notFound();
 
   const pageData = page.data as any;
-
-  // The MDX component is in _exports.default in fumadocs-mdx v14
-  const MDX = pageData._exports?.default;
-
-  if (!MDX) {
-    console.error('MDX component not found. pageData keys:', Object.keys(pageData));
-    console.error('pageData._exports:', pageData._exports);
-    throw new Error('MDX component not found');
-  }
-
   const markdownUrl = `${page.url}.mdx`;
   const githubUrl = `https://github.com/flowxtra/flowxtra-docs/blob/main/content/docs/${slug?.join('/') || 'index'}.mdx`;
+
+  // Get the MDX component - try different possible locations
+  const MDXComponent = pageData._exports?.default || pageData.body;
 
   return (
     <DocsPage toc={pageData.toc} full={pageData.full}>
@@ -51,11 +44,13 @@ export default async function Page(props: {
         <ViewOptions markdownUrl={markdownUrl} githubUrl={githubUrl} />
       </div>
       <DocsBody>
-        <MDX
-          components={getMDXComponents({
-            a: createRelativeLink(source, page),
-          })}
-        />
+        {MDXComponent && (
+          <MDXComponent
+            components={getMDXComponents({
+              a: createRelativeLink(source, page),
+            })}
+          />
+        )}
       </DocsBody>
     </DocsPage>
   );
