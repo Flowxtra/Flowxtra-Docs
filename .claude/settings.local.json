@@ -32,7 +32,13 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(curl:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(dir /b \"c:\\\\MAMP\\\\htdocs\\\\flowxtra\\\\hr_blogs\\\\flowxtra-docs\\\\src\\\\app\")",
+      "Bash(dir /s /b \"c:\\\\MAMP\\\\htdocs\\\\flowxtra\\\\hr_blogs\\\\flowxtra-docs\\\\content\")",
+      "Bash([/â€\"/g, ''–'']\n  ];\n  \n  replacements.forEach\\(\\([pattern, replacement]\\) => {\n    content = content.replace\\(pattern, replacement\\);\n  }\\);\n  \n  fs.writeFileSync\\(filePath, content, ''utf8''\\);\n  console.log\\(''Fixed: '' + filePath\\);\n}\\);\n\nconsole.log\\(''All encoding issues fixed!''\\);\n\")",
+      "Bash(node fix-encoding.js:*)",
+      "Bash(del fix-encoding.js)",
+      "Bash(node fix-x-encoding.js:*)"
     ]
   }
 }

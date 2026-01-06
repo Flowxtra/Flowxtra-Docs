@@ -28,5 +28,21 @@ Read resume text and Q&A.
 Let the AI write a summary or note on a candidate.
 - **Args**: `application_id`, `note_content`
 
-## Example Prompt
-> "Check my 'Marketing Manager' job. List the last 5 applicants, summarize their key experience from their resumes, and tell me which one is the strongest match."
+## `send_email_to_candidate`
+Send email to an applicant.
+- **Args**: `application_id`, `subject`, `message`
+
+## `create_job_post`
+Create a new job posting quickly.
+- **Args**: `title`, `description`, `location`, `employment_type`, etc.
+
+## Example Prompts
+> "List my 'Marketing Manager' job applications and summarize the key experience from their resumes."
+
+> "Send an interview invitation email to John Smith for the Marketing Manager position."
+
+> "Create a new job post for a Senior Software Engineer position in Berlin."
+
+<Callout type="info">
+**Note**: The AI does **not** make matching or ranking decisions. All candidate evaluation and selection decisions are made by the hiring manager. The AI only helps with listing, summarizing information, sending emails, and creating job posts faster.
+</Callout>

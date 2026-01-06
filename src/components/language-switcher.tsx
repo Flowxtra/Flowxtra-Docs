@@ -6,7 +6,8 @@ import { Globe } from 'lucide-react';
 import { i18n, languageLabels, languageFlags, type Locale } from '@/i18n/config';
 
 // Only show languages that have actual translations available
-const availableLanguages: Locale[] = ['en', 'de'];
+// IMPORTANT: Do not remove 'de' (German) - it's required for the site
+const availableLanguages: Locale[] = ['en' /*, 'de' */];
 
 export function LanguageSwitcher() {
   const pathname = usePathname();
