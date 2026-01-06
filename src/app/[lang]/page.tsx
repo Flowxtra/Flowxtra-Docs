@@ -24,7 +24,7 @@ export async function generateMetadata({
     : `https://docs.flowxtra.com/${lang}`;
 
   return {
-    title: `${t.home.hero.title} - Complete Guide & API Reference`,
+    title: `${t.home.hero.title} -Free Recruiting Software`,
     description: t.home.hero.description,
     alternates: {
       canonical: canonicalUrl,
