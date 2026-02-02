@@ -1,5 +1,5 @@
 # Flowxtra Documentation - Robots.txt
-# https://doc.flowxtra.com
+# https://docs.flowxtra.com
 
 User-agent: *
 Allow: /
@@ -10,5 +10,5 @@ Disallow: /search/
 Disallow: /*?*
 
 # Sitemaps
-Sitemap: https://doc.flowxtra.com/sitemap.xml
-Sitemap: https://doc.flowxtra.com/de/sitemap.xml
+Sitemap: https://docs.flowxtra.com/sitemap.xml
+Sitemap: https://docs.flowxtra.com/de/sitemap.xml

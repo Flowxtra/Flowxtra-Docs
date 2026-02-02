@@ -20,7 +20,7 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://doc.flowxtra.com',
+  url: 'https://docs.flowxtra.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl: '/',
 
