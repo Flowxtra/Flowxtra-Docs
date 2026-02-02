@@ -1,45 +1,41 @@
-# flowxtra-docs
+# Website
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-Run development server:
+## Installation
 
 ```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
+yarn
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+## Local Development
 
-## Explore
+```bash
+yarn start
+```
 
-In the project, you can see:
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
-- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+## Build
 
-| Route                     | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `app/(home)`              | The route group for your landing page and other pages. |
-| `app/docs`                | The documentation layout and pages.                    |
-| `app/api/search/route.ts` | The Route Handler for search.                          |
+```bash
+yarn build
+```
 
-### Fumadocs MDX
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-A `source.config.ts` config file has been included, you can customise different options like frontmatter schema.
+## Deployment
 
-Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
+Using SSH:
 
-## Learn More
+```bash
+USE_SSH=true yarn deploy
+```
 
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
+Not using SSH:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
+```bash
+GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

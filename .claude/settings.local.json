@@ -1,44 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run dev)",
-      "Bash(timeout:*)",
-      "Bash(exit 0)",
-      "Bash(npm run build:*)",
-      "Bash(if exist .source rmdir /s /q .source)",
-      "Bash(if exist .next rmdir /s /q .next)",
-      "Bash(cat:*)",
-      "Bash(npm run postinstall:*)",
-      "Bash(npm install:*)",
-      "Bash(npm update:*)",
-      "Bash(find:*)",
-      "Bash(while read file)",
-      "Bash(do sed -i \"/^import.*Callout.*from/d\" \"$file\")",
-      "Bash(echo:*)",
-      "Bash(done)",
-      "Bash(node fix-imports.js:*)",
-      "Bash(node -e:*)",
-      "Bash(NODE_OPTIONS='--trace-warnings' npm run build:*)",
-      "Bash(npm view:*)",
-      "Bash(taskkill:*)",
-      "Bash(tree:*)",
-      "Bash(if not exist \"src\\\\app\\\\[lang]\" mkdir \"src\\\\app\\\\[lang]\")",
-      "Bash(dir /s /b \"c:\\\\MAMP\\\\htdocs\\\\flowxtra\\\\hr_blogs\\\\flowxtra-docs\\\\content\\\\docs\")",
-      "Bash(findstr:*)",
-      "Bash(npx @fumadocs/cli:*)",
-      "Bash(npx fumadocs-mdx)",
-      "Bash(git rm:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(curl:*)",
-      "Bash(pkill:*)",
-      "Bash(dir /b \"c:\\\\MAMP\\\\htdocs\\\\flowxtra\\\\hr_blogs\\\\flowxtra-docs\\\\src\\\\app\")",
-      "Bash(dir /s /b \"c:\\\\MAMP\\\\htdocs\\\\flowxtra\\\\hr_blogs\\\\flowxtra-docs\\\\content\")",
-      "Bash([/â€\"/g, ''–'']\n  ];\n  \n  replacements.forEach\\(\\([pattern, replacement]\\) => {\n    content = content.replace\\(pattern, replacement\\);\n  }\\);\n  \n  fs.writeFileSync\\(filePath, content, ''utf8''\\);\n  console.log\\(''Fixed: '' + filePath\\);\n}\\);\n\nconsole.log\\(''All encoding issues fixed!''\\);\n\")",
-      "Bash(node fix-encoding.js:*)",
-      "Bash(del fix-encoding.js)",
-      "Bash(node fix-x-encoding.js:*)"
+      "Bash(find:*)"
     ]
   }
 }

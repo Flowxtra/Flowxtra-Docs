@@ -1,0 +1,50 @@
+---
+title: Job Widget
+description: Binden Sie Ihre Stellenanzeigen auf Ihrer eigenen Website ein
+---
+
+# Job Widget
+
+Das Job Widget ermöglicht es Ihnen, Flowxtra-Stellenanzeigen direkt auf Ihrer eigenen Unternehmenswebsite anzuzeigen, nahtlos integriert in Ihre Marke.
+
+## Was ist das Job Widget?
+
+Es ist ein kleiner Code-Schnipsel, den Sie in Ihren Website-Builder (WordPress, Webflow, WiX, Squarespace oder benutzerdefiniertes HTML) kopieren und einfügen. Es erledigt automatisch Folgendes:
+
+- Listet alle Ihre aktiven Jobs auf
+- Aktualisiert sich sofort, wenn Sie Jobs veröffentlichen/schließen
+- Leitet Kandidaten zum Bewerbungsformular weiter
+- Passt sich der Breite und dem responsiven Design Ihrer Website an
+
+## Einrichtung
+
+1. Gehen Sie zu **Einstellungen** > **Integrationen** > **Job Widget**
+2. **Erscheinungsbild konfigurieren**:
+   - **Theme**: Hell oder Dunkel
+   - **Farbe**: Wählen Sie Ihre Markenfarbe (Hex-Code), passend zu Buttons und Links
+   - **Schriftart**: Wählen Sie eine Schriftfamilie, die zu Ihrer Seite passt
+3. **Code kopieren**: Klicken Sie auf **Snippet kopieren**
+4. **Einfügen**: Fügen Sie den Code in das HTML Ihrer Website dort ein, wo die Jobs erscheinen sollen.
+
+### HTML-Beispiel
+
+```html
+<div id="flowxtra-jobs"></div>
+<script src="https://embed.flowxtra.com/widget.js" data-company="IHRE_FIRMEN_ID"></script>
+```
+
+## Anpassung (Fortgeschritten)
+
+Entwickler können das Widget mithilfe von CSS weiter anpassen. Das Widget rendert Standard-HTML-Elemente mit spezifischen Klassen wie `.flowxtra-job-card`, `.flowxtra-title` usw.
+
+```css
+/* Beispiel für benutzerdefiniertes CSS */
+.flowxtra-job-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+```
+
+:::info SEO
+Das Job Widget ist SEO-freundlich. Es rendert Links, denen Suchmaschinen zu Ihren vollständigen Stellenbeschreibungen folgen können.
+:::

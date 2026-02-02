@@ -1,0 +1,209 @@
+/* Global Styles - Flowxtra Brand Color #006980 */
+:root {
+  --ifm-color-primary: #006980;            /* اللون الأساسي */
+  --ifm-color-primary-dark: #005e73;       /* hover على الأزرار */
+  --ifm-color-primary-darker: #00586c;     /* أغمق قليلاً */
+  --ifm-color-primary-darkest: #004759;    /* الأغمق */
+  --ifm-color-primary-light: #007a94;      /* أفتح قليلاً */
+  --ifm-color-primary-lighter: #0088a6;    /* أفتح */
+  --ifm-color-primary-lightest: #00a3c7;   /* الأفتح */
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 105, 128, 0.1);
+}
+
+/* Dark Mode - ألوان أفتح لتكون مقروءة */
+[data-theme='dark'] {
+  --ifm-color-primary: #00a3c7;            /* أفتح للـ Dark Mode */
+  --ifm-color-primary-dark: #0093b4;
+  --ifm-color-primary-darker: #008baa;
+  --ifm-color-primary-darkest: #006980;
+  --ifm-color-primary-light: #00b3da;
+  --ifm-color-primary-lighter: #00bde6;
+  --ifm-color-primary-lightest: #33d4f5;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 163, 199, 0.2);
+}
+
+/* Navbar Icons */
+.navbar-icon-user-guide,
+.navbar-icon-api,
+.navbar-icon-mcp,
+.navbar-icon-best-practices {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-icon-user-guide::before,
+.navbar-icon-api::before,
+.navbar-icon-mcp::before,
+.navbar-icon-best-practices::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  background-color: var(--ifm-navbar-link-color);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.navbar__link:hover .navbar-icon-user-guide::before,
+.navbar__link:hover .navbar-icon-api::before,
+.navbar__link:hover .navbar-icon-mcp::before,
+.navbar__link:hover .navbar-icon-best-practices::before,
+.navbar__link--active .navbar-icon-user-guide::before,
+.navbar__link--active .navbar-icon-api::before,
+.navbar__link--active .navbar-icon-mcp::before,
+.navbar__link--active .navbar-icon-best-practices::before {
+  background-color: var(--ifm-navbar-link-hover-color);
+}
+
+.navbar-icon-user-guide::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>');
+}
+
+.navbar-icon-api::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>');
+}
+
+.navbar-icon-mcp::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" /><path d="M12 7v4" /><line x1="8" y1="16" x2="8" y2="16" /><line x1="16" y1="16" x2="16" y2="16" /></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2" /><circle cx="12" cy="5" r="2" /><path d="M12 7v4" /><line x1="8" y1="16" x2="8" y2="16" /><line x1="16" y1="16" x2="16" y2="16" /></svg>');
+}
+
+.navbar-icon-best-practices::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>');
+}
+
+/* ========================================
+   Navbar External Links & Buttons
+   ======================================== */
+
+/* Icon links (Website & LinkedIn) */
+.navbar-icon-website,
+.navbar-icon-linkedin {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 6px !important;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-icon-website:hover,
+.navbar-icon-linkedin:hover {
+  opacity: 1;
+}
+
+.navbar-icon-website svg,
+.navbar-icon-linkedin svg {
+  display: block;
+}
+
+/* Login Button */
+.navbar-btn-login {
+  font-weight: 500;
+  padding: 6px 16px !important;
+  border-radius: 6px;
+  border: 1px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary) !important;
+  background: transparent;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+}
+
+.navbar-btn-login:hover {
+  background: var(--ifm-color-primary);
+  color: white !important;
+  text-decoration: none;
+}
+
+/* Sign Up Button */
+.navbar-btn-signup {
+  font-weight: 600;
+  padding: 6px 16px !important;
+  border-radius: 6px;
+  background: var(--ifm-color-primary);
+  color: white !important;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+}
+
+.navbar-btn-signup:hover {
+  background: var(--ifm-color-primary-dark);
+  text-decoration: none;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .navbar-btn-login {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary) !important;
+}
+
+[data-theme='dark'] .navbar-btn-login:hover {
+  background: var(--ifm-color-primary);
+  color: #1b1b1d !important;
+}
+
+[data-theme='dark'] .navbar-btn-signup {
+  background: var(--ifm-color-primary);
+  color: #1b1b1d !important;
+}
+
+[data-theme='dark'] .navbar-btn-signup:hover {
+  background: var(--ifm-color-primary-light);
+}
+
+/*
+   Navbar Ordering (Right Side)
+   Goal: Sites -> LinkedIn -> Locale -> ColorToggle -> Login -> Signup
+   The ColorToggle has default order (0).
+*/
+.navbar-icon-website {
+  order: -5;
+}
+
+.navbar-icon-linkedin {
+  order: -4;
+}
+
+.navbar-locale-dropdown {
+  order: -3;
+}
+
+/* Color Mode Toggle stays at 0 */
+
+.navbar-btn-login {
+  order: 1;
+}
+
+.navbar-btn-signup {
+  order: 2;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 996px) {
+
+  .navbar-btn-login,
+  .navbar-btn-signup {
+    margin: 8px 0;
+    width: 100%;
+    text-align: center;
+    order: unset;
+    /* Reset order on mobile as layout is different */
+  }
+
+  .navbar-icon-website,
+  .navbar-icon-linkedin,
+  .navbar-locale-dropdown {
+    justify-content: flex-start;
+    padding: 8px 12px !important;
+    order: unset;
+    /* Reset order on mobile */
+  }
+}

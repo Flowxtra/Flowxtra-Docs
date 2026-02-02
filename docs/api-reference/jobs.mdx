@@ -1,0 +1,51 @@
+---
+title: Jobs API
+description: Manage job postings programmatically via the Flowxtra API
+permission: admin
+plugin: oauth
+---
+
+# Jobs API
+
+The Jobs API allows you to list, create, update, and manage your job postings programmatically.
+
+## Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/jobs` | List all jobs |
+| `GET` | `/jobs/{id}` | Get a specific job |
+| `POST` | `/jobs` | Create a new job |
+| `PUT` | `/jobs/{id}` | Update a job |
+| `DELETE` | `/jobs/{id}` | Delete a job |
+
+## List Jobs
+
+```bash
+GET https://api.flowxtra.com/v1/jobs
+```
+
+### Parameters
+
+- `status` (optional): Filter by status (active, draft, closed)
+- `limit` (optional): Number of results per page (default: 20)
+- `page` (optional): Page number
+
+### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "job_12345",
+      "title": "Senior Software Engineer",
+      "status": "active",
+      "created_at": "2023-01-01T12:00:00Z"
+    }
+  ],
+  "meta": {
+    "total": 1,
+    "page": 1
+  }
+}
+```

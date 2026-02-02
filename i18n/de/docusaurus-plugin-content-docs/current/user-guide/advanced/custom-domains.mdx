@@ -1,0 +1,51 @@
+---
+title: Benutzerdefinierte Domains
+description: Hosten Sie Ihre Karriereseite auf Ihrer eigenen Domain
+---
+
+# Benutzerdefinierte Domains
+
+Standardmäßig befindet sich Ihre öffentliche Karriereseite auf einem Globalen Bewerbungslink (z. B. `ihrefirma.apply-jobs.net`). Mit benutzerdefinierten Domains können Sie sie unter `karriere.ihrefirma.com` oder `jobs.ihrefirma.com` hosten.
+
+## Vorteile
+
+- **Branding**: Wirkt professioneller und vertrauenswürdiger.
+- **SEO**: Traffic stärkt die Autorität *Ihrer* Domain, nicht unserer.
+- **Tracking**: Einfachere Überprüfung von Tracking-Pixeln.
+
+## Anforderungen
+
+- Zugriff auf die DNS-Einstellungen Ihrer Domain (Host Europe, Ionos, Cloudflare usw.)
+- Ein **Business**- oder **Enterprise**-Abonnement.
+
+## Einrichtungsanleitung
+
+:::note
+DNS-Änderungen können bis zu 24–48 Stunden dauern, bis sie weltweit wirksam werden.
+:::
+
+1. **Im Flowxtra Dashboard**:
+   - Gehen Sie zu **Einstellungen** > **Benutzerdefinierte Domain**
+   - Geben Sie Ihre gewünschte Subdomain ein (z. B. `karriere.ihrefirma.com`)
+   - Klicken Sie auf **Verbinden**
+
+2. **Bei Ihrem Domain-Provider**:
+   - Erstellen Sie einen neuen **CNAME-Eintrag**
+   - **Host/Name**: `karriere` (oder welche Subdomain Sie gewählt haben)
+   - **Wert/Ziel**: `custom.flowxtra.com`
+   - **TTL**: Auto oder 3600
+
+3. **Verifizieren**:
+   - Gehen Sie zurück zu den Flowxtra-Einstellungen
+   - Klicken Sie auf **Verbindung prüfen**
+   - Sobald verifiziert, stellt Flowxtra automatisch ein SSL-Zertifikat (HTTPS) für Ihre neue Domain bereit.
+
+## SSL / HTTPS
+
+Wir generieren und erneuern automatisch Let's Encrypt SSL-Zertifikate für alle benutzerdefinierten Domains. Ihre Karriereseite ist immer sicher.
+
+## Fehlerbehebung
+
+- **"Nicht sicher"-Warnung**: Das SSL-Zertifikat wird gerade generiert. Warten Sie 15 Minuten und aktualisieren Sie die Seite.
+- **404-Fehler**: DNS wurde noch nicht aktualisiert. Warten Sie ein paar Stunden.
+- **Ungültiger Eintrag**: Überprüfen Sie den CNAME-Wert auf Tippfehler. Er muss `custom.flowxtra.com` lauten, nicht Ihre eigene URL.

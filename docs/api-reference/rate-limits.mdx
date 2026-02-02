@@ -1,0 +1,34 @@
+---
+title: Rate Limits
+description: API Rate Limiting Policies
+---
+
+# Rate Limits
+
+To ensure the stability and fairness of our platform, the Flowxtra API imposes rate limits on requests.
+
+## Limits
+
+- **Standard API Key**: 60 requests per minute
+- **Enterprise API Key**: 1,000 requests per minute
+
+## Headers
+
+We include rate limit details in the response headers of every request:
+
+- `X-RateLimit-Limit`: The maximum number of requests you're permitted to make per minute.
+- `X-RateLimit-Remaining`: The number of requests remaining in the current time window.
+- `X-RateLimit-Reset`: The time at which the current rate limit window resets (in UTC epoch seconds).
+
+## Exceeding Limits
+
+If you exceed the rate limit, you will receive a `429 Too Many Requests` response.
+
+```json
+{
+  "error": {
+    "code": "rate_limit_exceeded",
+    "message": "You have exceeded your request limit. Please try again later."
+  }
+}
+```

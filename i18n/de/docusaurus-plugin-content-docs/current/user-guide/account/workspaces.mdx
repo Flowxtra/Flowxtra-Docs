@@ -1,0 +1,225 @@
+---
+title: Workspaces Guide
+description: Manage multiple companies or brands under one account with complete data isolation
+icon: Building2
+---
+import { Callout } from '@site/src/components/Callout';
+
+# Workspaces Guide
+
+Workspaces in Flowxtra allow you to manage multiple companies or brands under a single account, with complete isolation of data and settings.
+
+## 1. What are Workspaces?
+
+A Workspace is an independent environment within your account that represents a single company or brand. Each workspace has:
+
+**Globaler Bewerbungslink**:
+- Wie `ihre-marke.apply-jobs.net` oder `ihre-marke.bewerben.link`
+- Dient als eindeutige, markenbezogene Adresse für den Zugriff auf den Workspace
+- Ausgewählt aus 7 marktspezifischen Domains
+
+**Unabhängige Einstellungen**:
+- Unternehmensspezifisches Logo
+- Markenfarben
+- Unternehmensdaten und -informationen
+
+**Separate Datenbank**:
+- Kandidaten und Jobs vermischen sich nicht zwischen Workspaces
+- Vollständige Datenisolierung zwischen verschiedenen Workspaces
+
+<Callout type="info">
+Workspaces sind ideal für Unternehmen, die mehrere Marken verwalten, Personalvermittlungsagenturen, die mehrere Kunden betreuen, oder Unternehmen mit unabhängigen Niederlassungen.
+</Callout>
+
+## 2. Zugriff auf Workspaces
+
+So greifen Sie auf die Workspace-Verwaltung zu:
+
+1. Navigieren Sie im Hauptmenü zu **Einstellungen**
+2. Wählen Sie **Workspaces**
+3. Sie sehen eine Liste aller für Ihr Konto verfügbaren Workspaces
+
+Auf dieser Seite können Sie:
+- Alle Ihre Workspaces anzeigen
+- Zwischen verschiedenen Workspaces wechseln
+- Neue Workspaces erstellen
+- Nicht genutzte Workspaces löschen
+
+## 3. Erstellen eines neuen Workspaces
+
+<Callout type="warning">
+**Workspace-Limit**: Die Anzahl der verfügbaren Workspaces hängt von Ihrem aktuellen Plan ab:
+
+- **Kostenloser Plan**: Nur ein Workspace
+- **Starter Plan und höher**: Mehrere Workspaces
+
+Wenn Sie das Limit erreicht haben, müssen Sie auf einen höheren Plan upgraden.
+</Callout>
+
+### Schritte
+
+1. Klicken Sie auf der Seite **Workspaces** auf den Button **"Workspace erstellen"**
+2. Wenn Sie das Limit erreicht haben, sehen Sie eine Option zum Upgrade auf einen höheren Plan
+3. Geben Sie die neuen Unternehmensinformationen ein:
+
+**Erforderliche Informationen**:
+- **Unternehmensname**: Der rechtliche oder Handelsname des Unternehmens
+- **Bewerbungslink**: Wählen Sie eine marktspezifische Domain (z. B. `apply-jobs.net`) und definieren Sie Ihren Unternehmenspfad/Namen.
+- **Website**: Optional - URL der Unternehmenswebsite
+- **Stadt**: Optional - Standort des Hauptsitzes
+
+4. Klicken Sie auf **"Erstellen"**, um den Workspace zu erstellen
+
+<Callout type="tip">
+**Tipp**: Wählen Sie einen Link, der zum Hauptmarkt des neuen Workspaces passt (z. B. verwenden Sie `bewerben.link` für eine deutsche Niederlassung).
+</Callout>
+
+### Anforderungen an den Bewerbungslink
+
+Bei der Auswahl Ihres Links:
+- **Eindeutig**: Die Kombination aus `Name` + `Domain` muss eindeutig sein.
+- **Format**: Nur Kleinbuchstaben, Zahlen und Bindestriche.
+- **Auswahl**: Kann nach der Erstellung nicht mehr geändert werden.
+
+**Gültige Beispiele**:
+- ✅ `tech-solutions` + `apply-jobs.net` → `https://tech-solutions.apply-jobs.net`
+- ✅ `acme-gmbh` + `bewerben.link` → `https://acme-gmbh.bewerben.link`
+- ✅ `paris-branch` + `appliquer.net` → `https://paris-branch.appliquer.net`
+
+**Ungültige Beispiele**:
+- ❌ `Tech-Solutions` → Nicht erlaubt (Großbuchstaben)
+- ❌ `-acme-` → Nicht erlaubt (beginnt/endet mit Bindestrich)
+- ❌ `acme corp` → Nicht erlaubt (Leerzeichen)
+- ❌ `acme.flowxtra.com` → Nicht erlaubt (Subdomains nicht mehr unterstützt)
+
+## 4. Wechseln zwischen Workspaces
+
+So wechseln Sie den aktiven Workspace:
+
+1. Suchen Sie auf der Seite **Workspaces** den Workspace, zu dem Sie wechseln möchten
+2. Klicken Sie auf den Button **"Wechseln"** neben dem Workspace-Namen
+3. Sie werden zu Ihrem Dashboard für diesen Workspace weitergeleitet
+4. Nach dem Login (falls erforderlich) befinden Sie sich im neuen Workspace
+
+<Callout type="info">
+**Hinweis**: Der aktuell aktive Workspace ist mit **"Aktiv"** gekennzeichnet und kann nicht erneut gewechselt werden (da Sie sich bereits darin befinden).
+</Callout>
+
+### Was passiert beim Wechseln
+
+Wenn Sie zu einem anderen Workspace wechseln:
+- Sie werden aus der aktuellen Workspace-Sitzung ausgeloggt
+- Sie greifen auf die für diesen spezifischen Workspace isolierten Daten zu
+- Sie müssen sich möglicherweise erneut anmelden, wenn die Sitzung nicht geteilt wird
+- Sie sehen nur Daten und Jobs aus dem neuen Workspace
+
+## 5. Löschen eines Workspaces
+
+Sie können jeden inaktiven Workspace löschen:
+
+1. Klicken Sie auf der Seite **Workspaces** auf den Button **"Löschen"** neben dem Workspace, den Sie löschen möchten
+2. Bestätigen Sie das Löschen im Popup-Fenster
+3. Lesen Sie die Warnungen sorgfältig durch, bevor Sie bestätigen
+
+<Callout type="danger">
+**Wichtige Warnung**: Das Löschen kann nicht rückgängig gemacht werden!
+
+Wenn Sie einen Workspace löschen, werden **alle zugehörigen Daten** dauerhaft gelöscht:
+- Alle veröffentlichten Stellenanzeigen
+- Alle Kandidaten und Bewerbungen
+- Einstellungen und Anpassungen
+- Unternehmens- und Teamdaten
+
+**Diese Daten können nach dem Löschen nicht wiederhergestellt werden.**
+</Callout>
+
+### Einschränkungen beim Löschen
+
+- **Der aktuell aktive Workspace kann nicht gelöscht werden**: Sie müssen zuerst zu einem anderen Workspace wechseln
+- **Löschen muss bestätigt werden**: Zum Schutz vor versehentlichem Löschen
+- **Löschen erfolgt sofort**: Es gibt keine Nachfrist oder Wiederherstellungsoption
+
+<Callout type="tip">
+**Tipp**: Bevor Sie einen Workspace löschen, stellen Sie sicher, dass Sie:
+- Wichtige Daten exportieren
+- Alle aktiven Stellenanzeigen schließen
+- Teammitglieder benachrichtigen
+- Notwendige Informationen in einen anderen Workspace übertragen
+</Callout>
+
+## Häufige Anwendungsfälle
+
+### Für Multi-Marken-Unternehmen
+
+Wenn Ihr Unternehmen mehrere Marken verwaltet:
+- Erstellen Sie einen separaten Workspace für jede Marke
+- Behalten Sie die unabhängige Identität jeder Marke bei (Logo, Farben, Domain)
+- Verwalten Sie die Rekrutierung für jede Marke separat
+
+### Für Personalvermittlungsagenturen
+
+Wenn Sie eine Personalvermittlungsagentur sind, die mehrere Kunden betreut:
+- Erstellen Sie einen Workspace für jeden Kunden
+- Halten Sie die Daten jedes Kunden separat und geschützt
+- Stellen Sie maßgeschneiderte Berichte für jeden Kunden bereit
+
+### Für Unternehmen mit unabhängigen Niederlassungen
+
+Wenn Sie Niederlassungen in verschiedenen Städten oder Ländern haben:
+- Erstellen Sie einen Workspace für jede Niederlassung
+- Geben Sie jeder Niederlassung Autonomie bei der Rekrutierung
+- Behalten Sie einheitliche Standards in allen Niederlassungen bei
+
+## Häufig gestellte Fragen
+
+### Kann ich Daten zwischen Workspaces übertragen?
+
+Derzeit gibt es keine automatische Option, Daten zwischen Workspaces zu übertragen. Wenn Sie Daten übertragen müssen, wenden Sie sich an das Support-Team unter `support@flowxtra.com`.
+
+### Kann ich den Bewerbungslink nach der Erstellung ändern?
+
+Der Bewerbungslink kann nach der Erstellung des Workspaces nicht mehr geändert werden. Wenn Sie ihn ändern müssen, müssen Sie einen neuen Workspace erstellen und die Daten manuell übertragen.
+
+### Wie viele Workspaces kann ich erstellen?
+
+Das hängt von Ihrem Plan ab:
+- **Kostenloser Plan**: Ein Workspace
+- **Starter Plan**: Bis zu 3 Workspaces
+- **Professional Plan**: Bis zu 10 Workspaces
+- **Enterprise Plan**: Unbegrenzt
+
+### Beeinflussen Workspaces die Abrechnung?
+
+Ja, jeder Workspace wird separat abgerechnet. Weitere Details finden Sie auf der Seite [Abonnement & Abrechnung](/user-guide/account/subscription-billing).
+
+### Können Teammitglieder auf mehrere Workspaces zugreifen?
+
+Ja, Sie können denselben Benutzer zu mehreren Workspaces einladen. Er muss zwischen den Workspaces wechseln, um auf jeden zuzugreifen.
+
+## Nächste Schritte
+
+Nach der Einrichtung Ihrer Workspaces:
+
+1. **[Unternehmensprofil vervollständigen](/user-guide/account/company-profile)**
+   - Detaillierte Informationen für jeden Workspace hinzufügen
+   - Logos und Bilder hochladen
+   - Die Jobseite anpassen
+
+2. **[Teammitglieder einladen](/user-guide/account/team-permissions)**
+   - Recruiter und Hiring Manager hinzufügen
+   - Rollen und Berechtigungen zuweisen
+   - Kollaborative Workflows erstellen
+
+3. **[Erste Stelle erstellen](/user-guide/getting-started/first-job)**
+   - Eine Stelle im neuen Workspace veröffentlichen
+   - Den Bewerbungsprozess testen
+   - Bewerbungen erhalten
+
+## Support
+
+Wenn Sie Hilfe bei der Verwaltung von Workspaces benötigen:
+
+- **E-Mail**: support@flowxtra.com
+- **Live-Chat**: Verfügbar Montag-Freitag, 9:00 - 17:00 Uhr MEZ
+- **Hilfe-Center**: [help.flowxtra.com](https://flowxtra.com)
+- **Dokumentation**: [Benutzerhandbuch](/user-guide)

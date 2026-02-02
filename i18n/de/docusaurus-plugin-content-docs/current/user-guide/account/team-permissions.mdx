@@ -1,0 +1,324 @@
+---
+title: Teammitglieder & Berechtigungen
+description: Teammitglieder verwalten und rollenbasierte Zugriffskontrolle konfigurieren
+icon: Users
+---
+
+import { Callout } from '@site/src/components/Callout';
+
+# Teammitglieder & Berechtigungen
+
+Arbeiten Sie effektiv zusammen, indem Sie Teammitglieder einladen und entsprechende Rollen und Berechtigungen zuweisen. Dieser Leitfaden behandelt Teammanagement und Zugriffskontrolle.
+
+## Teamrollen
+
+Flowxtra bietet fünf Rollenebenen:
+
+### Eigentümer (Owner)
+
+**Voller administrativer Zugriff**:
+- Alle Berechtigungen
+- Abrechnung und Abonnement verwalten
+- Konto löschen
+- Eigentümerschaft übertragen
+- Kann nicht entfernt werden (nur übertragen)
+
+**Limit**: 1 pro Konto
+
+### Admin
+
+**Administrativer Zugriff**:
+- Alle Jobs und Bewerbungen verwalten
+- Teammitglieder einladen und entfernen
+- Unternehmenseinstellungen konfigurieren
+- Analysen und Berichte anzeigen
+- Kann keine Abrechnungen verwalten oder das Konto löschen
+
+**Limit**: Unbegrenzt
+
+### Recruiter
+
+**Einstellungsmanagement-Zugriff**:
+- Jobs erstellen und verwalten
+- Bewerbungen prüfen und verwalten
+- Mit Kandidaten kommunizieren
+- Einstellungsanalysen anzeigen
+- Kann kein Team oder Einstellungen verwalten
+
+**Limit**: Unbegrenzt
+
+### Hiring Manager
+
+**Abteilungsspezifischer Zugriff**:
+- Zugewiesene Jobs anzeigen
+- Bewerbungen für zugewiesene Jobs prüfen
+- Kandidaten kommentieren und bewerten
+- Kann keine Jobs erstellen oder Einstellungen verwalten
+
+**Limit**: Unbegrenzt
+
+### Betrachter (Viewer)
+
+**Lesezugriff**:
+- Jobs und Bewerbungen anzeigen
+- Analysen anzeigen
+- Kann keine Änderungen vornehmen
+
+**Limit**: Unbegrenzt
+
+## Teammitglieder einladen
+
+### Einladung senden
+
+1. Navigieren Sie zu **Einstellungen** > **Teammitglieder**
+2. Klicken Sie auf **Mitglied einladen**
+3. Geben Sie die E-Mail-Adresse ein
+4. Wählen Sie die Rolle
+5. Wählen Sie Abteilungen (für Hiring Manager)
+6. Fügen Sie eine persönliche Nachricht hinzu (optional)
+7. Klicken Sie auf **Einladung senden**
+
+<Callout type="info">
+Einladungen laufen nach 7 Tagen ab. Bei Bedarf erneut senden.
+</Callout>
+
+### Masseneinladungen
+
+Laden Sie mehrere Mitglieder gleichzeitig ein:
+
+1. Klicken Sie auf **Masseneinladung**
+2. Geben Sie E-Mail-Adressen ein (eine pro Zeile)
+3. Wählen Sie die Standardrolle
+4. Klicken Sie auf **Einladungen senden**
+
+### Einladungsstatus
+
+Verfolgen Sie den Einladungsstatus:
+
+- **Ausstehend**: Einladung gesendet, noch nicht angenommen
+- **Angenommen**: Benutzer ist dem Team beigetreten
+- **Abgelaufen**: Einladung abgelaufen (7 Tage)
+- **Widerrufen**: Einladung storniert
+
+## Teammitglieder verwalten
+
+### Teammitglieder anzeigen
+
+Sehen Sie alle Teammitglieder in **Einstellungen** > **Teammitglieder**:
+
+- Name und E-Mail
+- Rolle
+- Abteilungszuweisungen
+- Zuletzt aktiv
+- Status
+
+### Mitglied bearbeiten
+
+Ändern Sie Mitgliederdetails:
+
+1. Klicken Sie auf den Namen des Mitglieds
+2. Aktualisieren Sie Rolle oder Abteilungen
+3. Klicken Sie auf **Änderungen speichern**
+
+<Callout type="warning">
+Das Ändern von Rollen wird sofort wirksam und kann laufende Arbeiten beeinträchtigen.
+</Callout>
+
+### Mitglied entfernen
+
+Ein Teammitglied entfernen:
+
+1. Klicken Sie auf **Entfernen** neben dem Namen des Mitglieds
+2. Wählen Sie, was mit dessen Daten geschehen soll:
+   - Einem anderen Mitglied neu zuweisen
+   - Nicht zugewiesen lassen
+3. Bestätigen Sie das Entfernen
+
+**Was passiert**:
+- Zugriff wird sofort widerrufen
+- Zugewiesene Jobs bleiben bestehen
+- Kommentare und Notizen bleiben erhalten
+- Kann später erneut eingeladen werden
+
+### Eigentümerschaft übertragen
+
+Kontoeigentümerschaft übertragen:
+
+1. Gehen Sie zu **Einstellungen** > **Konto**
+2. Klicken Sie auf **Eigentümerschaft übertragen**
+3. Wählen Sie den neuen Eigentümer (muss Admin sein)
+4. Geben Sie Ihr Passwort ein
+5. Bestätigen Sie die Übertragung
+
+<Callout type="warning">
+Sie werden nach der Übertragung zum Admin. Diese Aktion kann nicht rückgängig gemacht werden.
+</Callout>
+
+## Berechtigungsdetails
+
+### Job-Berechtigungen
+
+| Aktion | Eigentümer | Admin | Recruiter | Hiring Manager | Viewer |
+|--------|-------|-------|-----------|----------------|--------|
+| Job erstellen | ✓ | ✓ | ✓ | - | - |
+| Job bearbeiten | ✓ | ✓ | ✓ | - | - |
+| Job löschen | ✓ | ✓ | ✓ | - | - |
+| Job veröffentlichen | ✓ | ✓ | ✓ | - | - |
+| Alle Jobs anzeigen | ✓ | ✓ | ✓ | Nur zugewiesene | ✓ |
+
+### Bewerbungs-Berechtigungen
+
+| Aktion | Eigentümer | Admin | Recruiter | Hiring Manager | Viewer |
+|--------|-------|-------|-----------|----------------|--------|
+| Bewerbungen anzeigen | ✓ | ✓ | ✓ | Nur zugewiesene | ✓ |
+| Status aktualisieren | ✓ | ✓ | ✓ | Nur zugewiesene | - |
+| Kommentare hinzufügen | ✓ | ✓ | ✓ | ✓ | - |
+| Kandidaten bewerten | ✓ | ✓ | ✓ | ✓ | - |
+| Kandidaten kontaktieren | ✓ | ✓ | ✓ | Nur zugewiesene | - |
+| Daten exportieren | ✓ | ✓ | ✓ | - | - |
+
+### Team-Berechtigungen
+
+| Aktion | Eigentümer | Admin | Recruiter | Hiring Manager | Viewer |
+|--------|-------|-------|-----------|----------------|--------|
+| Mitglieder einladen | ✓ | ✓ | - | - | - |
+| Mitglieder entfernen | ✓ | ✓ | - | - | - |
+| Rollen ändern | ✓ | ✓ | - | - | - |
+| Team anzeigen | ✓ | ✓ | ✓ | ✓ | ✓ |
+
+### Einstellungs-Berechtigungen
+
+| Aktion | Eigentümer | Admin | Recruiter | Hiring Manager | Viewer |
+|--------|-------|-------|-----------|----------------|--------|
+| Firmenprofil | ✓ | ✓ | - | - | - |
+| Abrechnung | ✓ | - | - | - | - |
+| API-Schlüssel | ✓ | ✓ | - | - | - |
+| Webhooks | ✓ | ✓ | - | - | - |
+| Integrationen | ✓ | ✓ | - | - | - |
+
+## Abteilungszuweisungen
+
+### Abteilungen erstellen
+
+1. Gehen Sie zu **Einstellungen** > **Abteilungen**
+2. Klicken Sie auf **Abteilung hinzufügen**
+3. Geben Sie den Abteilungsnamen ein
+4. Fügen Sie eine Beschreibung hinzu
+5. Weisen Sie einen Abteilungsleiter zu
+6. Klicken Sie auf **Erstellen**
+
+### Mitglieder zu Abteilungen zuweisen
+
+1. Teammitglied bearbeiten
+2. Abteilungen auswählen
+3. Als Abteilungsleiter festlegen (optional)
+4. Änderungen speichern
+
+### Abteilungsbasierter Zugriff
+
+Hiring Manager sehen nur:
+
+- Jobs in ihren Abteilungen
+- Bewerbungen für ihre Jobs
+- Analysen für ihre Abteilungen
+
+## Kollaborationsfunktionen
+
+### Interne Notizen
+
+Private Notizen zu Bewerbungen hinzufügen:
+
+- Nur für Teammitglieder sichtbar
+- Nicht für Kandidaten sichtbar
+- Mit Zeitstempel und Verfasser
+- Unterstützt Erwähnungen (@benutzername)
+
+### Kandidatenbewertungen
+
+Kandidaten bewerten (1-5 Sterne):
+
+- Individuelle Bewertungen pro Teammitglied
+- Durchschnittsbewertung wird angezeigt
+- Nach Bewertung filtern
+- Bewertungen exportieren
+
+### Aktivitäts-Feed
+
+Teamaktivität verfolgen:
+
+- Job erstellt/aktualisiert
+- Bewerbungsstatus geändert
+- Kommentare hinzugefügt
+- Bewertungen abgegeben
+- Aktionen von Teammitgliedern
+
+### Erwähnungen
+
+Teammitglieder benachrichtigen:
+
+- Verwenden Sie @benutzername in Kommentaren
+- Erwähnter Benutzer erhält Benachrichtigung
+- Erstellt Eintrag im Aktivitäts-Feed
+
+## Best Practices
+
+### Rollenzuweisung
+
+- **Restriktiv beginnen**: Minimale notwendige Rolle zuweisen
+- **Regelmäßig überprüfen**: Rollen vierteljährlich prüfen
+- **Hiring Manager nutzen**: Für Abteilungsleiter
+- **Admins begrenzen**: Nur vertrauenswürdige Teammitglieder
+- **Eigentümersicherheit**: 2FA für Eigentümerkonto aktivieren
+
+### Teamorganisation
+
+- **Klare Abteilungen**: Nach Funktion organisieren
+- **Eigentümerschaft zuweisen**: Jeder Job hat einen Eigentümer
+- **Regelmäßige Kommunikation**: Wöchentliche Team-Syncs
+- **Prozesse dokumentieren**: Standard-Einstellungsworkflows
+- **Schulung**: Neue Teammitglieder ordnungsgemäß einarbeiten
+
+### Sicherheit
+
+- **Sofort entfernen**: Zugriff widerrufen, wenn Mitglieder gehen
+- **Zugriff überprüfen**: Teammitglieder monatlich prüfen
+- **Starke Passwörter**: Passwortrichtlinien durchsetzen
+- **2FA**: Zwei-Faktor-Authentifizierung fördern
+- **Aktivitätsüberwachung**: Aktivitätsprotokolle überprüfen
+
+## Fehlerbehebung
+
+### Einladung nicht erhalten
+
+Wenn ein Teammitglied keine Einladung erhalten hat:
+
+1. Spam-/Junk-Ordner prüfen
+2. E-Mail-Adresse verifizieren
+3. Einladung erneut senden
+4. Einladungsstatus prüfen
+5. Support kontaktieren
+
+### Mitglied kann nicht entfernt werden
+
+Wenn Sie ein Mitglied nicht entfernen können:
+
+- Muss Eigentümer oder Admin sein
+- Sie können sich nicht selbst entfernen
+- Eigentümer kann nicht entfernt werden
+- Auf aktive Zuweisungen prüfen
+
+### Berechtigungsprobleme
+
+Wenn ein Teammitglied nicht auf Funktionen zugreifen kann:
+
+1. Rolle verifizieren
+2. Abteilungszuweisungen prüfen
+3. Bestätigen, dass das Konto aktiv ist
+4. Berechtigungstabelle überprüfen
+5. Support kontaktieren
+
+## Nächste Schritte
+
+- [Abrechnung & Abonnement konfigurieren](/user-guide/account/subscription-billing)
+- [Ersten Job erstellen](/user-guide/getting-started/first-job)
+- [Bewerbungen verwalten](/user-guide/applications/viewing)

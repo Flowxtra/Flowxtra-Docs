@@ -1,0 +1,14 @@
+# Flowxtra Documentation - Robots.txt
+# https://doc.flowxtra.com
+
+User-agent: *
+Allow: /
+
+# Disallow search and internal pages
+Disallow: /search
+Disallow: /search/
+Disallow: /*?*
+
+# Sitemaps
+Sitemap: https://doc.flowxtra.com/sitemap.xml
+Sitemap: https://doc.flowxtra.com/de/sitemap.xml

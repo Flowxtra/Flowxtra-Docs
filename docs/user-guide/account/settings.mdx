@@ -1,0 +1,581 @@
+---
+title: Account Settings
+description: Configure your Flowxtra account settings and preferences
+icon: Settings
+---
+import { Callout } from '@site/src/components/Callout';
+
+# Account Settings
+
+Customize your Flowxtra experience by configuring your account settings. This guide covers all available settings and how to optimize them for your workflow.
+
+## Accessing Settings
+
+Navigate to **Settings** from the main menu or click your profile picture and select **Account Settings**.
+
+## Profile Settings
+
+### Personal Information
+
+Update your personal details:
+
+- **Full Name**: Your display name
+- **Email Address**: Primary contact email
+- **Phone Number**: Contact phone (optional)
+- **Job Title**: Your role in the company
+- **Profile Picture**: Upload or change your avatar
+
+<Callout type="info">
+Your email address is used for login and notifications. Changing it requires verification.
+</Callout>
+
+### Timezone
+
+Set your timezone for accurate timestamps:
+
+- Automatically detect from browser
+- Manually select from list
+- Affects job posting schedules
+- Controls notification timing
+
+### Language Preferences
+
+Choose your interface language:
+
+- English
+- German (Deutsch)
+- Arabic (العربية)
+
+## Notification Settings
+
+### Email Notifications
+
+Control when you receive emails:
+
+**Application Notifications**:
+- New application received
+- Application status changed
+- Candidate message received
+
+**Job Notifications**:
+- Job published successfully
+- Job about to expire
+- Job performance reports
+
+**Team Notifications**:
+- New team member added
+- Team member comment
+- Assigned to review candidate
+
+**System Notifications**:
+- Account security alerts
+- Billing and subscription updates
+- Product updates and features
+
+### In-App Notifications
+
+Configure dashboard notifications:
+
+- Real-time notifications
+- Notification sound
+- Desktop notifications (requires browser permission)
+- Notification badge on icon
+
+### Notification Frequency
+
+Choose how often to receive digest emails:
+
+- **Real-time**: Immediate notifications
+- **Hourly**: Bundled every hour
+- **Daily**: Once per day summary
+- **Weekly**: Weekly digest
+- **Never**: Disable email notifications
+
+## Security Settings
+
+### Password Management
+
+**Change Password**:
+
+1. Enter current password
+2. Enter new password
+3. Confirm new password
+4. Click **Update Password**
+
+Password requirements:
+- Minimum 8 characters
+- One uppercase letter
+- One lowercase letter
+- One number
+- One special character (recommended)
+
+<Callout type="warning">
+Change your password immediately if you suspect unauthorized access.
+</Callout>
+
+### Two-Factor Authentication (2FA)
+
+Add an extra layer of security:
+
+**Enable 2FA**:
+
+1. Go to **Security** > **Two-Factor Authentication**
+2. Click **Enable 2FA**
+3. Scan QR code with authenticator app
+4. Enter verification code
+5. Save backup codes
+
+**Supported Authenticator Apps**:
+- Google Authenticator
+- Microsoft Authenticator
+- Authy
+- 1Password
+
+**Backup Codes**:
+- Generate 10 one-time backup codes
+- Store securely offline
+- Use if you lose access to authenticator
+
+### Active Sessions
+
+View and manage active login sessions:
+
+- Current session (this device)
+- Other active sessions
+- Last activity timestamp
+- Device and location information
+
+**Revoke Sessions**:
+- Click **Revoke** next to any session
+- Use **Revoke All** to log out everywhere
+- Requires re-login on all devices
+
+### Login History
+
+Review recent login activity:
+
+- Date and time
+- IP address
+- Device and browser
+- Location (approximate)
+- Success or failure status
+
+<Callout type="warning">
+If you see suspicious login activity, change your password immediately and enable 2FA.
+</Callout>
+
+## Privacy Settings
+
+### Data Visibility
+
+Control who can see your information:
+
+**Profile Visibility**:
+- Public: Visible to all users
+- Team: Visible to team members only
+- Private: Only visible to you
+
+**Activity Visibility**:
+- Show online status
+- Show last active time
+- Show activity in feed
+
+### Data Export
+
+Export your data:
+
+1. Go to **Privacy** > **Data Export**
+2. Select data to export
+3. Choose format (JSON, CSV, PDF)
+4. Click **Request Export**
+5. Receive download link via email
+
+Exported data includes:
+- Profile information
+- Job postings
+- Applications
+- Team activity
+- Settings and preferences
+
+### Data Retention
+
+Configure how long data is kept:
+
+- Active jobs: Indefinitely
+- Closed jobs: 1 year (default)
+- Applications: 2 years (default)
+- Archived data: 5 years (default)
+
+## Integration Settings
+
+### API Access
+
+Manage API keys and access:
+
+**Create API Key**:
+
+1. Go to **Integrations** > **API Keys**
+2. Click **Create New Key**
+3. Name your key
+4. Select permissions
+5. Copy and save the key securely
+
+<Callout type="warning">
+API keys are shown only once. Store them securely and never share them publicly.
+</Callout>
+
+**API Key Permissions**:
+- Read jobs
+- Write jobs
+- Read applications
+- Write applications
+- Manage webhooks
+
+### Webhooks
+
+Configure webhook endpoints:
+
+1. Click **Add Webhook**
+2. Enter endpoint URL
+3. Select events to trigger
+4. Add authentication headers (optional)
+5. Test webhook
+6. Save configuration
+
+**Available Events**:
+- application.created
+- application.updated
+- job.published
+- job.closed
+- candidate.hired
+
+### Third-Party Integrations
+
+Connect external services:
+
+**Available Integrations**:
+- Google Calendar
+- Slack
+- Microsoft Teams
+- Zapier
+- LinkedIn
+
+## Preferences
+
+### Dashboard Customization
+
+Customize your dashboard:
+
+- Default view (jobs, applications, analytics)
+- Widget arrangement
+- Quick actions
+- Favorite filters
+
+### Email Templates
+
+Customize automated emails:
+
+- Application confirmation
+- Interview invitation
+- Rejection notice
+- Offer letter
+
+**Template Variables**:
+- `{candidate_name}`
+- `{job_title}`
+- `{company_name}`
+- `{interview_date}`
+
+### Display Preferences
+
+Adjust interface settings:
+
+- Theme: Light, Dark, or Auto
+- Density: Comfortable, Compact
+- Sidebar: Expanded or Collapsed
+- Font size: Small, Medium, Large
+
+## Recruitment Settings
+
+Configure your recruitment workflow and processes to match your company's hiring needs.
+
+### Organization & Team
+
+Manage your company's organizational structure:
+
+**Company Details**:
+- Edit company name, logo, and description
+- Update company website URL
+- Manage company locations
+
+**Team Members**:
+- Add new users (Recruiters, Hiring Managers)
+- Assign roles and permissions
+- Manage team access levels
+
+**Offices**:
+- Manage branch addresses
+- Add multiple office locations
+- Set default location for jobs
+
+**Contracted Companies**:
+- Manage client companies (for recruitment agencies)
+- Handle subsidiary company profiles
+- Configure multi-company workflows
+
+<Callout type="info">
+If you recruit for multiple companies or have subsidiaries, you can manage all their profiles from this section.
+</Callout>
+
+### Recruitment Process
+
+Customize how candidates move through your hiring pipeline:
+
+**Pipeline Editor**:
+- Create custom pipeline stages (e.g., Application, Interview, Test, Offer)
+- Configure stage-specific actions
+- Set up automated workflows
+- Create department-specific pipelines
+
+<Callout type="tip">
+You can create different pipelines for different departments or job types to match your unique hiring processes.
+</Callout>
+
+**Email Templates**:
+- Create reusable email templates
+- Customize rejection, interview invitation, and offer letters
+- Use dynamic variables like `{candidate_name}`, `{job_title}`, `{company_name}`
+- Preview before sending
+
+Available template types:
+- Application confirmation
+- Interview invitation
+- Rejection notice
+- Offer letter
+- Follow-up emails
+
+**Rating Sheets**:
+- Create evaluation criteria for candidates
+- Standardize interview assessments
+- Ensure fair and consistent evaluation
+- Track interviewer feedback
+
+### Employer Branding
+
+Customize your company's appearance to attract top talent:
+
+**Job Widget**:
+- Customize the jobs list widget for your company website
+- Choose layout style (list, grid, or cards)
+- Configure colors and fonts
+- Embed code for your website
+
+**Company Page**:
+- Design a public-facing company profile page
+- Showcase company culture and values
+- Add photos and videos
+- Display employee testimonials
+
+**Brand Kit**:
+- Set company brand colors
+- Define typography and fonts
+- Ensure consistent visual identity
+- Apply branding across all job postings
+
+<Callout type="tip">
+A strong employer brand can increase application rates by up to 50%. Take time to customize your company page and branding.
+</Callout>
+
+### System & Account
+
+**Billing & Subscriptions**:
+- See [Subscription & Billing](/user-guide/account/subscription-billing)
+
+**Notifications**:
+- Control recruitment-related notifications
+- Set up team collaboration alerts
+- Configure application notifications
+
+**Custom Domain**:
+- Set up a custom domain for your careers page (e.g., jobs.mycompany.com)
+- Configure DNS settings
+- Enable HTTPS/SSL
+
+**Integrations & API**:
+- Connect with external platforms (Slack, Zoom, Microsoft Teams)
+- Set up API access for custom integrations
+- Configure webhooks for real-time updates
+
+<Callout type="tip">
+**Recommended Setup**: Configure your Pipeline and Email Templates before posting your first job to save time later.
+</Callout>
+
+## Social Media Settings
+
+Manage all your company's social media accounts in one place for unified posting and scheduling.
+
+### Connected Accounts
+
+View and manage all social media accounts currently connected to the system:
+
+**Supported Platforms**:
+- Facebook Pages
+- Instagram Business
+- LinkedIn Company Pages
+- Twitter/X
+- TikTok Business
+
+For each connected account, you can see:
+- **Account Name & Avatar**: Verify the correct account is connected
+- **Platform Icon**: Visual indicator of the platform type
+- **Connection Status**: Active or needs reconnection
+
+### Connect New Account
+
+To add a new social media account:
+
+1. Click **Connect Account** button
+2. Select the platform you want to connect (e.g., Facebook Page)
+3. You'll be redirected to that platform's login page
+4. Authorize the permissions
+5. After approval, you'll be redirected back to Flowxtra
+6. The account will appear in your connected accounts list
+
+<Callout type="warning">
+**Important**: For Pages (Facebook, LinkedIn), ensure your personal account has **Admin** or **Editor** permissions on the company page you want to manage.
+</Callout>
+
+### Reconnect Account
+
+Sometimes, access tokens expire for security reasons (e.g., after changing your password on the platform):
+
+**When reconnection is needed**:
+- Token expiration (usually after 60-90 days)
+- Password change on the platform
+- Permissions revoked or changed
+
+**How to reconnect**:
+1. Look for the reconnect warning next to the account
+2. Click **Reconnect** button
+3. Follow the same authorization steps
+4. Your previous data and settings will be preserved
+
+<Callout type="info">
+Reconnecting an account won't affect your previously published posts or scheduled content.
+</Callout>
+
+### Disconnect Account
+
+To remove an account and stop posting to it:
+
+1. Find the account in the list
+2. Click the **Delete** (trash) icon
+3. Confirm the action in the popup dialog
+
+<Callout type="warning">
+**Note**: Disconnecting an account won't delete posts already published on the platform, but it will prevent the system from sending any new posts to that account.
+</Callout>
+
+### Managing Multiple Accounts
+
+**Best Practices**:
+- Connect all relevant company social media accounts
+- Regularly check connection status
+- Renew connections before they expire
+- Assign team members to manage specific accounts
+
+**Account Organization**:
+- Group accounts by brand or location
+- Label accounts clearly for multi-location companies
+- Set default accounts for automatic posting
+
+## Billing Settings
+
+See [Subscription & Billing](/user-guide/account/subscription-billing) for detailed billing settings.
+
+## Advanced Settings
+
+### Account Deletion
+
+Permanently delete your account:
+
+1. Go to **Advanced** > **Delete Account**
+2. Review what will be deleted
+3. Enter your password
+4. Type "DELETE" to confirm
+5. Click **Permanently Delete Account**
+
+<Callout type="warning">
+**Warning**: Account deletion is permanent and cannot be undone. All data will be permanently deleted.
+</Callout>
+
+Before deleting:
+- Export your data
+- Cancel active subscriptions
+- Close all job postings
+- Notify team members
+
+### Data Migration
+
+Transfer data to another account:
+
+1. Contact support@flowxtra.com
+2. Provide source and destination accounts
+3. Specify data to migrate
+4. Confirm migration request
+5. Review migrated data
+
+## Keyboard Shortcuts
+
+Enable keyboard shortcuts for faster navigation:
+
+**Global Shortcuts**:
+- `Ctrl/Cmd + K`: Quick search
+- `Ctrl/Cmd + N`: New job
+- `Ctrl/Cmd + ,`: Settings
+- `Ctrl/Cmd + /`: Show shortcuts
+
+**Navigation**:
+- `G then D`: Go to dashboard
+- `G then J`: Go to jobs
+- `G then A`: Go to applications
+- `G then S`: Go to settings
+
+Enable in **Preferences** > **Keyboard Shortcuts**.
+
+## Troubleshooting
+
+### Settings Not Saving
+
+If settings don't save:
+
+1. Check internet connection
+2. Refresh the page
+3. Clear browser cache
+4. Try different browser
+5. Contact support
+
+### Email Notifications Not Received
+
+Check these settings:
+
+1. Verify email address
+2. Check spam/junk folder
+3. Ensure notifications enabled
+4. Check notification frequency
+5. Whitelist noreply@flowxtra.com
+
+### 2FA Issues
+
+If you can't access 2FA:
+
+1. Use backup codes
+2. Contact support with account verification
+3. Provide alternative verification
+4. Reset 2FA after identity confirmation
+
+## Next Steps
+
+- [Set Up Company Profile](/user-guide/account/company-profile)
+- [Manage Team Permissions](/user-guide/account/team-permissions)
+- [Configure Billing](/user-guide/account/subscription-billing)

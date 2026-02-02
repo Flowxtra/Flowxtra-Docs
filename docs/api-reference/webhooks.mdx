@@ -1,0 +1,35 @@
+---
+title: Webhooks
+description: Real-time event notifications via Webhooks
+---
+
+# Webhooks
+
+Webhooks allow you to subscribe to real-time events in Flowxtra, such as new applications or status changes.
+
+## Supported Events
+
+| Event Name | Description |
+|---|---|
+| `application.created` | Triggered when a new application is received |
+| `application.updated` | Triggered when an application status changes |
+| `job.published` | Triggered when a job goes live |
+| `candidate.hired` | Triggered when a candidate is marked as hired |
+
+## Configuration
+
+You can configure webhooks in your **Settings** > **Integrations** dashboard.
+
+### Verification
+
+Flowxtra sends a `X-Flowxtra-Signature` header with each request. You should verify this signature to ensure the request came from us.
+
+```javascript
+const crypto = require('crypto');
+
+function verifySignature(payload, signature, secret) {
+  const hmac = crypto.createHmac('sha256', secret);
+  const digest = hmac.update(payload).digest('hex');
+  return signature === digest;
+}
+```
