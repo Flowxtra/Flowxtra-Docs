@@ -27,7 +27,7 @@ Manage candidate applications, pipeline stages, emails, notes, and ratings.
 ## List Candidates
 
 ```bash
-GET /api/candidate-job/index?subdomain=dpro
+GET /api/candidate-job/index?subdomain=acme
 ```
 
 ### Query Parameters
@@ -41,7 +41,7 @@ GET /api/candidate-job/index?subdomain=dpro
 ## Create Candidate
 
 ```bash
-POST /api/candidate-job/store?subdomain=dpro
+POST /api/candidate-job/store?subdomain=acme
 Content-Type: multipart/form-data
 ```
 
@@ -60,7 +60,7 @@ CV files are automatically parsed for skills, experience, and contact info.
 ## Move Pipeline Stage
 
 ```bash
-POST /api/candidate-job/update-stage/{id}?subdomain=dpro
+POST /api/candidate-job/update-stage/{id}?subdomain=acme
 ```
 
 ```json
@@ -71,13 +71,13 @@ POST /api/candidate-job/update-stage/{id}?subdomain=dpro
 
 To move and send the stage's email template:
 ```bash
-POST /api/candidate-job/update-stage-send-email/{id}/{stage_id}?subdomain=dpro
+POST /api/candidate-job/update-stage-send-email/{id}/{stage_id}?subdomain=acme
 ```
 
 ## Send Email
 
 ```bash
-POST /api/candidate-job/send-email/{id}?subdomain=dpro
+POST /api/candidate-job/send-email/{id}?subdomain=acme
 ```
 
 ```json
@@ -91,8 +91,8 @@ POST /api/candidate-job/send-email/{id}?subdomain=dpro
 ## Reject / Undo Reject
 
 ```bash
-POST /api/candidate-job/reject/{id}?subdomain=dpro
-POST /api/candidate-job/undo-reject/{id}?subdomain=dpro
+POST /api/candidate-job/reject/{id}?subdomain=acme
+POST /api/candidate-job/undo-reject/{id}?subdomain=acme
 ```
 
 Rejection sends the company's rejection email template automatically.
@@ -100,7 +100,7 @@ Rejection sends the company's rejection email template automatically.
 ## Add Note
 
 ```bash
-POST /api/candidate-job/store-notes/{id}?subdomain=dpro
+POST /api/candidate-job/store-notes/{id}?subdomain=acme
 ```
 
 ```json

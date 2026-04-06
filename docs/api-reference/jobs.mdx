@@ -30,7 +30,7 @@ Create, update, publish, and manage job postings.
 ## List Jobs
 
 ```bash
-GET /api/jobs/index?subdomain=dpro
+GET /api/jobs/index?subdomain=acme
 ```
 
 ### Query Parameters
@@ -71,7 +71,7 @@ GET /api/jobs/index?subdomain=dpro
 ## Create Job
 
 ```bash
-POST /api/jobs/store?subdomain=dpro
+POST /api/jobs/store?subdomain=acme
 ```
 
 ### Request Body
@@ -99,7 +99,7 @@ POST /api/jobs/store?subdomain=dpro
 ## Update Status
 
 ```bash
-POST /api/jobs/update-status/{id}?subdomain=dpro
+POST /api/jobs/update-status/{id}?subdomain=acme
 ```
 
 ```json
@@ -113,7 +113,7 @@ Status values: `Live`, `Draft`, `Archived`, `Closed`, `Expired`
 ## Job Analytics
 
 ```bash
-GET /api/jobs/{hash_id}/analytics?subdomain=dpro
+GET /api/jobs/{hash_id}/analytics?subdomain=acme
 ```
 
 Returns views, favorites, applicant count, and monthly breakdown.

@@ -21,7 +21,7 @@ Manage your company profile, offices, hiring pipelines, and team members.
 ### Get Profile
 
 ```bash
-GET /api/companies/profile?subdomain=dpro
+GET /api/companies/profile?subdomain=acme
 ```
 
 Returns full company data including name, description, logo, offices, pipelines, benefits, values, and career page settings.
@@ -29,16 +29,16 @@ Returns full company data including name, description, logo, offices, pipelines,
 ### Update Company
 
 ```bash
-POST /api/companies/update/{id}?subdomain=dpro
+POST /api/companies/update/{id}?subdomain=acme
 ```
 
 ```json
 {
-  "name": "Dpro GmbH",
+  "name": "Acme Corp",
   "description": "Technology company...",
-  "website": "https://dpro.at",
-  "phone": "+43676905444",
-  "address": "Dammstraße 11",
+  "website": "https://example.com",
+  "phone": "+1-555-0100",
+  "address": "123 Example Street",
   "country_id": 15
 }
 ```
@@ -58,7 +58,7 @@ POST /api/companies/update/{id}?subdomain=dpro
 ### Create Office
 
 ```bash
-POST /api/company-offices/store?subdomain=dpro
+POST /api/company-offices/store?subdomain=acme
 ```
 
 ```json
@@ -88,7 +88,7 @@ POST /api/company-offices/store?subdomain=dpro
 ### List Pipelines
 
 ```bash
-GET /api/company-pipline/index?subdomain=dpro
+GET /api/company-pipline/index?subdomain=acme
 ```
 
 Returns all pipelines with their stages (Screening → Interview → Offer → Hiring).
@@ -96,7 +96,7 @@ Returns all pipelines with their stages (Screening → Interview → Offer → H
 ### Create Pipeline
 
 ```bash
-POST /api/company-pipline/store?subdomain=dpro
+POST /api/company-pipline/store?subdomain=acme
 ```
 
 ```json
@@ -120,7 +120,7 @@ POST /api/company-pipline/store?subdomain=dpro
 ### Invite Team Member
 
 ```bash
-POST /api/company-users/store?subdomain=dpro
+POST /api/company-users/store?subdomain=acme
 ```
 
 ```json
@@ -149,7 +149,7 @@ Roles: `Admin`, `Recruiter`, `Viewer`
 ### Create Contracted Company
 
 ```bash
-POST /api/contracted-companies?subdomain=dpro
+POST /api/contracted-companies?subdomain=acme
 ```
 
 ```json

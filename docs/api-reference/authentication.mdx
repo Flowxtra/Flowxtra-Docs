@@ -19,7 +19,7 @@ All API requests require a **Bearer Token** in the Authorization header.
 Include it in every request:
 
 ```bash
-curl -X GET "https://app.flowxtra.com/api/jobs/index?subdomain=dpro" \
+curl -X GET "https://app.flowxtra.com/api/jobs/index?subdomain=acme" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json"
 ```
@@ -28,7 +28,7 @@ curl -X GET "https://app.flowxtra.com/api/jobs/index?subdomain=dpro" \
 
 Tokens follow the format `ID|HASH`, for example:
 ```
-3524|HRvSOGtoAkhceYg2K4EBj9N6hhMX6NW98c77qiRBe22b67c8
+1|ExAmPlEtOkEn00000000000000000000000000000000000000
 ```
 
 Include the full token including the `|` character.

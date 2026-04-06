@@ -21,7 +21,7 @@ Manage connected social media accounts and create posts.
 ## List Connected Accounts
 
 ```bash
-GET /api/social-accounts/index?subdomain=dpro
+GET /api/social-accounts/index?subdomain=acme
 ```
 
 Returns all connected social media accounts (LinkedIn, Facebook, Instagram, Twitter/X, TikTok).
@@ -29,7 +29,7 @@ Returns all connected social media accounts (LinkedIn, Facebook, Instagram, Twit
 ## Create Post
 
 ```bash
-POST /api/posts/store?subdomain=dpro
+POST /api/posts/store?subdomain=acme
 ```
 
 ```json
@@ -51,7 +51,7 @@ POST /api/posts/store?subdomain=dpro
 ## List Posts
 
 ```bash
-GET /api/posts/index?subdomain=dpro&page=1&max=10
+GET /api/posts/index?subdomain=acme&page=1&max=10
 ```
 
 Returns paginated social media posts with status, platform, and schedule info.
