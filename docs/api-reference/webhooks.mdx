@@ -33,7 +33,7 @@ All webhook management endpoints require authentication and are tenant-scoped.
 ## Create a Webhook
 
 ```bash
-POST /api/plugins/webhooks?subdomain=dpro
+POST /api/plugins/webhooks?subdomain=acme
 ```
 
 ### Request Body
@@ -193,7 +193,7 @@ After 3 failed attempts, the delivery is marked as failed. Check **Plugins → W
 Send a test payload to verify your endpoint is working:
 
 ```bash
-POST /api/plugins/webhooks/{id}/test?subdomain=dpro
+POST /api/plugins/webhooks/{id}/test?subdomain=acme
 ```
 
 This sends a `webhook.test` event synchronously and returns the result immediately:
@@ -214,7 +214,7 @@ This sends a `webhook.test` event synchronously and returns the result immediate
 View delivery history for a webhook:
 
 ```bash
-GET /api/plugins/webhooks/{id}/logs?subdomain=dpro
+GET /api/plugins/webhooks/{id}/logs?subdomain=acme
 ```
 
 ```json

@@ -20,7 +20,7 @@ Schedule meetings with candidates and team members via Google Meet or Zoom.
 ## Schedule Meeting
 
 ```bash
-POST /api/meet/store?subdomain=dpro
+POST /api/meet/store?subdomain=acme
 ```
 
 ```json
@@ -44,7 +44,7 @@ POST /api/meet/store?subdomain=dpro
 ## List Meetings
 
 ```bash
-GET /api/meet/index?subdomain=dpro
+GET /api/meet/index?subdomain=acme
 ```
 
 Returns all meetings with title, time, duration, type, and meeting URL.
@@ -52,5 +52,5 @@ Returns all meetings with title, time, duration, type, and meeting URL.
 ## Delete Meeting
 
 ```bash
-DELETE /api/meet/destroy/{id}?subdomain=dpro
+DELETE /api/meet/destroy/{id}?subdomain=acme
 ```
