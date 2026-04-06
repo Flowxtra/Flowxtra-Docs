@@ -1,49 +1,387 @@
 ---
 title: Available Tools
-description: MCP tools exposed by the Flowxtra server
+description: Complete reference for all 31 MCP tools
 icon: Wrench
 ---
-import { Callout } from '@site/src/components/Callout';
 
 # Available MCP Tools
 
-The Flowxtra MCP server exposes the following tools to your AI agent:
+The Flowxtra MCP server provides **31 tools** organized into 5 categories.
 
-## `list_jobs`
-List active job postings.
-- **Args**: `status` (optional), `limit` (optional)
+---
 
-## `get_job_details`
-Get full details like description and requirements.
-- **Args**: `job_id`
+## Jobs (9 tools)
 
-## `list_applications`
-Get candidates for a job.
-- **Args**: `job_id`
+### `list-jobs`
+List all jobs for your company with optional filters.
 
-## `get_candidate_profile`
-Read resume text and Q&A.
-- **Args**: `application_id`
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `status` | string | No | Filter: `Live`, `Draft`, `Archived`, `Expired`, `Closed` |
+| `department` | string | No | Filter by department/category ID |
+| `limit` | integer | No | Max results (default: 20) |
 
-## `add_internal_note`
-Let the AI write a summary or note on a candidate.
-- **Args**: `application_id`, `note_content`
+**Example prompt**: *"List my live job postings"*
 
-## `send_email_to_candidate`
-Send email to an applicant.
-- **Args**: `application_id`, `subject`, `message`
+---
 
-## `create_job_post`
-Create a new job posting quickly.
-- **Args**: `title`, `description`, `location`, `employment_type`, etc.
+### `get-job`
+Get detailed information about a specific job.
 
-## Example Prompts
-> "List my 'Marketing Manager' job applications and summarize the key experience from their resumes."
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | string | Yes | Job hash_id |
 
-> "Send an interview invitation email to John Smith for the Marketing Manager position."
+---
 
-> "Create a new job post for a Senior Software Engineer position in Berlin."
+### `get-job-details`
+Get full job details including application questions, skills, benefits, pipeline stages, and candidate count.
 
-<Callout type="info">
-**Note**: The AI does **not** make matching or ranking decisions. All candidate evaluation and selection decisions are made by the hiring manager. The AI only helps with listing, summarizing information, sending emails, and creating job posts faster.
-</Callout>
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | Yes | Job ID |
+
+---
+
+### `get-job-candidates`
+Get all candidates for a specific job with their stage, status, and contact info.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `job_id` | integer | Yes | Job ID |
+
+---
+
+### `create-job`
+Create a new job posting.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `title` | string | Yes | Job title |
+| `description` | string | No | Job description (HTML supported) |
+| `requirements` | string | No | Job requirements |
+| `status` | string | No | `Live` or `Draft` (default: Draft) |
+| `workplace` | string | No | `On-site`, `Remote`, `Hybrid` |
+
+**Example prompt**: *"Create a draft job posting for a Senior React Developer, remote, full-time"*
+
+---
+
+### `update-job`
+Update an existing job.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | Yes | Job ID |
+| `title` | string | No | New title |
+| `description` | string | No | New description |
+| `status` | string | No | `Live`, `Draft`, `Archived` |
+| `workplace` | string | No | New workplace type |
+
+---
+
+### `delete-job`
+Delete (archive) a job posting.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | Yes | Job ID |
+
+---
+
+### `publish-job`
+Publish a draft job or change its status.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | Yes | Job ID |
+| `action` | string | Yes | `publish`, `unpublish`, `archive`, `close` |
+
+**Example prompt**: *"Publish the Flutter Developer job"*
+
+---
+
+### `manage-application-form`
+Manage a job's application form: set CV/cover letter requirements and add screening questions.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `job_id` | integer | Yes | Job ID |
+| `action` | string | Yes | `view`, `update-documents`, `add-question`, `remove-question` |
+| `cv_required` | string | No | `true`/`false` (for update-documents) |
+| `cover_letter_required` | string | No | `true`/`false` (for update-documents) |
+| `question` | string | No | Question text (for add-question) |
+| `question_type` | string | No | `text`, `yes_no`, `select`, `multi_select` |
+| `is_required` | string | Yes* | `true`/`false` — required when adding a question |
+| `question_id` | integer | No | Question ID (for remove-question) |
+
+**Example prompt**: *"Add a required question 'What is your salary expectation?' to the Senior Developer job"*
+
+---
+
+## Candidates (9 tools)
+
+### `list-candidates`
+List candidates with optional filters.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `job_id` | integer | No | Filter by job |
+| `status` | string | No | Filter by status |
+| `stage` | string | No | Filter by pipeline stage |
+| `limit` | integer | No | Max results (default: 20) |
+
+---
+
+### `get-candidate`
+Get detailed candidate information including profile, applied job, and current stage.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | Yes | Candidate job ID |
+
+---
+
+### `move-candidate-stage`
+Move a candidate to a different pipeline stage. Optionally send the stage's email template.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | Yes | Candidate job ID |
+| `stage_id` | integer | Yes | Target stage ID (get from `list-pipelines`) |
+| `send_email` | string | No | `true`/`false` — send stage email template (default: false) |
+
+**Example prompt**: *"Move candidate #5 to the Interview stage and send them the email"*
+
+---
+
+### `reject-candidate`
+Reject a candidate or undo a rejection.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | Yes | Candidate job ID |
+| `action` | string | Yes | `reject` or `undo` |
+
+---
+
+### `list-rating-sheets`
+List rating sheet templates or candidate ratings.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `type` | string | No | `templates` or `candidate` |
+| `candidate_id` | integer | No | Candidate job ID (for type=candidate) |
+
+---
+
+### `submit-rating-sheet`
+Submit a rating for a candidate — fill in answers, rate attributes (1-5), and add recommendations.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `candidate_id` | integer | Yes | Candidate job ID |
+| `template_id` | integer | Yes | Rating sheet template ID |
+| `recommendation` | string | No | e.g., "Definitely Yes", "Yes", "Maybe", "No" |
+| `conclusions` | string | No | Overall conclusions |
+| `answers` | string | No | Pipe-separated answers: `"Good|3 years|Yes"` |
+| `scores` | string | No | Pipe-separated scores 1-5: `"4|5|3|4"` |
+
+---
+
+### `create-rating-sheet-template`
+Create a new rating sheet template with interview questions and evaluation attributes.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | Yes | Template name (e.g., "Technical Interview") |
+| `questions` | string | Yes | Pipe-separated questions: `"Experience?|Motivation?"` |
+| `attributes` | string | Yes | Pipe-separated attributes: `"Communication|Technical Skills"` |
+
+**Example prompt**: *"Create a rating sheet called 'Screening Call' with questions about motivation and experience"*
+
+---
+
+### `search-skill-reservoir`
+Search the talent pool by name, email, skills, job title, city, or country.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `action` | string | No | `search` or `list` (default: search) |
+| `search` | string | No | Search term (for action=search) |
+
+**Example prompt**: *"Search my talent pool for candidates with Python skills in Germany"*
+
+---
+
+### `invite-to-job`
+Invite a person from the talent pool to apply for a job.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `skill_reservoir_id` | integer | Yes | Talent pool entry ID (from search-skill-reservoir) |
+| `job_id` | integer | Yes | Job ID to invite them to |
+| `send_email` | string | No | `true`/`false` — send invitation email |
+| `email_subject` | string | No | Custom email subject |
+| `email_message` | string | No | Custom email body |
+
+**Example prompt**: *"Invite the React developer from my talent pool to the Frontend Engineer job and send them an email"*
+
+---
+
+## Company (8 tools)
+
+### `get-company`
+Get your company profile information.
+
+*No parameters required.*
+
+---
+
+### `list-offices`
+List all company offices/locations.
+
+*No parameters required.*
+
+---
+
+### `get-office`
+Get details for a specific office.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | Yes | Office ID |
+
+---
+
+### `list-pipelines`
+List all hiring pipelines with their stages.
+
+*No parameters required.*
+
+**Example prompt**: *"Show me my hiring pipelines and their stages"*
+
+---
+
+### `list-team-members`
+List all team members (non-candidate users).
+
+*No parameters required.*
+
+---
+
+### `list-workspaces`
+List all workspaces the user has access to.
+
+*No parameters required.*
+
+---
+
+### `manage-company-customization`
+Manage departments, job categories, benefits, and company values.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `section` | string | Yes | `departments`, `job_categories`, `benefits`, `values` |
+| `action` | string | Yes | `list`, `add`, `remove` |
+| `name` | string | No | Name of item to add |
+| `description` | string | No | Description (for values) |
+| `item_id` | integer | No | ID of item to remove |
+
+**Example prompt**: *"Add 'Engineering' as a new department"*
+
+---
+
+### `manage-contracted-companies`
+Manage contracted companies (clients).
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `action` | string | Yes | `list`, `get`, `create`, `update`, `delete` |
+| `company_id` | integer | No | Company ID (for get, update, delete) |
+| `search` | string | No | Search by name, phone, or address |
+| `name` | string | No | Company name (for create/update) |
+| `email` | string | No | Company email |
+| `phone` | string | No | Phone number |
+| `website` | string | No | Website URL |
+| `address` | string | No | Street address |
+| `country_id` | integer | No | Country ID |
+
+---
+
+## Social Media (3 tools)
+
+### `list-social-accounts`
+List all connected social media accounts (LinkedIn, Facebook, Instagram, Twitter).
+
+*No parameters required.*
+
+---
+
+### `create-social-post`
+Create a social media post.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `content` | string | Yes | Post content/text |
+| `schedule_at` | string | No | Schedule date/time (ISO 8601). Leave empty for draft. |
+
+**Example prompt**: *"Create a LinkedIn post announcing our new Senior Developer position"*
+
+---
+
+### `list-social-posts`
+List social media posts with optional status filter.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `status` | string | No | `draft`, `scheduled`, `published`, `failed` |
+| `limit` | integer | No | Max results (default: 10) |
+
+---
+
+## Meetings (2 tools)
+
+### `create-meeting`
+Schedule a meeting (Google Meet or Zoom).
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `title` | string | Yes | Meeting title |
+| `start_time` | string | Yes | Start date/time (ISO 8601, e.g., `2026-04-10T14:00:00`) |
+| `duration` | integer | No | Duration in minutes (default: 30) |
+| `type` | string | No | `google_meet` or `zoom` (default: google_meet) |
+| `candidate_id` | integer | No | Candidate to invite |
+| `description` | string | No | Meeting notes |
+
+**Example prompt**: *"Schedule a 45-minute interview via Google Meet with the top candidate for next Monday at 2pm"*
+
+---
+
+### `list-meetings`
+List scheduled meetings.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `status` | string | No | `scheduled`, `in_progress`, `completed`, `canceled` |
+| `limit` | integer | No | Max results (default: 10) |
+
+---
+
+## Example Workflows
+
+### Hiring Pipeline
+> "List candidates for the Flutter Developer job" → "Move candidate #12 to the Interview stage and send the email" → "Create a meeting for the interview next Wednesday at 10am"
+
+### Talent Sourcing
+> "Search my talent pool for React developers in Berlin" → "Invite the best match to the Frontend Engineer job with a personalized email"
+
+### Job Publishing
+> "Create a new job for a Senior Backend Developer, remote, with a description about microservices" → "Add screening questions about experience and salary expectations" → "Publish the job"
+
+### Candidate Evaluation
+> "List the rating sheet templates" → "Submit a rating for candidate #5 using the Technical Interview template — strong on problem solving, good communication"
+
+:::info
+**Note**: The AI does **not** make matching or ranking decisions. All candidate evaluation and selection decisions are made by the hiring manager. The AI helps with listing, summarizing, creating, and automating recruitment tasks faster.
+:::

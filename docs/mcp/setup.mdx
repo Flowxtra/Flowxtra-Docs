@@ -1,39 +1,105 @@
 ---
 title: MCP Setup
-description: Installing and configuring the Flowxtra MCP Server
+description: Connect AI agents to your Flowxtra account via MCP
 icon: HardDrive
 ---
 
 # MCP Setup
 
-## Prerequisites
-- Node.js 18+ installed
-- Flowxtra API Key (Settings > Integrations)
+Connect your AI agent (Claude, ChatGPT, etc.) to your Flowxtra recruitment account.
 
-## Claude Desktop Configuration
+## Connect via Claude.ai
 
-Update your Claude Desktop config file:
+The easiest way to connect is through Claude.ai's built-in MCP support:
+
+1. Go to [claude.ai](https://claude.ai) and open **Settings**
+2. Navigate to **Integrations** or **Connected Apps**
+3. Click **Add Integration** and search for **Flowxtra** or enter the server URL:
+   ```
+   https://app.flowxtra.com/mcp/flowxtra
+   ```
+4. You'll be redirected to the Flowxtra login page
+5. Enter your email and password — this is the same account you use for the dashboard
+6. After login, click **Authorize** to grant access
+7. Claude now has access to your Flowxtra data
+
+Your token is valid for **1 year**. After that, simply reconnect.
+
+## Connect via Claude Desktop
+
+Add Flowxtra to your Claude Desktop config:
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
-
-Add Flowxtra to the `mcpServers` object:
 
 ```json
 {
   "mcpServers": {
     "flowxtra": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@flowxtra/mcp-server"
-      ],
-      "env": {
-        "FLOWXTRA_API_KEY": "fk_live_..."
-      }
+      "url": "https://app.flowxtra.com/mcp/flowxtra"
     }
   }
 }
 ```
 
-Restart Claude Desktop. You should now see the Flowxtra tools icon 🔌.
+Restart Claude Desktop. You'll be prompted to authorize on first use.
+
+## Connect via Claude Code (CLI)
+
+Add the MCP server to your Claude Code settings:
+
+```json
+{
+  "mcpServers": {
+    "flowxtra": {
+      "url": "https://app.flowxtra.com/mcp/flowxtra"
+    }
+  }
+}
+```
+
+## OAuth Details
+
+Flowxtra uses **OAuth 2.0 with PKCE** for secure authentication:
+
+| Parameter | Value |
+|---|---|
+| Authorization Endpoint | `https://app.flowxtra.com/authorize` |
+| Token Endpoint | `https://app.flowxtra.com/api/oauth/token` |
+| MCP Endpoint | `https://app.flowxtra.com/mcp/flowxtra` |
+| Discovery | `https://app.flowxtra.com/.well-known/oauth-authorization-server` |
+| Access Token Lifetime | 1 year |
+| Refresh Token Lifetime | 2 years |
+
+### Scopes
+
+| Scope | Description |
+|---|---|
+| `profile` | Read your name and email |
+| `company` | Read company info and subdomain |
+| `jobs:read` | View job listings |
+| `jobs:write` | Create and update jobs |
+| `applicants:read` | View applicant details |
+| `applicants:write` | Update applicant status |
+| `mcp` | Use MCP server tools |
+
+## Managing Connected Apps
+
+You can view and manage connected AI applications from your dashboard:
+
+1. Go to **Settings** → **API Rest**
+2. Under **Connected Applications**, you'll see all authorized AI clients
+3. Click **Disconnect** to revoke access for any application
+
+## Troubleshooting
+
+### "Server isn't responding"
+- Make sure you've authorized Flowxtra (check Settings → API Rest → Connected Applications)
+- Your token may have expired — disconnect and reconnect
+
+### Tools not loading
+- Disconnect and reconnect to refresh the tool list
+- Some AI clients cache tools — restart the client
+
+### "Not authenticated"
+- Your session may have expired — reconnect via your AI client's settings

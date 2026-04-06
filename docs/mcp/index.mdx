@@ -6,30 +6,44 @@ icon: Zap
 
 # Model Context Protocol (MCP)
 
-Flowxtra supports the **Model Context Protocol (MCP)**, allowing AI agents (like Claude Desktop, Cursor, etc.) to securely interact with your recruitment data.
+Flowxtra supports the **Model Context Protocol (MCP)**, allowing AI agents like **Claude**, **ChatGPT**, and other MCP-compatible clients to securely interact with your recruitment data.
 
 ## What is MCP?
 
-MCP is an open standard that enables AI assistants to connect to external data sources and tools. By running a Flowxtra MCP Server, you can ask your AI to:
-- "Summarize the latest applications for the Senior Engineer role"
-- "Draft rejection emails for these 5 candidates"
-- "Analyze salary trends across my posted jobs"
+MCP is an open standard that enables AI assistants to connect to external data sources and tools. With Flowxtra's MCP server, you can ask your AI to:
+
+- "List my open job postings and their candidate counts"
+- "Move this candidate to the Interview stage and send them an email"
+- "Search my talent pool for React developers in Berlin"
+- "Schedule a meeting with the top candidate for next Tuesday"
+- "Create a rating sheet template for technical interviews"
+
+## What Can You Do?
+
+Flowxtra's MCP server provides **31 tools** across 5 categories:
+
+| Category | Tools | Examples |
+|---|---|---|
+| **Jobs** | 9 tools | List, create, update, publish, manage application forms |
+| **Candidates** | 9 tools | View, move stages, reject, rate, search talent pool, invite |
+| **Company** | 8 tools | Profile, offices, pipelines, team, workspaces, customization |
+| **Social Media** | 3 tools | Connected accounts, create posts, list posts |
+| **Meetings** | 2 tools | Schedule meetings, list meetings |
+
+## How It Works
+
+Flowxtra uses **OAuth 2.0** to securely connect your AI agent to your account:
+
+1. Your AI agent discovers Flowxtra's MCP server
+2. You authorize access through a secure login page
+3. The AI receives a token valid for **1 year**
+4. All actions respect your company's permissions and data isolation
+
+```
+AI Agent → OAuth Login → Flowxtra MCP Server → Your Tenant Database
+```
 
 ## Getting Started
 
-To use Flowxtra with MCP, you need:
-1. A Flowxtra **API Key**
-2. An MCP Client (e.g., Claude Desktop App)
-3. The Flowxtra MCP Server (via Node.js or Docker)
-
-## Server Configuration
-
-Run the official Flowxtra MCP server:
-
-```bash
-npx -y @flowxtra/mcp-server
-```
-
-You will be prompted to enter your API Key.
-
-[Setup Guide](/mcp/setup)
+- [Setup Guide](/mcp/setup) — Connect Claude.ai or other AI clients
+- [Available Tools](/mcp/tools) — Complete list of 31 tools with parameters
