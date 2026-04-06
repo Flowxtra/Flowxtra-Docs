@@ -1,34 +1,43 @@
 ---
 title: Rate Limits
-description: API Rate Limiting Policies
+description: API rate limiting policy
+icon: Shield
 ---
 
 # Rate Limits
 
-To ensure the stability and fairness of our platform, the Flowxtra API imposes rate limits on requests.
+Flowxtra applies rate limiting to protect the platform and ensure fair usage.
 
-## Limits
+## Limits by Context
 
-- **Standard API Key**: 60 requests per minute
-- **Enterprise API Key**: 1,000 requests per minute
+| Context | Limit | Scope |
+|---|---|---|
+| **API (authenticated)** | 300 requests/min | Per user |
+| **Auth endpoints** | 120 requests/min | Per IP |
+| **Login** | 5 attempts/min | Per IP |
+| **Tenant routes** | 500 requests/min | Per user |
+| **Public endpoints** | 1000 requests/min | Per IP |
 
-## Headers
+## Rate Limit Headers
 
-We include rate limit details in the response headers of every request:
+Every response includes rate limit information:
 
-- `X-RateLimit-Limit`: The maximum number of requests you're permitted to make per minute.
-- `X-RateLimit-Remaining`: The number of requests remaining in the current time window.
-- `X-RateLimit-Reset`: The time at which the current rate limit window resets (in UTC epoch seconds).
+```
+X-RateLimit-Limit: 300
+X-RateLimit-Remaining: 297
+```
 
-## Exceeding Limits
+## Exceeding the Limit
 
-If you exceed the rate limit, you will receive a `429 Too Many Requests` response.
+When you exceed the rate limit, the API returns:
 
 ```json
 {
-  "error": {
-    "code": "rate_limit_exceeded",
-    "message": "You have exceeded your request limit. Please try again later."
-  }
+  "message": "Too Many Attempts.",
+  "retry_after": 60
 }
 ```
+
+**Status code**: `429 Too Many Requests`
+
+Wait the `retry_after` seconds before making another request.

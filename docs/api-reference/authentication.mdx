@@ -1,23 +1,56 @@
 ---
 title: Authentication
-description: Learn how to authenticate with the Flowxtra API
+description: How to authenticate with the Flowxtra API
 icon: Key
 ---
 
 # Authentication
 
-All API requests require authentication using an API key.
+All API requests require a **Bearer Token** in the Authorization header.
 
-## Getting Your API Key
+## Getting Your Token
 
-1. Log in to your Flowxtra account
-2. Navigate to Settings > API Keys
-3. Generate a new API key
+1. Log in to your Flowxtra dashboard
+2. Go to **Settings → API Rest**
+3. Your token is displayed at the top — click **Copy**
 
-## Using the API Key
+## Using the Token
 
-Include your API key in the request header:
+Include it in every request:
 
 ```bash
-Authorization: Bearer YOUR_API_KEY
+curl -X GET "https://app.flowxtra.com/api/jobs/index?subdomain=dpro" \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json"
 ```
+
+## Token Format
+
+Tokens follow the format `ID|HASH`, for example:
+```
+3524|HRvSOGtoAkhceYg2K4EBj9N6hhMX6NW98c77qiRBe22b67c8
+```
+
+Include the full token including the `|` character.
+
+## Multi-Tenancy
+
+Every request must include the `subdomain` query parameter to identify your tenant:
+
+```bash
+?subdomain=your-company-subdomain
+```
+
+Your subdomain is the part before `.flowxtra.com` in your dashboard URL. For example, if your dashboard is at `dpro.flowxtra.com`, your subdomain is `dpro`.
+
+## OAuth Authentication
+
+For AI integrations (MCP), Flowxtra also supports **OAuth 2.0 with PKCE**. See the [MCP Setup Guide](/mcp/setup) for details.
+
+## Error Responses
+
+| Status | Description |
+|---|---|
+| `401` | Missing or invalid token |
+| `403` | Insufficient permissions |
+| `429` | Rate limit exceeded |

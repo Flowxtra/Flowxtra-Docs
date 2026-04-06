@@ -1,0 +1,56 @@
+---
+title: Meetings API
+description: Schedule and manage meetings via the Flowxtra API
+icon: Calendar
+---
+
+# Meetings API
+
+Schedule meetings with candidates and team members via Google Meet or Zoom.
+
+## Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/meet/index` | List meetings |
+| `POST` | `/api/meet/store` | Schedule meeting |
+| `GET` | `/api/meet/show/{id}` | Get meeting details |
+| `DELETE` | `/api/meet/destroy/{id}` | Cancel/delete meeting |
+
+## Schedule Meeting
+
+```bash
+POST /api/meet/store?subdomain=dpro
+```
+
+```json
+{
+  "title": "Technical Interview - John Doe",
+  "start_time": "2026-04-10T14:00:00",
+  "duration": 45,
+  "type": "google_meet",
+  "description": "Second round technical interview for Senior Developer position"
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `title` | string | Yes | Meeting title |
+| `start_time` | datetime | Yes | Start time (ISO 8601) |
+| `duration` | integer | No | Duration in minutes (default: 30) |
+| `type` | string | No | `google_meet` or `zoom` (default: google_meet) |
+| `description` | string | No | Meeting notes/agenda |
+
+## List Meetings
+
+```bash
+GET /api/meet/index?subdomain=dpro
+```
+
+Returns all meetings with title, time, duration, type, and meeting URL.
+
+## Delete Meeting
+
+```bash
+DELETE /api/meet/destroy/{id}?subdomain=dpro
+```

@@ -1,60 +1,94 @@
 ---
 title: API Reference
-description: Introduction to the Flowxtra REST API
+description: Introduction to the Flowxtra Tenant REST API
 icon: Terminal
 ---
 
 # API Reference
 
-Welcome to the Flowxtra API documentation. Our REST API allows you to build custom integrations, automate workflows, and sync data with your HRIS or internal tools.
+The Flowxtra REST API allows you to manage your recruitment data programmatically — jobs, candidates, pipelines, meetings, and more.
 
 ## Base URL
 
-All API requests should be made to:
+All API requests use the central endpoint with a `subdomain` query parameter to identify your tenant:
 
 ```bash
-https://api.flowxtra.com/v1
+https://app.flowxtra.com/api/{endpoint}?subdomain={your-subdomain}
+```
+
+For example, if your dashboard is at `dpro.flowxtra.com`:
+```bash
+https://app.flowxtra.com/api/jobs/index?subdomain=dpro
 ```
 
 ## Authentication
 
-The Flowxtra API uses **Bearer Token** authentication. You can generate API keys in your **Settings** > **Integrations** dashboard.
-
-Pass the key in the Authorization header:
+The API uses **Bearer Token** authentication. Your token is available in **Settings → API Rest** on your dashboard.
 
 ```bash
-Authorization: Bearer YOUR_API_KEY
+Authorization: Bearer YOUR_TOKEN
 ```
-
-[Learn more about Authentication](/api-reference/authentication)
 
 ## Response Format
 
-All responses are returned in **JSON** format.
+All responses are JSON with this structure:
 
-### Success Response
+### Success
 ```json
 {
+  "success": true,
+  "data": { ... },
+  "message": 200
+}
+```
+
+### Paginated
+```json
+{
+  "success": true,
   "data": {
-    "id": "job_123",
-    "title": "Software Engineer"
+    "current_page": 1,
+    "data": [ ... ],
+    "last_page": 5,
+    "per_page": 10,
+    "total": 48
   },
-  "meta": {
-    "status": "success"
-  }
+  "message": 200
 }
 ```
 
-### Error Response
+### Error
 ```json
 {
-  "error": {
-    "code": "unauthorized",
-    "message": "Invalid API Key provided"
-  }
+  "error": "Unauthenticated",
+  "message": "Bearer token is required"
 }
 ```
+
+## Interactive Documentation
+
+Swagger UI is available for testing endpoints directly:
+
+```
+https://app.flowxtra.com/api/doc
+```
+
+## Available APIs
+
+| Category | Endpoints | Description |
+|---|---|---|
+| [Jobs](/api-reference/jobs) | 15 endpoints | Job CRUD, status, publish, analytics |
+| [Candidates](/api-reference/candidates) | 12 endpoints | Applications, stages, email, notes |
+| [Company](/api-reference/company) | 10 endpoints | Profile, offices, pipelines, team |
+| [Social Media](/api-reference/social) | 5 endpoints | Accounts, posts, scheduling |
+| [Meetings](/api-reference/meetings) | 4 endpoints | Schedule, list, manage meetings |
 
 ## Rate Limits
-The API is rate-limited to **60 requests per minute** per API key.
-[See Rate Limits](/api-reference/rate-limits)
+
+| Context | Limit |
+|---|---|
+| API (authenticated) | 300 requests/min per user |
+| Auth endpoints | 120 requests/min per IP |
+| Login | 5 attempts/min per IP |
+| Tenant routes | 500 requests/min per user |
+| Public endpoints | 1000 requests/min per IP |

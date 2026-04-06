@@ -1,51 +1,119 @@
 ---
 title: Jobs API
-description: Manage job postings programmatically via the Flowxtra API
-permission: admin
-plugin: oauth
+description: Manage job postings via the Flowxtra API
+icon: Briefcase
 ---
 
 # Jobs API
 
-The Jobs API allows you to list, create, update, and manage your job postings programmatically.
+Create, update, publish, and manage job postings.
 
 ## Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/jobs` | List all jobs |
-| `GET` | `/jobs/{id}` | Get a specific job |
-| `POST` | `/jobs` | Create a new job |
-| `PUT` | `/jobs/{id}` | Update a job |
-| `DELETE` | `/jobs/{id}` | Delete a job |
+| `GET` | `/api/jobs/index` | List all jobs |
+| `GET` | `/api/jobs/create` | Get form data (categories, types, offices) |
+| `POST` | `/api/jobs/store` | Create a new job |
+| `GET` | `/api/jobs/show/{hash_id}` | Get job details |
+| `POST` | `/api/jobs/update/{id}` | Update a job |
+| `POST` | `/api/jobs/update-status/{id}` | Update job status |
+| `POST` | `/api/jobs/update-details/{id}` | Update workplace, seniority |
+| `POST` | `/api/jobs/update-pay-benefit/{id}` | Update salary and benefits |
+| `POST` | `/api/jobs/update-specifications/{id}` | Update description, skills |
+| `POST` | `/api/jobs/republish/{id}` | Republish expired job |
+| `DELETE` | `/api/jobs/destroy/{id}` | Delete/archive a job |
+| `GET` | `/api/jobs/search/{key}` | Search jobs by title |
+| `GET` | `/api/jobs/{hash_id}/applicant-job` | Get candidates for a job |
+| `GET` | `/api/jobs/{hash_id}/analytics` | Get job analytics |
 
 ## List Jobs
 
 ```bash
-GET https://api.flowxtra.com/v1/jobs
+GET /api/jobs/index?subdomain=dpro
 ```
 
-### Parameters
+### Query Parameters
 
-- `status` (optional): Filter by status (active, draft, closed)
-- `limit` (optional): Number of results per page (default: 20)
-- `page` (optional): Page number
+| Parameter | Type | Description |
+|---|---|---|
+| `search-key` | string | Search by title |
+| `status` | string | `Live`, `Draft`, `Archived`, `Expired`, `Closed` |
+| `with-candidates` | string | `yes` or `no` |
+| `date-start` | date | Filter by start date |
+| `date-end` | date | Filter by end date |
+| `page` | integer | Page number |
+| `max` | integer | Results per page (default: 10) |
 
 ### Response
 
 ```json
 {
-  "data": [
-    {
-      "id": "job_12345",
-      "title": "Senior Software Engineer",
-      "status": "active",
-      "created_at": "2023-01-01T12:00:00Z"
-    }
-  ],
-  "meta": {
-    "total": 1,
-    "page": 1
+  "success": true,
+  "data": {
+    "current_page": 1,
+    "data": [
+      {
+        "id": 6,
+        "hash_id": "Lw",
+        "title": "Flutter Developer iOS",
+        "status": "Live",
+        "workplace": "Remote",
+        "created_at": "2025-11-22T12:24:39.000000Z",
+        "candidate_job_count": 5
+      }
+    ],
+    "total": 14
   }
 }
 ```
+
+## Create Job
+
+```bash
+POST /api/jobs/store?subdomain=dpro
+```
+
+### Request Body
+
+```json
+{
+  "title": "Senior Laravel Developer",
+  "description": "<p>We are looking for...</p>",
+  "tasks": "<p>Build REST APIs...</p>",
+  "requirements": "<p>5+ years PHP...</p>",
+  "workplace": "Remote",
+  "status": "Draft",
+  "seniority": "Senior",
+  "currency": "EUR",
+  "min_salary": 60000,
+  "max_salary": 80000,
+  "office_id": 1,
+  "company_pipline_id": 1,
+  "skills": ["Laravel", "PHP", "MySQL"],
+  "benefits": [2, 3, 5],
+  "employment_types": [1]
+}
+```
+
+## Update Status
+
+```bash
+POST /api/jobs/update-status/{id}?subdomain=dpro
+```
+
+```json
+{
+  "status": "Live"
+}
+```
+
+Status values: `Live`, `Draft`, `Archived`, `Closed`, `Expired`
+
+## Job Analytics
+
+```bash
+GET /api/jobs/{hash_id}/analytics?subdomain=dpro
+```
+
+Returns views, favorites, applicant count, and monthly breakdown.

@@ -1,0 +1,164 @@
+---
+title: Company API
+description: Manage company profile, offices, pipelines, and team via the Flowxtra API
+icon: Building
+---
+
+# Company API
+
+Manage your company profile, offices, hiring pipelines, and team members.
+
+## Company Profile
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/companies/profile` | Get company profile |
+| `GET` | `/api/companies/show/{id}` | Get company by ID |
+| `POST` | `/api/companies/update/{id}` | Update company |
+| `POST` | `/api/companies/update-logo/{id}` | Upload logo |
+| `GET` | `/api/companies/create` | Get form data |
+
+### Get Profile
+
+```bash
+GET /api/companies/profile?subdomain=dpro
+```
+
+Returns full company data including name, description, logo, offices, pipelines, benefits, values, and career page settings.
+
+### Update Company
+
+```bash
+POST /api/companies/update/{id}?subdomain=dpro
+```
+
+```json
+{
+  "name": "Dpro GmbH",
+  "description": "Technology company...",
+  "website": "https://dpro.at",
+  "phone": "+43676905444",
+  "address": "Dammstraße 11",
+  "country_id": 15
+}
+```
+
+---
+
+## Offices
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/company-offices/index` | List offices |
+| `POST` | `/api/company-offices/store` | Create office |
+| `GET` | `/api/company-offices/show/{id}` | Get office |
+| `POST` | `/api/company-offices/update/{id}` | Update office |
+| `DELETE` | `/api/company-offices/destroy/{id}` | Delete office |
+
+### Create Office
+
+```bash
+POST /api/company-offices/store?subdomain=dpro
+```
+
+```json
+{
+  "name": "Vienna HQ",
+  "address": "Wipplingerstraße 20",
+  "country_id": 15,
+  "state_id": 221,
+  "city": "Vienna",
+  "zipcode": "1010",
+  "is_default": true
+}
+```
+
+---
+
+## Pipelines
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/company-pipline/index` | List pipelines with stages |
+| `POST` | `/api/company-pipline/store` | Create pipeline |
+| `GET` | `/api/company-pipline/show/{id}` | Get pipeline |
+| `POST` | `/api/company-pipline/update/{id}` | Update pipeline |
+| `DELETE` | `/api/company-pipline/destroy/{id}` | Delete pipeline |
+
+### List Pipelines
+
+```bash
+GET /api/company-pipline/index?subdomain=dpro
+```
+
+Returns all pipelines with their stages (Screening → Interview → Offer → Hiring).
+
+### Create Pipeline
+
+```bash
+POST /api/company-pipline/store?subdomain=dpro
+```
+
+```json
+{
+  "name": "Engineering Pipeline"
+}
+```
+
+---
+
+## Team Members
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/company-users/index` | List team members |
+| `POST` | `/api/company-users/store` | Invite member |
+| `GET` | `/api/company-users/show/{id}` | Get member |
+| `POST` | `/api/company-users/update-role/{id}` | Update role |
+| `DELETE` | `/api/company-users/destroy/{id}` | Remove member |
+
+### Invite Team Member
+
+```bash
+POST /api/company-users/store?subdomain=dpro
+```
+
+```json
+{
+  "email": "john@company.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "role_type": "Recruiter"
+}
+```
+
+Roles: `Admin`, `Recruiter`, `Viewer`
+
+---
+
+## Contracted Companies
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/contracted-companies` | List companies |
+| `POST` | `/api/contracted-companies` | Create company |
+| `GET` | `/api/contracted-companies/show/{id}` | Get company |
+| `POST` | `/api/contracted-companies/update/{id}` | Update company |
+| `DELETE` | `/api/contracted-companies/destroy/{id}` | Delete company |
+
+### Create Contracted Company
+
+```bash
+POST /api/contracted-companies?subdomain=dpro
+```
+
+```json
+{
+  "name": "Client Corp",
+  "email": "hr@clientcorp.com",
+  "phone": "+49123456789",
+  "address": "Berliner Str. 15",
+  "country_id": 58,
+  "pipeline_id": 1
+}
+```

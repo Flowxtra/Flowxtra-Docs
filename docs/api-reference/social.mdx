@@ -1,0 +1,57 @@
+---
+title: Social Media API
+description: Manage social media accounts and posts via the Flowxtra API
+icon: Share2
+---
+
+# Social Media API
+
+Manage connected social media accounts and create posts.
+
+## Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/social-accounts/index` | List connected accounts |
+| `GET` | `/api/posts/index` | List posts |
+| `POST` | `/api/posts/store` | Create post |
+| `GET` | `/api/posts/show/{id}` | Get post details |
+| `DELETE` | `/api/posts/destroy/{id}` | Delete post |
+
+## List Connected Accounts
+
+```bash
+GET /api/social-accounts/index?subdomain=dpro
+```
+
+Returns all connected social media accounts (LinkedIn, Facebook, Instagram, Twitter/X, TikTok).
+
+## Create Post
+
+```bash
+POST /api/posts/store?subdomain=dpro
+```
+
+```json
+{
+  "text": "We're hiring a Senior Developer! Check out the role:",
+  "social_account_id": 1,
+  "platform": "linkedin",
+  "date_shared": "2026-04-15T10:00:00"
+}
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `text` | string | Yes | Post content |
+| `social_account_id` | integer | Yes | Connected account ID |
+| `platform` | string | Yes | `linkedin`, `facebook`, `instagram`, `twitter`, `tiktok` |
+| `date_shared` | datetime | No | Schedule for later (ISO 8601). Empty = draft |
+
+## List Posts
+
+```bash
+GET /api/posts/index?subdomain=dpro&page=1&max=10
+```
+
+Returns paginated social media posts with status, platform, and schedule info.

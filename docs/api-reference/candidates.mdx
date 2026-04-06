@@ -1,0 +1,110 @@
+---
+title: Candidates API
+description: Manage candidates and applicants via the Flowxtra API
+icon: Users
+---
+
+# Candidates API
+
+Manage candidate applications, pipeline stages, emails, notes, and ratings.
+
+## Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/candidate-job/index` | List all candidates |
+| `POST` | `/api/candidate-job/store` | Create candidate application |
+| `GET` | `/api/candidate-job/show/{id}` | Get candidate details |
+| `POST` | `/api/candidate-job/update-stage/{id}` | Move to pipeline stage |
+| `POST` | `/api/candidate-job/update-stage-send-email/{id}/{stage_id}` | Move to stage + send email |
+| `POST` | `/api/candidate-job/reject/{id}` | Reject candidate |
+| `POST` | `/api/candidate-job/undo-reject/{id}` | Undo rejection |
+| `POST` | `/api/candidate-job/send-email/{id}` | Send email to candidate |
+| `POST` | `/api/candidate-job/assign-to-job` | Assign candidate to job |
+| `POST` | `/api/candidate-job/store-notes/{id}` | Add note on candidate |
+| `GET` | `/api/candidate-job/email-templet/{stage_id}` | Get stage email template |
+
+## List Candidates
+
+```bash
+GET /api/candidate-job/index?subdomain=dpro
+```
+
+### Query Parameters
+
+| Parameter | Type | Description |
+|---|---|---|
+| `search-key` | string | Search by name or email |
+| `page` | integer | Page number |
+| `max` | integer | Results per page (default: 10) |
+
+## Create Candidate
+
+```bash
+POST /api/candidate-job/store?subdomain=dpro
+Content-Type: multipart/form-data
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `email` | string | Yes | Candidate email |
+| `first_name` | string | Yes | First name |
+| `last_name` | string | Yes | Last name |
+| `phone` | string | No | Phone number |
+| `job_id` | string | Yes | Job hash_id |
+| `file_cv` | file | No | CV file (PDF, DOC) |
+| `cover_letter` | file | No | Cover letter file |
+
+CV files are automatically parsed for skills, experience, and contact info.
+
+## Move Pipeline Stage
+
+```bash
+POST /api/candidate-job/update-stage/{id}?subdomain=dpro
+```
+
+```json
+{
+  "stage_id": 2
+}
+```
+
+To move and send the stage's email template:
+```bash
+POST /api/candidate-job/update-stage-send-email/{id}/{stage_id}?subdomain=dpro
+```
+
+## Send Email
+
+```bash
+POST /api/candidate-job/send-email/{id}?subdomain=dpro
+```
+
+```json
+{
+  "subject": "Interview Invitation",
+  "body": "<p>Dear John, we'd like to invite you...</p>",
+  "name": "Interview Invitation"
+}
+```
+
+## Reject / Undo Reject
+
+```bash
+POST /api/candidate-job/reject/{id}?subdomain=dpro
+POST /api/candidate-job/undo-reject/{id}?subdomain=dpro
+```
+
+Rejection sends the company's rejection email template automatically.
+
+## Add Note
+
+```bash
+POST /api/candidate-job/store-notes/{id}?subdomain=dpro
+```
+
+```json
+{
+  "note": "Strong technical skills, good cultural fit. Recommend moving to next stage."
+}
+```

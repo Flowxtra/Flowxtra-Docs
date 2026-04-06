@@ -2,6 +2,12 @@
     "title": "API Reference",
     "icon": "Code",
     "pages": [
-        "authentication"
+        "authentication",
+        "jobs",
+        "candidates",
+        "company",
+        "social",
+        "meetings",
+        "rate-limits"
     ]
 }
