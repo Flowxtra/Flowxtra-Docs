@@ -8,6 +8,7 @@
         "company",
         "social",
         "meetings",
-        "rate-limits"
+        "rate-limits",
+        "webhooks"
     ]
 }

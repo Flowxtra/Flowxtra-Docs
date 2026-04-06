@@ -1,35 +1,36 @@
 ---
 title: Webhooks
 description: Real-time event notifications via Webhooks
+icon: Bell
 ---
 
 # Webhooks
 
-Webhooks allow you to subscribe to real-time events in Flowxtra, such as new applications or status changes.
+:::info Coming Soon
+Webhooks are planned for a future release. The data model is ready but the API endpoints are not yet available.
+:::
 
-## Supported Events
+Webhooks will allow you to receive real-time notifications when events happen in your Flowxtra account.
 
-| Event Name | Description |
+## Planned Events
+
+| Event | Description |
 |---|---|
-| `application.created` | Triggered when a new application is received |
-| `application.updated` | Triggered when an application status changes |
-| `job.published` | Triggered when a job goes live |
-| `candidate.hired` | Triggered when a candidate is marked as hired |
+| `application.created` | New candidate application received |
+| `application.stage_changed` | Candidate moved to a different pipeline stage |
+| `application.rejected` | Candidate rejected |
+| `job.published` | Job posted/published |
+| `job.closed` | Job closed or archived |
+| `candidate.hired` | Candidate marked as hired |
+| `meeting.scheduled` | New meeting scheduled |
 
-## Configuration
+## How It Will Work
 
-You can configure webhooks in your **Settings** > **Integrations** dashboard.
+1. Register a webhook URL in **Settings → Integrations**
+2. Select which events to subscribe to
+3. Flowxtra sends a `POST` request to your URL with event data
+4. Verify the `X-Flowxtra-Signature` header for security
 
-### Verification
+## Want This Feature?
 
-Flowxtra sends a `X-Flowxtra-Signature` header with each request. You should verify this signature to ensure the request came from us.
-
-```javascript
-const crypto = require('crypto');
-
-function verifySignature(payload, signature, secret) {
-  const hmac = crypto.createHmac('sha256', secret);
-  const digest = hmac.update(payload).digest('hex');
-  return signature === digest;
-}
-```
+Contact us at [support@flowxtra.com](mailto:support@flowxtra.com) if you need webhook support for your integration.
