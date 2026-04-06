@@ -1,0 +1,269 @@
+---
+title: OAuth Provider
+description: Integrate your application with Flowxtra using OAuth 2.0
+icon: Lock
+---
+
+# OAuth Provider — "Sign in with Flowxtra"
+
+Flowxtra acts as an **OAuth 2.0 Provider**, allowing external applications to authenticate users and access their recruitment data securely.
+
+## Use Cases
+
+- **AI Agents** (Claude, ChatGPT) — connect via MCP
+- **HR Tools** — sync jobs and candidates
+- **WordPress Plugins** — embed career pages
+- **Custom Integrations** — build your own tools
+
+## OAuth 2.0 Flow (Authorization Code + PKCE)
+
+```
+1. Your App → Redirect user to Flowxtra /authorize
+2. User → Logs in and clicks "Authorize"
+3. Flowxtra → Redirects back with authorization code
+4. Your App → Exchanges code for access token
+5. Your App → Uses token to call Flowxtra API
+```
+
+## Endpoints
+
+| Endpoint | URL |
+|---|---|
+| **Discovery** | `GET https://app.flowxtra.com/.well-known/oauth-authorization-server` |
+| **Authorization** | `GET https://app.flowxtra.com/authorize` |
+| **Token** | `POST https://app.flowxtra.com/api/oauth/token` |
+| **Revoke** | `POST https://app.flowxtra.com/api/oauth/revoke` |
+| **User Info** | `GET https://app.flowxtra.com/api/oauth/userinfo` |
+
+## Step 1: Register Your Application
+
+Contact Flowxtra to register your OAuth client. You'll receive:
+
+| Field | Description |
+|---|---|
+| `client_id` | Your application's unique identifier |
+| `client_secret` | Secret key (keep this safe!) |
+| `redirect_uris` | Allowed callback URLs |
+| `allowed_scopes` | Scopes your app can request |
+
+## Step 2: Redirect to Authorization
+
+Redirect the user to:
+
+```
+https://app.flowxtra.com/authorize
+  ?client_id=YOUR_CLIENT_ID
+  &redirect_uri=https://yourapp.com/callback
+  &response_type=code
+  &scope=profile company jobs:read
+  &state=RANDOM_STATE_STRING
+  &code_challenge=PKCE_CHALLENGE
+  &code_challenge_method=S256
+```
+
+### Parameters
+
+| Parameter | Required | Description |
+|---|---|---|
+| `client_id` | Yes | Your registered client ID |
+| `redirect_uri` | Yes | Must match a registered redirect URI |
+| `response_type` | Yes | Always `code` |
+| `scope` | Yes | Space-separated scopes (see below) |
+| `state` | Recommended | Random string to prevent CSRF |
+| `code_challenge` | Recommended | PKCE challenge (SHA256 of verifier) |
+| `code_challenge_method` | Recommended | `S256` or `plain` |
+
+The user sees a login page where they enter their Flowxtra credentials, then an authorization screen showing the requested permissions.
+
+## Step 3: Exchange Code for Token
+
+After the user authorizes, Flowxtra redirects to your `redirect_uri` with a `code`:
+
+```
+https://yourapp.com/callback?code=AUTH_CODE&state=YOUR_STATE
+```
+
+Exchange the code for tokens:
+
+```bash
+POST https://app.flowxtra.com/api/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "authorization_code",
+  "client_id": "YOUR_CLIENT_ID",
+  "client_secret": "YOUR_CLIENT_SECRET",
+  "redirect_uri": "https://yourapp.com/callback",
+  "code": "AUTH_CODE",
+  "code_verifier": "PKCE_VERIFIER"
+}
+```
+
+### Response
+
+```json
+{
+  "access_token": "oat_abc123...",
+  "refresh_token": "ort_xyz789...",
+  "token_type": "Bearer",
+  "expires_in": 31536000
+}
+```
+
+## Step 4: Use the Access Token
+
+Include the token in API requests:
+
+```bash
+curl -X GET "https://app.flowxtra.com/api/oauth/userinfo" \
+  -H "Authorization: Bearer oat_abc123..."
+```
+
+### User Info Response
+
+```json
+{
+  "id": 5,
+  "email": "john@company.com",
+  "name": "John Doe",
+  "first_name": "John",
+  "last_name": "Doe",
+  "role": "Admin",
+  "tenant_id": "4",
+  "company": {
+    "subdomain": "dpro",
+    "name": "Dpro GmbH"
+  }
+}
+```
+
+## Step 5: Refresh Token
+
+When the access token expires, use the refresh token:
+
+```bash
+POST https://app.flowxtra.com/api/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "refresh_token",
+  "client_id": "YOUR_CLIENT_ID",
+  "client_secret": "YOUR_CLIENT_SECRET",
+  "refresh_token": "ort_xyz789..."
+}
+```
+
+## Available Scopes
+
+| Scope | Description |
+|---|---|
+| `profile` | Read user's name, email, role |
+| `company` | Read company name, subdomain |
+| `jobs:read` | View job listings |
+| `jobs:write` | Create and update jobs |
+| `applicants:read` | View candidate details |
+| `applicants:write` | Update candidate status and stages |
+| `mcp` | Use MCP server tools |
+
+## Token Lifetimes
+
+| Token | Lifetime |
+|---|---|
+| Access Token | 1 year |
+| Refresh Token | 2 years |
+| Authorization Code | 10 minutes |
+
+## Revoking Access
+
+Users can revoke access from **Settings → API Rest → Connected Applications** in their dashboard.
+
+Programmatically:
+
+```bash
+POST https://app.flowxtra.com/api/oauth/revoke
+Content-Type: application/json
+
+{
+  "token": "oat_abc123..."
+}
+```
+
+## Auto-Discovery
+
+MCP-compatible clients can auto-discover the OAuth configuration:
+
+```bash
+GET https://app.flowxtra.com/.well-known/oauth-authorization-server
+```
+
+```json
+{
+  "issuer": "https://app.flowxtra.com",
+  "authorization_endpoint": "https://app.flowxtra.com/authorize",
+  "token_endpoint": "https://app.flowxtra.com/api/oauth/token",
+  "revocation_endpoint": "https://app.flowxtra.com/api/oauth/revoke",
+  "userinfo_endpoint": "https://app.flowxtra.com/api/oauth/userinfo",
+  "scopes_supported": ["profile", "company", "jobs:read", "jobs:write", "applicants:read", "applicants:write", "mcp"],
+  "response_types_supported": ["code"],
+  "grant_types_supported": ["authorization_code", "refresh_token"],
+  "code_challenge_methods_supported": ["S256", "plain"]
+}
+```
+
+## Code Examples
+
+### Node.js
+
+```javascript
+const axios = require('axios');
+
+// Step 1: Redirect user
+const authUrl = `https://app.flowxtra.com/authorize?` +
+  `client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}` +
+  `&response_type=code&scope=profile company jobs:read`;
+
+// Step 2: Exchange code (in your callback handler)
+const { data } = await axios.post('https://app.flowxtra.com/api/oauth/token', {
+  grant_type: 'authorization_code',
+  client_id: CLIENT_ID,
+  client_secret: CLIENT_SECRET,
+  redirect_uri: REDIRECT_URI,
+  code: req.query.code
+});
+
+const accessToken = data.access_token;
+
+// Step 3: Use the API
+const user = await axios.get('https://app.flowxtra.com/api/oauth/userinfo', {
+  headers: { Authorization: `Bearer ${accessToken}` }
+});
+```
+
+### Python
+
+```python
+import httpx
+
+# Exchange code for token
+response = httpx.post('https://app.flowxtra.com/api/oauth/token', json={
+    'grant_type': 'authorization_code',
+    'client_id': CLIENT_ID,
+    'client_secret': CLIENT_SECRET,
+    'redirect_uri': REDIRECT_URI,
+    'code': auth_code,
+})
+token = response.json()['access_token']
+
+# Use the API
+user = httpx.get('https://app.flowxtra.com/api/oauth/userinfo',
+    headers={'Authorization': f'Bearer {token}'}
+).json()
+```
+
+## Security Best Practices
+
+1. **Always use PKCE** — even for server-side apps
+2. **Validate the `state` parameter** — prevent CSRF attacks
+3. **Store tokens securely** — never expose in client-side code
+4. **Use HTTPS** — all OAuth endpoints require HTTPS
+5. **Request minimum scopes** — only ask for what you need

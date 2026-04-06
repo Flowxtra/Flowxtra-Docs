@@ -3,6 +3,7 @@
     "icon": "Code",
     "pages": [
         "authentication",
+        "oauth",
         "jobs",
         "candidates",
         "company",
