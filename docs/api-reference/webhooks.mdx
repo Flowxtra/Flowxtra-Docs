@@ -1,36 +1,239 @@
 ---
 title: Webhooks
-description: Real-time event notifications via Webhooks
+description: Receive real-time HTTP notifications when recruitment events happen
 icon: Bell
 ---
 
 # Webhooks
 
-:::info Coming Soon
-Webhooks are planned for a future release. The data model is ready but the API endpoints are not yet available.
+Webhooks send real-time `POST` requests to your URL when events happen in your Flowxtra account — new applications, stage changes, hires, job updates, and meetings.
+
+## Setup
+
+1. Go to **Plugins → Webhooks** in your dashboard
+2. Click **Add Webhook**
+3. Enter a name, your endpoint URL, and select events
+4. Flowxtra generates an HMAC secret — **copy it immediately** (shown only once)
+
+## Endpoints
+
+All webhook management endpoints require authentication and are tenant-scoped.
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/plugins/webhooks/events` | List available event types |
+| `GET` | `/api/plugins/webhooks` | List your webhooks |
+| `POST` | `/api/plugins/webhooks` | Create a webhook |
+| `GET` | `/api/plugins/webhooks/{id}` | Get webhook details + recent logs |
+| `PUT` | `/api/plugins/webhooks/{id}` | Update a webhook |
+| `DELETE` | `/api/plugins/webhooks/{id}` | Delete a webhook and its logs |
+| `POST` | `/api/plugins/webhooks/{id}/test` | Send a test payload |
+| `GET` | `/api/plugins/webhooks/{id}/logs` | Paginated delivery logs |
+
+## Create a Webhook
+
+```bash
+POST /api/plugins/webhooks?subdomain=dpro
+```
+
+### Request Body
+
+```json
+{
+  "name": "My ATS Integration",
+  "url": "https://example.com/webhooks/flowxtra",
+  "events": [
+    "application.created",
+    "application.stage_changed",
+    "application.hired"
+  ]
+}
+```
+
+### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "company_id": 1,
+    "name": "My ATS Integration",
+    "url": "https://example.com/webhooks/flowxtra",
+    "events": ["application.created", "application.stage_changed", "application.hired"],
+    "secret": "a1b2c3d4e5f6...full-64-char-secret",
+    "status": true,
+    "created_at": "2026-04-06T12:00:00.000000Z"
+  }
+}
+```
+
+:::warning
+The `secret` is returned in full **only on creation**. Store it securely — subsequent responses mask it to `...last6chars`.
 :::
 
-Webhooks will allow you to receive real-time notifications when events happen in your Flowxtra account.
+## Events
 
-## Planned Events
+| Event | Trigger | Payload Fields |
+|---|---|---|
+| `application.created` | New candidate applies | `candidate_job_id`, `job_id`, `email`, `first_name`, `last_name`, `stage_id` |
+| `application.stage_changed` | Candidate moves pipeline stage | `candidate_job_id`, `job_id`, `new_stage_id`, `email` |
+| `application.rejected` | Candidate rejected | `candidate_job_id`, `job_id`, `email` |
+| `application.hired` | Candidate hired as team member | `candidate_job_id`, `job_id`, `team_member_id`, `email` |
+| `job.published` | Job status set to Live | `job_id`, `title`, `status` |
+| `job.closed` | Job closed or archived | `job_id`, `title`, `status` |
+| `meeting.scheduled` | Meeting created (Zoom/Google) | `meet_id`, `candidate_job_id`, `scheduled_at`, `type` |
 
-| Event | Description |
+## Payload Format
+
+Every webhook delivery is a `POST` request with a JSON body:
+
+```json
+{
+  "event": "application.created",
+  "timestamp": "2026-04-06T14:30:00+00:00",
+  "data": {
+    "candidate_job_id": 42,
+    "job_id": 7,
+    "email": "jane@example.com",
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "stage_id": 1
+  }
+}
+```
+
+## Request Headers
+
+Each delivery includes these headers:
+
+| Header | Description | Example |
+|---|---|---|
+| `Content-Type` | Always JSON | `application/json` |
+| `X-Flowxtra-Signature` | HMAC SHA-256 signature | `sha256=abc123...` |
+| `X-Flowxtra-Event` | Event type | `application.created` |
+| `X-Flowxtra-Delivery` | Unique delivery ID (UUID) | `550e8400-e29b-...` |
+| `User-Agent` | Identifies Flowxtra | `Flowxtra-Webhooks/1.0` |
+
+## Verifying Signatures
+
+Every delivery is signed with your webhook's HMAC secret. **Always verify signatures** to ensure the request is from Flowxtra.
+
+### Node.js
+
+```javascript
+const crypto = require('crypto');
+
+function verifySignature(payload, signature, secret) {
+  const expected = 'sha256=' + crypto
+    .createHmac('sha256', secret)
+    .update(payload)
+    .digest('hex');
+  return crypto.timingSafeEqual(
+    Buffer.from(signature),
+    Buffer.from(expected)
+  );
+}
+
+// In your handler:
+const isValid = verifySignature(
+  req.rawBody,
+  req.headers['x-flowxtra-signature'],
+  process.env.FLOWXTRA_WEBHOOK_SECRET
+);
+```
+
+### PHP
+
+```php
+$payload = file_get_contents('php://input');
+$signature = $_SERVER['HTTP_X_FLOWXTRA_SIGNATURE'];
+$expected = 'sha256=' . hash_hmac('sha256', $payload, $secret);
+
+if (!hash_equals($expected, $signature)) {
+    http_response_code(401);
+    exit('Invalid signature');
+}
+```
+
+### Python
+
+```python
+import hmac, hashlib
+
+def verify_signature(payload: bytes, signature: str, secret: str) -> bool:
+    expected = 'sha256=' + hmac.new(
+        secret.encode(), payload, hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(expected, signature)
+```
+
+## Retry Policy
+
+If your endpoint returns a non-2xx status code or the connection fails, Flowxtra retries up to **3 times** with exponential backoff:
+
+| Attempt | Delay |
 |---|---|
-| `application.created` | New candidate application received |
-| `application.stage_changed` | Candidate moved to a different pipeline stage |
-| `application.rejected` | Candidate rejected |
-| `job.published` | Job posted/published |
-| `job.closed` | Job closed or archived |
-| `candidate.hired` | Candidate marked as hired |
-| `meeting.scheduled` | New meeting scheduled |
+| 1st retry | 10 seconds |
+| 2nd retry | 1 minute |
+| 3rd retry | 5 minutes |
 
-## How It Will Work
+After 3 failed attempts, the delivery is marked as failed. Check **Plugins → Webhooks → Logs** to see delivery history and debug failures.
 
-1. Register a webhook URL in **Settings → Integrations**
-2. Select which events to subscribe to
-3. Flowxtra sends a `POST` request to your URL with event data
-4. Verify the `X-Flowxtra-Signature` header for security
+## Best Practices
 
-## Want This Feature?
+- **Respond quickly** — return `200 OK` within 15 seconds. Process the data asynchronously if needed.
+- **Verify signatures** — always check `X-Flowxtra-Signature` before processing.
+- **Handle duplicates** — use `X-Flowxtra-Delivery` to deduplicate if your endpoint is called more than once.
+- **Use HTTPS** — always use an `https://` endpoint URL.
+- **Monitor logs** — check delivery logs regularly to catch failures early.
 
-Contact us at [support@flowxtra.com](mailto:support@flowxtra.com) if you need webhook support for your integration.
+## Test Webhook
+
+Send a test payload to verify your endpoint is working:
+
+```bash
+POST /api/plugins/webhooks/{id}/test?subdomain=dpro
+```
+
+This sends a `webhook.test` event synchronously and returns the result immediately:
+
+```json
+{
+  "success": true,
+  "data": {
+    "success": true,
+    "status_code": 200,
+    "message": "Test webhook delivered successfully."
+  }
+}
+```
+
+## Delivery Logs
+
+View delivery history for a webhook:
+
+```bash
+GET /api/plugins/webhooks/{id}/logs?subdomain=dpro
+```
+
+```json
+{
+  "success": true,
+  "data": {
+    "data": [
+      {
+        "id": 1,
+        "event": "application.created",
+        "status_code": 200,
+        "success": true,
+        "attempt": 1,
+        "delivered_at": "2026-04-06T14:30:01.000000Z",
+        "created_at": "2026-04-06T14:30:00.000000Z"
+      }
+    ],
+    "current_page": 1,
+    "total": 1
+  }
+}
+```
