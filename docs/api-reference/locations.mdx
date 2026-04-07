@@ -1,0 +1,212 @@
+---
+title: Locations API
+description: Public country/city aggregation API powering SEO landing pages on the 17 branded career domains
+icon: MapPin
+---
+
+# Locations API
+
+Public, no-auth API that aggregates jobs by country and city across all Flowxtra tenants. Powers the SEO country/city landing pages on the 17 branded career domains (`bewerben.link`, `aplikuj.link`, `appliquer.net`, …).
+
+All endpoints share the same visibility rules as the central jobs feed: `status = Live`, `status_by_admin = approved`, posted within the last 35 days, and excluding `arison` / `creativity` test domains.
+
+## Base URL
+
+| Environment | URL |
+|---|---|
+| Production | `https://app.flowxtra.com` |
+| Local | `http://localhost:8000` |
+
+## Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/locations/countries` | List countries with active job counts |
+| `GET` | `/api/locations/cities` | List cities (with counts) for a country |
+| `GET` | `/api/locations/jobs` | Paginated jobs filtered by location |
+
+---
+
+## List Countries
+
+Returns every country that has at least one active job, with the total count. Optionally scoped to a single career domain.
+
+```bash
+GET /api/locations/countries?career_domain=bewerben.link
+```
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `career_domain` | string | No | Filter to tenants whose `domains.career_domain` matches one of the 17 branded domains |
+
+### Response
+
+```json
+{
+  "success": true,
+  "message": "200",
+  "data": [
+    {
+      "name": "Germany",
+      "iso2": "DE",
+      "country_id": 83,
+      "job_count": 42
+    },
+    {
+      "name": "Switzerland",
+      "iso2": "CH",
+      "country_id": 216,
+      "job_count": 8
+    }
+  ]
+}
+```
+
+---
+
+## List Cities
+
+Returns every city in the given country that has at least one active job, sorted by job count descending.
+
+```bash
+GET /api/locations/cities?country=DE&career_domain=bewerben.link&limit=200
+```
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `country` | string | **Yes** | ISO 3166-1 alpha-2 code (e.g. `DE`) or full country name (e.g. `Germany`) |
+| `career_domain` | string | No | Filter to one branded career domain |
+| `limit` | integer | No | Maximum cities to return (default: `200`) |
+
+### Response
+
+```json
+{
+  "success": true,
+  "message": "200",
+  "data": [
+    {
+      "name": "Berlin",
+      "slug": "berlin",
+      "state": "Berlin",
+      "job_count": 12
+    },
+    {
+      "name": "München",
+      "slug": "munchen",
+      "state": "Bayern",
+      "job_count": 8
+    }
+  ]
+}
+```
+
+---
+
+## List Jobs by Location
+
+Returns paginated central jobs filtered by country and/or city. Same payload shape as `/api/central/jobs` so the same `JobCard` component can render the result.
+
+```bash
+GET /api/locations/jobs?country=DE&city=Berlin&career_domain=bewerben.link&page=1&per_page=12
+```
+
+### Query Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `country` | string | No | ISO2 code or full country name |
+| `city` | string | No | Exact city name as stored in `central_jobs.city_company.name` |
+| `career_domain` | string | No | One of the 17 branded domains |
+| `page` | integer | No | Page number (default: `1`) |
+| `per_page` | integer | No | Results per page (default: `12`) |
+| `search-key` | string | No | Free-text search on job title |
+| `key-category` | integer | No | AMS category ID |
+| `workplace` | string | No | `On-site`, `Remote`, or `Hybrid` |
+| `employment_type` | string | No | e.g. `Full-time`, `Part-time` |
+
+### Response
+
+```json
+{
+  "success": true,
+  "message": "200",
+  "data": {
+    "current_page": 1,
+    "data": [
+      {
+        "id": 110,
+        "has_id": "Nx5p",
+        "title": "Customer Service Associate",
+        "workplace": "Remote",
+        "currency": "USD",
+        "date_share": "2026-04-02T08:27:00.000000Z",
+        "min_salary": 50,
+        "max_salary": 60,
+        "rate_salary": "hour",
+        "name_company": "Keemail",
+        "city_company": "Berlin",
+        "state_company": "Berlin",
+        "country_company": "Germany",
+        "logo_company": "https://...",
+        "skills": ["Customer Service", "Communication"],
+        "employment_types": ["Full-time"],
+        "urlJobApplay": "https://flowxtra.com/apply/Nx5p"
+      }
+    ],
+    "first_page_url": "...",
+    "last_page": 4,
+    "per_page": 12,
+    "total": 42
+  }
+}
+```
+
+---
+
+## Career Domain → Country Targeting
+
+Each branded career domain targets specific markets. The frontend uses a static map (`lib/domain-countries.ts`) and only renders countries from the relevant list per domain.
+
+| Domain | Language | Targets (ISO2) |
+|---|---|---|
+| `apply-link.net`, `apply-jobs.net` | English | GB, IE, US, CA, AU, NZ |
+| `bewerben.link` | German | DE, AT, CH |
+| `appliquer.net` | French | FR, BE, CH, LU, MC |
+| `postular.link` | Spanish | ES, MX, AR, CO, CL, PE, VE, EC, UY |
+| `solliciteren.link` | Dutch | NL, BE |
+| `candidarsi.link` | Italian | IT, CH, SM |
+| `prihlasit.link` | Czech / Slovak | CZ, SK |
+| `aplikuj.link` | Polish | PL |
+| `candidatar.link` | Portuguese | PT, BR, AO, MZ |
+| `jelentkezz.link` | Hungarian | HU |
+| `ansok.link` | Swedish | SE |
+| `ansog.link` | Danish | DK, NO |
+| `hakea.link` | Finnish | FI |
+| `aitisi.link` | Greek | GR, CY |
+| `kandidatstvai.link` | Bulgarian | BG |
+| `prijavi.link` | South Slavic | HR, SI, RS, BA, ME, MK |
+
+## SEO Landing Page URLs
+
+The Locations API powers landing pages with **localized URL slugs per domain**:
+
+| Domain | Country Page | City Page |
+|---|---|---|
+| `apply-link.net` | `/locations/germany` | `/locations/germany/berlin` |
+| `bewerben.link` | `/orte/deutschland` | `/orte/deutschland/berlin` |
+| `aplikuj.link` | `/lokalizacje/polska` | `/lokalizacje/polska/warszawa` |
+| `appliquer.net` | `/lieux/france` | `/lieux/france/paris` |
+| `postular.link` | `/lugares/españa` | `/lugares/españa/madrid` |
+
+Each city page includes:
+- Localized H1, title, and meta description in the domain's language
+- Wikipedia city summary in the local language (24h cache)
+- `JobPosting` JSON-LD per job (eligible for Google Jobs Rich Results)
+- `BreadcrumbList`, `ItemList`, and `Place` structured data
+- `hreflang` alternates linking the same city across all sibling domains
+- Self-canonical URL (always page 1)
