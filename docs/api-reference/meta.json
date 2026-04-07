@@ -9,6 +9,7 @@
         "company",
         "social",
         "meetings",
+        "locations",
         "rate-limits",
         "webhooks"
     ]
