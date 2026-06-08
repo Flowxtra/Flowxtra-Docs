@@ -1,0 +1,9 @@
+{
+    "title": "CLI Documentation",
+    "icon": "Terminal",
+    "pages": [
+        "setup",
+        "commands",
+        "skills"
+    ]
+}

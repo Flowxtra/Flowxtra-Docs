@@ -1,0 +1,115 @@
+---
+title: AI Agent Skills
+description: Drive Flowxtra from AI agents — CLI-driving skills and Claude-native MCP skills
+icon: Sparkles
+---
+
+# AI Agent Skills
+
+Flowxtra ships **two complementary skill sets** so AI assistants can run hiring workflows
+for you in plain language. They look similar but serve different runtimes — pick the one
+that matches how your team works.
+
+## Quick comparison
+
+| | CLI-driving skills | Claude-native skills |
+|---|---|---|
+| **Repo** | [`Flowxtra/flowxtra_cli`](https://github.com/Flowxtra/flowxtra_cli) (in `skills/`) | [`Flowxtra/flowxtra-claude-skills`](https://github.com/Flowxtra/flowxtra-claude-skills) |
+| **Runs in** | Claude Code, Cursor, Codex, any agent supporting `npx skills add` | Claude.ai web, Claude Desktop |
+| **Drives** | The `flowxtra` CLI binary | The [Flowxtra MCP server](/mcp/setup) tools |
+| **Prerequisite** | CLI installed (`npm install -g @flowxtra/cli`) + `flowxtra auth login` | MCP connector added in Claude settings |
+| **Install** | `npx skills add Flowxtra/flowxtra_cli` | Upload `.skill` files in claude.ai → Settings → Capabilities |
+| **Best for** | Developers in a terminal/IDE | Recruiters using claude.ai in the browser |
+
+Both sets cover the same core workflows. You can install either, or both — they don't
+conflict.
+
+---
+
+## CLI-driving skills
+
+For agents that can shell out to the `flowxtra` command. Three focused skills, plus the
+core `flowxtra` skill that teaches the agent the full CLI surface.
+
+| Skill | Triggers on |
+|---|---|
+| `flowxtra` | Any request involving Flowxtra. Teaches the agent the full CLI. |
+| `post-job` | "create a job", "publish a vacancy", "post a role on Flowxtra" |
+| `screen-candidates` | "review applicants", "shortlist top N", "move [name] to interview" |
+
+**Install:**
+
+```bash
+# 1. The CLI (skills drive it)
+npm install -g @flowxtra/cli
+flowxtra auth login
+
+# 2. The skills
+npx skills add Flowxtra/flowxtra_cli
+```
+
+Then say *"post a senior backend job"* and the agent runs `flowxtra jobs create …` for
+you, asking for what it needs along the way.
+
+---
+
+## Claude-native skills (MCP-based)
+
+For users of **claude.ai** or **Claude Desktop** — no CLI install, no terminal. Five
+specialized skills that drive the Flowxtra MCP tools directly.
+
+| Skill | Triggers on |
+|---|---|
+| `flowxtra-post-job` | "create a job", "post a vacancy on Flowxtra" |
+| `flowxtra-screen-candidates` | "show applicants for…", "shortlist", "move to interview", "reject" |
+| `flowxtra-promote-job` | "announce on LinkedIn", "share the role on social" |
+| `flowxtra-schedule-interview` | "book an interview", "schedule a call with the candidate" |
+| `flowxtra-hiring-report` | "how many applicants", "channel breakdown", "pipeline status" |
+
+**Install:**
+
+1. Connect the Flowxtra MCP server in Claude — see [MCP Setup](/mcp/setup).
+2. Download the `.skill` files from the [releases page](https://github.com/Flowxtra/flowxtra-claude-skills/releases) or zip each folder yourself.
+3. In **claude.ai → Settings → Capabilities → Skills**, click **Upload** and select each
+   `.skill` file.
+
+That's it — the next time you ask claude.ai *"post a senior dev job on Flowxtra"* the
+right skill fires automatically.
+
+### What each one does
+
+- **Post a job:** drafts the listing first, shows you the copy, publishes only on
+  confirmation. Optional follow-up to add custom application questions and announce on
+  social.
+- **Screen candidates:** lists applicants, surfaces who looks strongest, moves them
+  through your pipeline. Always confirms before sending stage emails or rejections —
+  they go to real people.
+- **Promote a job:** writes a tailored caption for each connected social channel and
+  posts after your OK. (Note: branded image generation is a CLI feature —
+  `flowxtra jobs promote` generates 13 variants; the MCP version posts text + apply link.)
+- **Schedule interview:** picks the candidate, confirms time/timezone, books via Google
+  Meet / Zoom / Jitsi.
+- **Hiring report:** read-only — answers questions like "how many applicants this week",
+  "which channel performs best", "where are candidates stuck in the pipeline".
+
+### Safety
+
+Every outward-facing action (publishing a job, posting to social, sending an email,
+moving or rejecting a candidate, booking a meeting) is **confirmed with you before it
+runs**. The skills surface the change first, then act on your OK.
+
+---
+
+## Which should I use?
+
+- You live in a **terminal or IDE** (Claude Code, Cursor, Codex) → **CLI-driving skills**.
+  The CLI is faster, scriptable, and includes features the MCP can't expose (like the
+  13-variant social-image generator).
+- You use **claude.ai in the browser** → **Claude-native skills**. No install. Pair with
+  the MCP server.
+- **Both** is also fine — they target different runtimes.
+
+## See also
+
+- [CLI Setup](/cli/setup) · [Commands Reference](/cli/commands)
+- [MCP Setup](/mcp/setup) · [MCP Tools](/mcp/tools)

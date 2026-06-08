@@ -1,0 +1,137 @@
+---
+title: Commands Reference
+description: Every Flowxtra CLI command and what it does
+icon: ListChecks
+---
+
+# Commands Reference
+
+The Flowxtra CLI exposes **36 commands** in **8 groups**, plus a generic `api`
+escape-hatch for any endpoint not covered by a dedicated command.
+
+Global flags available on **every** command:
+
+| Flag | Purpose |
+|---|---|
+| `--json` | Output raw JSON instead of formatted tables (great for scripts) |
+| `--no-color` | Disable colored output |
+
+Discover any command's flags with `flowxtra [group] [command] --help`.
+
+## Auth
+
+| Command | What it does |
+|---|---|
+| `flowxtra auth login` | Sign in via your browser (OAuth + PKCE) |
+| `flowxtra auth logout` | Remove the local API token |
+| `flowxtra auth whoami` | Show the signed-in user, email, company, workspace |
+| `flowxtra auth status` | Show API URL, workspace, and login timestamp |
+
+## Jobs
+
+| Command | What it does |
+|---|---|
+| `flowxtra jobs list` | List your job postings |
+| `flowxtra jobs get [id]` | Show one job's details |
+| `flowxtra jobs candidates [job]` | List applicants for a job |
+| `flowxtra jobs create --title "…"` | Create a job — auto-fills office, pipeline, currency, and required defaults |
+| `flowxtra jobs publish [id] [--action publish\|unpublish\|archive\|close]` | Publish, unpublish, archive or close |
+| `flowxtra jobs promote [job]` | **Generate 13 social images for a job, pick one, and post to connected accounts** (interactive) |
+| `flowxtra jobs questions [job]` | List custom application questions on a job |
+| `flowxtra jobs add-question [job] --question "…" --type number --required` | Add a custom application question |
+
+```bash
+# Create a job (the smart create resolves required fields for you)
+flowxtra jobs create --title "Senior Backend Engineer" \
+  --workplace Remote --employment-type Full-time \
+  --description "<p>What you'll do…</p>"
+
+# Generate social images and publish in one flow (interactive)
+flowxtra jobs promote 8f2a
+
+# Non-interactive: pick image 3, post to two accounts, custom caption
+flowxtra jobs promote 8f2a --image 3 --account 1 --account 2 \
+  --content "We're hiring! Apply: https://…"
+```
+
+## Candidates
+
+| Command | What it does |
+|---|---|
+| `flowxtra candidates list` | List all applications across your jobs |
+| `flowxtra candidates get [id]` | Show one candidate's details |
+| `flowxtra candidates move [id] --stage [stage_id] [--email]` | Move to a pipeline stage (optionally email) |
+| `flowxtra candidates reject [id] [--action reject\|undo]` | Reject or undo rejection |
+
+```bash
+flowxtra company pipelines              # find the stage_id you want
+flowxtra candidates move 42 --stage 5 --email
+```
+
+## Company
+
+| Command | What it does |
+|---|---|
+| `flowxtra company info` | Show your company profile |
+| `flowxtra company offices` | List your offices |
+| `flowxtra company pipelines` | List hiring pipelines + their stage counts |
+| `flowxtra company team` | List team members in your workspace |
+| `flowxtra company workspaces` | List workspaces you have access to |
+
+## Meetings
+
+| Command | What it does |
+|---|---|
+| `flowxtra meetings list` | List scheduled meetings/interviews |
+| `flowxtra meetings create --title "…" --candidate [id] --start "…" --type google_meet\|zoom\|jitsi` | Schedule a meeting |
+
+## Social
+
+| Command | What it does |
+|---|---|
+| `flowxtra social accounts` | List connected social accounts |
+| `flowxtra social posts` | List recent posts |
+| `flowxtra social post --content "…" --account [id]` | Publish a post to connected accounts |
+
+## Custom Fields
+
+| Command | What it does |
+|---|---|
+| `flowxtra custom-fields list` | List your company's custom fields |
+| `flowxtra custom-fields create --label "Department" --type text` | Create a custom field |
+| `flowxtra custom-fields delete [id]` | Delete a custom field |
+
+```bash
+# Create a select field with options
+flowxtra custom-fields create --label "Seniority" --type select \
+  --value Junior --value Mid --value Senior
+```
+
+## Webhooks
+
+| Command | What it does |
+|---|---|
+| `flowxtra webhooks list` | List your configured webhooks |
+| `flowxtra webhooks events` | List the 7 event types you can subscribe to |
+| `flowxtra webhooks create --name "…" --url https://… --event application.created` | Create a webhook |
+| `flowxtra webhooks delete [id]` | Delete a webhook |
+| `flowxtra webhooks test [id]` | Send a test ping |
+| `flowxtra webhooks logs [id]` | Show recent delivery logs |
+
+## Escape hatch — `api`
+
+For any endpoint not covered by a dedicated command:
+
+```bash
+flowxtra api jobs/index --json
+flowxtra api jobs/store --method POST --field title=Designer --field status=Draft
+flowxtra api oauth/userinfo --central
+```
+
+Use `--field key=value` (repeatable) for the request body, `--query key=value` for
+query params, and `--central` to skip the tenant subdomain (for central endpoints).
+
+## See also
+
+- [Setup](/cli/setup) — install + sign in.
+- [Skills](/cli/skills) — drive these commands from AI agents.
