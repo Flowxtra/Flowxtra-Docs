@@ -4,6 +4,7 @@
         "user-guide",
         "api-reference",
         "mcp",
+        "cli",
         "best-practices"
     ]
 }

@@ -1,0 +1,90 @@
+---
+title: CLI Setup
+description: Install the Flowxtra CLI, sign in, and run your first commands
+icon: Terminal
+---
+
+# CLI Setup
+
+The **Flowxtra CLI** (`@flowxtra/cli`) is a scriptable, CI-ready command-line tool that
+gives you the full Flowxtra recruiting platform from your terminal: post jobs, review
+candidates, schedule interviews, manage webhooks and custom fields, and more — across
+**36 commands** in 8 groups.
+
+It also powers Flowxtra agent skills, so AI coding assistants (Claude Code, Cursor,
+Codex, etc.) can run the same workflows for you in plain language.
+
+## 1. Install
+
+```bash
+npm install -g @flowxtra/cli
+```
+
+Requires **Node.js 18+**. Verify the install:
+
+```bash
+flowxtra --version
+```
+
+## 2. Sign in
+
+```bash
+flowxtra auth login
+```
+
+This opens your browser for OAuth (PKCE), then stores a long-lived API token at
+`~/.flowxtra/config.json` (readable only by you). The same account you use for the
+dashboard.
+
+```bash
+flowxtra auth whoami     # show the signed-in account
+flowxtra auth status     # show API + workspace details
+flowxtra auth logout     # remove the local token
+```
+
+## 3. First commands
+
+```bash
+flowxtra jobs list                                    # list your jobs
+flowxtra jobs create --title "Senior Backend Engineer" --workplace Remote
+flowxtra company pipelines                            # find stage IDs
+flowxtra candidates list                              # see all applications
+```
+
+Add `--json` to **any** command for machine-readable output (great for scripts and CI).
+See the [Commands reference](/cli/commands) for the full list.
+
+## 4. Plug into your AI agent (optional)
+
+Install the Flowxtra **CLI-driving skills** so any AI agent that supports `skills` can
+run `flowxtra` commands for you:
+
+```bash
+npx skills add Flowxtra/flowxtra_cli
+```
+
+Then just ask: *"post a senior backend job with Flowxtra"* or *"shortlist the top 5 for
+the QA role"*. See [Skills](/cli/skills) for details on what's available and how
+agent skills compare to the **Claude-native skills** (which use MCP, no CLI install
+required).
+
+## Environment overrides
+
+| Variable | Purpose |
+|---|---|
+| `FLOWXTRA_API_URL` | Point at a non-production API (default: `https://app.flowxtra.com`) |
+| `FLOWXTRA_CONFIG_DIR` | Use a different config directory (default: `~/.flowxtra`) |
+| `NO_COLOR` | Disable colored output |
+
+## Source & issues
+
+The CLI is **MIT-licensed** and open source:
+
+- npm: [`@flowxtra/cli`](https://www.npmjs.com/package/@flowxtra/cli)
+- GitHub: [`Flowxtra/flowxtra_cli`](https://github.com/Flowxtra/flowxtra_cli)
+
+## See also
+
+- [Commands reference](/cli/commands) — every command, every flag.
+- [Skills](/cli/skills) — drive Flowxtra from AI agents (CLI skills + Claude-native MCP skills).
+- [MCP Setup](/mcp/setup) — connect Flowxtra to chat apps like Claude.ai via MCP (no terminal).

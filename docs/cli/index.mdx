@@ -1,0 +1,45 @@
+---
+title: CLI Documentation
+description: Run your Flowxtra hiring from the terminal
+icon: Terminal
+---
+
+# Flowxtra CLI
+
+The **Flowxtra CLI** (`@flowxtra/cli`) is a scriptable, CI-ready command-line tool for
+the Flowxtra recruiting platform. **36 commands** in **8 groups** — post jobs, review
+candidates, schedule interviews, manage webhooks and custom fields, generate social
+images, and more.
+
+It also doubles as the backend for AI agent skills, so Claude Code, Cursor, Codex and
+other agents can drive Flowxtra in plain language.
+
+```bash
+npm install -g @flowxtra/cli
+flowxtra auth login
+flowxtra jobs create --title "Senior Backend Engineer" --workplace Remote
+```
+
+## What you can do
+
+- **Jobs** — list, create (smart-defaults), publish, archive, generate social images, manage application questions
+- **Candidates** — list, review, move through pipeline stages, reject (with confirmation)
+- **Company** — inspect offices, pipelines, team, workspaces
+- **Meetings** — schedule and list interviews (Google Meet / Zoom / Jitsi)
+- **Social** — manage connected accounts and publish posts
+- **Custom fields** — define and manage company-wide custom fields
+- **Webhooks** — subscribe to 7 recruitment event types, view delivery logs
+
+Every command supports `--json` for machine-readable output — perfect for scripts and CI.
+
+## Get started
+
+- **[Setup](/cli/setup)** — install, sign in, run your first commands.
+- **[Commands](/cli/commands)** — every command, every flag, with examples.
+- **[Skills](/cli/skills)** — drive Flowxtra from AI agents (terminal-based + Claude-native MCP).
+
+## Open source
+
+- npm: [`@flowxtra/cli`](https://www.npmjs.com/package/@flowxtra/cli) (MIT)
+- GitHub: [`Flowxtra/flowxtra_cli`](https://github.com/Flowxtra/flowxtra_cli)
+- Issues & contributions welcome.
