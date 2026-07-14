@@ -47,6 +47,44 @@ const config = {
         content: 'googled95d0ac79d9e77e4',
       },
     },
+    // Favicon (RealFaviconGenerator set)
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/svg+xml',
+        href: '/icon.svg',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'icon',
+        type: 'image/png',
+        href: '/icon.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'apple-touch-icon',
+        href: '/apple-icon.png',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'manifest',
+        href: '/manifest.json',
+      },
+    },
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'apple-mobile-web-app-title',
+        content: 'Flowxtra Docs',
+      },
+    },
     // Default Open Graph
     {
       tagName: 'meta',

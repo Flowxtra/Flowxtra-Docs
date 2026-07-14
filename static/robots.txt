@@ -11,4 +11,3 @@ Disallow: /*?*
 
 # Sitemaps
 Sitemap: https://docs.flowxtra.com/sitemap.xml
-Sitemap: https://docs.flowxtra.com/de/sitemap.xml
