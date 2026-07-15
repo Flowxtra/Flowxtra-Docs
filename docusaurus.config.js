@@ -115,6 +115,21 @@ const config = {
     locales: ['en'],
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      /** @type {import('@docusaurus/plugin-client-redirects').Options} */
+      ({
+        redirects: [
+          {
+            from: '/best-practices/google-jobs',
+            to: '/user-guide/job-posting/publishing-google',
+          },
+        ],
+      }),
+    ],
+  ],
+
   presets: [
     [
       'classic',
