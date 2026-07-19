@@ -10,7 +10,7 @@ const ASCII_ART = String.raw`
 ╚═╝     ╚══════╝ ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝
 `;
 
-const MESSAGE = "👋 Hey, curious mind!\n\nWe're Flowxtra — building the future of hiring with AI-powered recruitment software.\n\n🐛 Found something interesting? mailto:office@flowxtra.com";
+const MESSAGE = "👋 Hey, curious mind!\n\nWe're Flowxtra — building the future of hiring with AI-powered recruitment software.\n\n🐛 Found something interesting? office@flowxtra.com";
 
 // Docusaurus only invokes a client module's default export for named
 // lifecycle hooks (e.g. onRouteDidUpdate) — a plain import has no other
