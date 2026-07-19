@@ -32,6 +32,10 @@ const config = {
   onDuplicateRoutes: 'throw',
   trailingSlash: false,
 
+  clientModules: [
+    './src/clientModules/consoleBanner.js',
+  ],
+
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'throw',
